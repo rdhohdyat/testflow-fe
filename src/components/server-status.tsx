@@ -5,7 +5,7 @@ const ServerStatus = () => {
   const [status, setStatus] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:8000/ping")
+    fetch(`${import.meta.env.VITE_API_URL}/ping`)
       .then((res) => {
         if (res.ok) {
           setStatus(true);

@@ -52,7 +52,7 @@ export function SaveAnalysisDialog() {
   // Fetch daftar project saat dialog dibuka
   useEffect(() => {
     if (open) {
-      fetch("http://localhost:8000/projects/")
+      fetch(`${import.meta.env.VITE_API_URL}/projects/`)
         .then((res) => res.json())
         .then((data) => setProjects(data))
         .catch((err) => console.error("Gagal memuat proyek", err));
@@ -84,7 +84,7 @@ export function SaveAnalysisDialog() {
     };
 
     try {
-      const response = await fetch(`http://localhost:8000/projects/${selectedProjectId}/save_analysis/`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/projects/${selectedProjectId}/save_analysis/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

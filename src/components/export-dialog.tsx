@@ -216,7 +216,7 @@ export default function ExportDialog({
   const confirmDeleteAnalysis = async () => {
     if (!analysisToDelete) return;
     try {
-      const res = await fetch(`http://localhost:8000/codes/${analysisToDelete}/`, { method: "DELETE" });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/codes/${analysisToDelete}/`, { method: "DELETE" });
       if (!res.ok) throw new Error("Gagal");
       const remaining = codes.filter((c) => c.id !== analysisToDelete);
       setCodes(remaining);

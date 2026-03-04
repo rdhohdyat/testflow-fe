@@ -146,7 +146,7 @@ function TestCase() {
       // UI Delay Simulation
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      const response = await fetch("http://localhost:8000/test_execution/", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/test_execution/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
