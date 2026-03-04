@@ -96,7 +96,7 @@ function CodeEditor() {
 
     try {
       const response = await withMinimumDelay(
-        fetch(`${import.meta.env.VITE_API_URL}/analyze`, {
+        fetch(`${import.meta.env.VITE_API_URL}/analyze/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ code: codeInput }),

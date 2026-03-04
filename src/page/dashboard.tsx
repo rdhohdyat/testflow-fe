@@ -50,7 +50,7 @@ function DashboardPage() {
   const getAllProject = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://127.0.0.1:8000/projects/");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/projects/`);
       const data: Project[] = await response.json();
       setProjects(data);
     } catch (error) {
@@ -69,7 +69,7 @@ function DashboardPage() {
     if (!projectToDelete) return;
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/projects/${projectToDelete}`, { method: "DELETE" });
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/projects/${projectToDelete}/`, { method: "DELETE" });
       if (!response.ok) throw new Error("Gagal menghapus");
 
       setProjects((prev) => prev.filter((p) => p.id !== projectToDelete));
@@ -86,7 +86,7 @@ function DashboardPage() {
     setIsFetchingDetails(projectId);
     try {
       // Fetch data lengkap project termasuk semua code history
-      const response = await fetch(`http://127.0.0.1:8000/projects/${projectId}/export/`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/projects/${projectId}/export/`);
       if (!response.ok) throw new Error("Gagal mengambil data");
 
       const data = await response.json();
