@@ -53,10 +53,10 @@ const Home = () => {
         {/* Hero Title */}
         <motion.div variants={itemVariants} className="space-y-4">
           <h1 className="text-5xl md:text-[6rem] font-black leading-[0.85] tracking-tighter text-zinc-900 dark:text-white">
-            Petakan <span className="italic text-zinc-900/10 dark:text-emerald-600">Logika</span> <br />
+            Petakan <span className="italic text-emerald-500">Logika</span> <br />
             Kode Anda
           </h1>
-          <p className="text-2xl md:text-4xl font-black tracking-tight text-emerald-600/90 leading-tight">
+          <p className="text-2xl md:text-4xl font-black tracking-tight text-emerald-500/90 leading-tight">
             Menjadi Control Flow Graph
           </p>
         </motion.div>

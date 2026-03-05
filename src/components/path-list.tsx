@@ -123,10 +123,10 @@ function PathList() {
               </Button>
             </SheetTrigger>
 
-            <SheetContent className="w-full md:w-[500px] flex flex-col border-none bg-white dark:bg-gray-950 p-0 shadow-3xl" side="right">
+            <SheetContent className="w-full md:w-[500px] flex flex-col border-none bg-white dark:bg-gray-900 p-0 shadow-3xl" side="right">
               <SheetHeader className="p-8 border-b border-gray-50 dark:border-gray-900">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-2xl bg-gray-900 dark:bg-gray-100 text-white dark:text-black flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-emerald-500 flex items-center justify-center">
                     <Terminal className="w-5 h-5" />
                   </div>
                   <SheetTitle className="text-xl uppercase font-black tracking-tighter text-gray-900 dark:text-white">Detail Test Case</SheetTitle>
@@ -141,7 +141,7 @@ function PathList() {
                 </SheetDescription>
               </SheetHeader>
 
-              <div className="flex-1 overflow-y-auto px-8 py-6 space-y-6 custom-scrollbar dark:bg-gray-950">
+              <div className="flex-1 overflow-y-auto px-8 py-6 space-y-6 custom-scrollbar dark:bg-gray-900">
                 {paths && paths.length > 0 ? (
                   paths.map((item: any, index: number) => {
                     const isTested = item.testCase !== undefined && item.testCase !== null;
@@ -150,8 +150,8 @@ function PathList() {
                     return (
                       <Card key={index} className={`border-none rounded-[2rem] shadow-xl shadow-gray-100/50 dark:shadow-none overflow-hidden ${
                         item.passed 
-                          ? "bg-emerald-50/20 dark:bg-emerald-500/20" 
-                          : "bg-red-50/20 dark:bg-red-500/20"
+                          ? "bg-emerald-50/20 dark:bg-emerald-500/10" 
+                          : "bg-red-50/20 dark:bg-red-500/10"
                       }`}>
                         <div className="p-6 border-b border-white/50 dark:border-gray-800/50 flex justify-between items-center bg-white/40 dark:bg-white/5">
                           <span className="font-black text-[10px] tracking-widest text-gray-400 dark:text-white uppercase">Kasus Uji #{index + 1}</span>

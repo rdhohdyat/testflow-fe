@@ -54,7 +54,7 @@ const FAQ = () => {
             Pusat Bantuan
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tighter">
-            Pertanyaan <span className="italic text-gray-900/10 dark:text-emerald-500">Sering</span> Diajukan
+            Pertanyaan <span className="italic text-emerald-500">Sering</span> Diajukan
           </h2>
         </motion.div>
 

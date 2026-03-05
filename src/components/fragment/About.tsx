@@ -37,7 +37,7 @@ const About = () => {
               Filosofi Sistem
             </span>
             <h2 className="mb-6 text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter leading-tight">
-              Tentang <span className="italic text-zinc-900/10 dark:text-emerald-600">TestFlow</span>
+              Tentang <span className="italic text-emerald-600">TestFlow</span>
             </h2>
 
             <p className="mb-8 text-lg text-zinc-400 font-medium leading-relaxed">

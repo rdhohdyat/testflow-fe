@@ -23,7 +23,7 @@ const Contact = () => {
             Hubungan Terbuka
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter">
-            Mari <span className="italic text-zinc-900/10 dark:text-emerald-500">Berdiskusi</span>
+            Mari <span className="italic text-emerald-500">Berdiskusi</span>
           </h2>
           <p className="mt-4 text-lg text-zinc-400 font-medium max-w-xl mx-auto leading-relaxed">
             Punya pertanyaan teknis atau sekadar ingin menyapa? Hubungi kami.
@@ -48,49 +48,63 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-8">
-                <form action="https://formspree.io/f/mreawbre" className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form
+                  action="https://formspree.io/f/mreawbre"
+                  method="POST"
+                  className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                >
+                  {/* Field Nama */}
                   <div className="space-y-3">
-                    <Label htmlFor="name" className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400">NAMA LENGKAP</Label>
+                    <Label htmlFor="name" className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400">
+                      NAMA LENGKAP
+                    </Label>
                     <Input
                       type="text"
                       id="name"
-                      name="name"
+                      name="name" // WAJIB ADA
                       placeholder="Masukkan nama Anda"
-                      className="h-14 rounded-xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500"
+                      className="h-14 rounded-xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white"
                       required
                     />
                   </div>
 
+                  {/* Field Email */}
                   <div className="space-y-3">
-                    <Label htmlFor="email" className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400">ALAMAT EMAIL</Label>
+                    <Label htmlFor="email" className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400">
+                      ALAMAT EMAIL
+                    </Label>
                     <div className="relative">
                       <Input
                         type="email"
                         id="email"
-                        name="email"
+                        name="email" // WAJIB ADA
                         placeholder="nama@perusahaan.com"
-                        className="h-14 pl-12 rounded-xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500"
+                        className="h-14 pl-12 rounded-xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white"
                         required
                       />
                       <Mail className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-zinc-300" />
                     </div>
                   </div>
 
+                  {/* Field Pesan */}
                   <div className="md:col-span-2 space-y-3">
-                    <Label htmlFor="message" className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400">PESAN ANDA</Label>
+                    <Label htmlFor="message" className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400">
+                      PESAN ANDA
+                    </Label>
                     <Textarea
                       id="message"
-                      name="message"
+                      name="message" // WAJIB ADA
                       placeholder="Bagaimana kami bisa membantu?"
-                      className="min-h-[140px] rounded-2xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold p-5 dark:text-white dark:placeholder:text-gray-500"
+                      className="min-h-[140px] rounded-2xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold p-5 dark:text-white"
                       required
-                    ></Textarea>
+                    />
                   </div>
 
+                  {/* Tombol Kirim */}
                   <div className="md:col-span-2 pt-2">
                     <Button
                       type="submit"
-                      className="w-full h-16 rounded-2xl bg-zinc-900 dark:bg-emerald-600 text-white hover:bg-zinc-800 dark:hover:bg-emerald-700 text-base font-black tracking-tighter shadow-2xl shadow-zinc-200 dark:shadow-none transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3"
+                      className="w-full h-16 rounded-2xl bg-zinc-900 dark:bg-emerald-600 text-white hover:bg-zinc-800 dark:hover:bg-emerald-700 text-base font-black tracking-tighter shadow-2xl transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3"
                     >
                       KIRIM PESAN SEKARANG
                       <Send className="w-5 h-5" />

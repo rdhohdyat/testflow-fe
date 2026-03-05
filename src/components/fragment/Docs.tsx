@@ -55,7 +55,7 @@ const Docs = () => {
             Panduan Penggunaan
           </span>
           <h2 className="mb-6 text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter">
-            Cara <span className="italic text-zinc-900/10 dark:text-emerald-500">Kerja</span> TestFlow
+            Cara <span className="italic text-emerald-500">Kerja</span> TestFlow
           </h2>
           <p className="text-lg text-zinc-400 font-medium max-w-xl mx-auto leading-relaxed">
             Saksikan demonstrasi singkat bagaimana TestFlow bekerja.
