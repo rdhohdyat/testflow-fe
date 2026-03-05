@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect , useRef} from "react";
 import { useCodeStore } from "../store/CodeStore";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -80,6 +80,9 @@ const parseStoredParams = (jsonString) => {
 
 function TestCase() {
   // Store
+  // Gunakan HTMLDivElement karena Card biasanya merender tag <div>
+const resultRef = useRef<HTMLDivElement | null>(null);
+
   const { params, code, paths, setPaths, setParams } = useCodeStore();
 
   // Local State
@@ -161,6 +164,14 @@ function TestCase() {
 
       setResultText(result.actual_execution_path?.line_numbers || []);
       setLastTestParams(testParams);
+
+      setTimeout(() => {
+        resultRef.current?.scrollIntoView({ 
+          behavior: "smooth", // Gerakan halus
+          block: "start"      // Berhenti di bagian atas card
+        });
+      }, 100);
+
     } catch (error) {
       console.error("Gagal menjalankan test case:", error);
     } finally {
@@ -248,7 +259,7 @@ function TestCase() {
                 {params?.length > 0 ? (
                   params.map((p) => (
                     // @ts-ignore
-                    <Badge key={p.name} className="bg-emerald-50 text-emerald-600 border-none font-bold text-[9px] px-2 py-0.5">
+                    <Badge key={p.name} className="bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 border-none font-bold text-[9px] px-2 py-0.5">
                       {
                         // @ts-ignore
                         p.name}
@@ -333,7 +344,7 @@ function TestCase() {
       </Card>
 
       {/* CARD 2: Execution Result */}
-      <Card className="border-none bg-white dark:bg-zinc-900 rounded-[2rem] shadow-xl shadow-zinc-100/50 dark:shadow-none overflow-hidden">
+      <Card ref={resultRef} className="border-none bg-white dark:bg-zinc-900 rounded-[2rem] shadow-xl shadow-zinc-100/50 dark:shadow-none overflow-hidden">
         <CardHeader className="p-6 pb-4 bg-white/50 dark:bg-zinc-900/50 border-b border-zinc-50 dark:border-zinc-800">
           <div className="flex justify-between items-center">
             <CardTitle className="text-[10px] font-black tracking-[0.2em] text-zinc-400 uppercase">Jalur Hasil Eksekusi</CardTitle>
@@ -349,9 +360,9 @@ function TestCase() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="p-4 rounded-2xl bg-emerald-50/50 dark:bg-emerald-500/10 border-none"
+                className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 border-none"
               >
-                <div className="font-mono text-[10px] font-black text-emerald-700 break-all leading-relaxed">
+                <div className="font-mono text-[12px] font-black text-emerald-700 dark:text-white break-all leading-relaxed">
                   {resultText.join(" → ")}
                 </div>
               </motion.div>
