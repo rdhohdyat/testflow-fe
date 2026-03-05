@@ -1,11 +1,11 @@
-import { useState, useEffect , useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 import { useCodeStore } from "../store/CodeStore";
 import { motion, AnimatePresence } from "framer-motion";
 
 // UI Components
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 import { Badge } from "./ui/badge";
+import { Textarea } from "./ui/textarea";
 import {
   Card,
   CardHeader,
@@ -81,7 +81,7 @@ const parseStoredParams = (jsonString) => {
 function TestCase() {
   // Store
   // Gunakan HTMLDivElement karena Card biasanya merender tag <div>
-const resultRef = useRef<HTMLDivElement | null>(null);
+  const resultRef = useRef<HTMLDivElement | null>(null);
 
   const { params, code, paths, setPaths, setParams } = useCodeStore();
 
@@ -124,15 +124,31 @@ const resultRef = useRef<HTMLDivElement | null>(null);
     setIsSaved(false);
   };
 
+  // Detect if a string value looks like JSON object or array
+  const isJsonValue = (value: string): boolean => {
+    if (typeof value !== "string") return false;
+    const s = value.trim();
+    return (s.startsWith("[") && s.endsWith("]")) ||
+      (s.startsWith("{") && s.endsWith("}"));
+  };
+
   const prepareParamsForExecution = () => {
-    const testParams = {};
+    const testParams: Record<string, unknown> = {};
     params.forEach((param) => {
       // @ts-ignore
-      let value = inputValues[param.name];
-      // Auto-convert types
-      if (!isNaN(Number(value)) && value !== "") value = Number(value);
-      else if (value === "true") value = true;
-      else if (value === "false") value = false;
+      let value: unknown = inputValues[param.name];
+      const strVal = String(value ?? "");
+
+      // JSON object or array — let backend parse it
+      if (isJsonValue(strVal)) {
+        try { value = JSON.parse(strVal); } catch { /* send as-is string */ }
+      } else if (!isNaN(Number(strVal)) && strVal !== "") {
+        value = Number(strVal);
+      } else if (strVal === "true") {
+        value = true;
+      } else if (strVal === "false") {
+        value = false;
+      }
       // @ts-ignore
       testParams[param.name] = value;
     });
@@ -166,7 +182,7 @@ const resultRef = useRef<HTMLDivElement | null>(null);
       setLastTestParams(testParams);
 
       setTimeout(() => {
-        resultRef.current?.scrollIntoView({ 
+        resultRef.current?.scrollIntoView({
           behavior: "smooth", // Gerakan halus
           block: "start"      // Berhenti di bagian atas card
         });
@@ -278,40 +294,51 @@ const resultRef = useRef<HTMLDivElement | null>(null);
 
         <CardContent className="p-6 space-y-4">
           <AnimatePresence>
-            {params.map((param, index) => (
-              <motion.div
-                // @ts-ignore
-                key={param.name || index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className="space-y-2"
-              >
-                <label
-                  className="text-[10px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-1"
-                  htmlFor={`param-${index}`}
+            {params.map((param, index) => {
+              // @ts-ignore
+              const currentVal: string = inputValues[param.name] || "";
+              const isJson = isJsonValue(currentVal);
+              return (
+                <motion.div
+                  // @ts-ignore
+                  key={param.name || index}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  className="space-y-1.5"
                 >
-                  {
-                    // @ts-ignore
-                    param.name}
-                  {
-                    // @ts-ignore
-                    !inputValues[param.name] && (
-                      <span className="text-red-500">*</span>
+                  <label
+                    className="text-[10px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-1"
+                    htmlFor={`param-${index}`}
+                  >
+                    {/* @ts-ignore */}
+                    {param.name}
+                    {!currentVal && <span className="text-red-500">*</span>}
+                    {isJson && (
+                      <span className="ml-1 px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400 text-[8px] font-black tracking-widest uppercase">
+                        JSON
+                      </span>
                     )}
-                </label>
-                <Input
-                  id={`param-${index}`}
-                  className="h-10 rounded-xl bg-zinc-50 dark:bg-gray-800 border-none text-xs font-bold px-4 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-gray-500 shadow-sm dark:shadow-none"
-                  // @ts-ignore
-                  placeholder={`Nilai untuk ${param.name}`}
-                  // @ts-ignore
-                  value={inputValues[param.name] || ""}
-                  // @ts-ignore
-                  onChange={(e) => handleInputChange(param.name, e.target.value)}
-                />
-              </motion.div>
-            ))}
+                  </label>
+                  <Textarea
+                    id={`param-${index}`}
+                    rows={isJson ? 3 : 1}
+                    className={`rounded-xl bg-zinc-50 dark:bg-gray-800 border-none text-xs font-bold px-4 py-2.5 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-gray-500 shadow-sm dark:shadow-none resize-none transition-all ${isJson ? "font-mono" : ""
+                      }`}
+                    // @ts-ignore
+                    placeholder={`Nilai untuk ${param.name}  •  contoh: 42, "teks", [1,2,3], {"key":"val"}`}
+                    value={currentVal}
+                    // @ts-ignore
+                    onChange={(e) => handleInputChange(param.name, e.target.value)}
+                  />
+                  {isJson && (
+                    <p className="text-[9px] text-blue-400 dark:text-blue-500 font-bold pl-1">
+                      Terdeteksi sebagai JSON — akan dikirim sebagai object/array
+                    </p>
+                  )}
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </CardContent>
 
