@@ -11,22 +11,22 @@ type ServiceItem = {
 const Service = () => {
   const services: ServiceItem[] = [
     {
-      title: "Pembangkitan CFG",
+      title: "Pembuatan CFG",
       icon: <GitFork />,
       description:
-        "Otomatis memetakan source code Python Anda menjadi Control Flow Graph interaktif untuk analisis struktural visual.",
+        "Otomatis memetakan kode Python anda menjadi Control Flow Graph  untuk analisis struktural visual.",
     },
     {
       title: "Jalur Independen & Kompleksitas",
       icon: <ListTree />,
       description:
-        "Mendeteksi dan menghitung Cyclomatic Complexity (V(G)) serta mendaftar seluruh Basis Path yang harus diuji.",
+        "Mendeteksi dan menghitung Cyclomatic Complexity (V(G)) serta menampilkan jalur independen yang harus diuji.",
     },
     {
       title: "Eksekusi Test Case",
       icon: <CheckCircle2 />,
       description:
-        "Simulasikan eksekusi path dengan input test case nyata dan validasi secara real-time pada struktur grafik.",
+        "Simulasikan eksekusi jalur independen dengan input test case.",
     },
   ];
 

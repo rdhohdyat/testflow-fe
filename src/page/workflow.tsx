@@ -167,7 +167,7 @@ function WorkFlowPage() {
                   fitView
                 >
                   <Background variant={BackgroundVariant.Dots} gap={12} />
-                  <Controls className="bg-white dark:bg-zinc-900 border-gray-100 dark:border-zinc-800 rounded-xl overflow-hidden shadow-xl dark:shadow-none" />
+                  <Controls />
                 </ReactFlow>
               </div>
             </div>
@@ -237,12 +237,12 @@ function WorkFlowPage() {
             <div className="flex flex-col h-full">
               <div className="p-6 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm z-10 sticky top-0">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-emerald-500 flex items-center justify-center">
                     <GitFork className="w-5 h-5" />
                   </div>
                   <span className="text-xs font-bold tracking-wider text-gray-500 dark:text-white uppercase">Visualisasi CFG</span>
                 </div>
-                <Badge className="bg-emerald-50 text-emerald-700 border-none font-bold text-[10px] tracking-tight">
+                <Badge className="bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-500 border-none font-bold text-[10px] tracking-tight">
                   {nodeCount} Node • {edgeCount} Sisi
                 </Badge>
               </div>
@@ -269,7 +269,7 @@ function WorkFlowPage() {
           <ResizablePanel minSize={20} defaultSize={25} className="bg-gray-50/50 dark:bg-gray-800/20">
             <div className="flex flex-col h-full">
               <div className="p-6 border-b border-gray-100 dark:border-gray-800 flex items-center gap-2 bg-white/50 dark:bg-gray-900/50">
-                <div className="w-10 h-10 rounded-xl bg-gray-100 text-gray-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-emerald-500 flex items-center justify-center">
                   <BarChart3 className="w-5 h-5" />
                 </div>
                 <span className="text-xs font-bold tracking-wider text-gray-500 dark:text-white uppercase">Metrik Hasil</span>
@@ -297,22 +297,28 @@ function WorkFlowPage() {
                     </div>
 
                     <div className="flex flex-wrap justify-center items-center gap-3 mt-3">
-                      <div className="flex items-center gap-2 bg-gray-900 border border-gray-900 px-3 py-1.5 rounded-lg">
-                        <span className="font-mono text-xs text-white font-semibold italic">
+                      <div className="flex items-center gap-2 text-black dark:bg-gray-900 dark:text-white px-3 py-1.5 rounded-lg">
+                        <span className="font-mono text-xs text-black dark:text-white font-semibold italic">
                           V(G) = E - N + 2
                         </span>
-                        <span className="text-white font-bold">=</span>
+                        <span className="text-black dark:text-white font-bold">=</span>
                         <span className="text-lg font-black tracking-tight tabular-nums text-emerald-400">
                           {cyclomaticComplexity}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <div className="px-2.5 py-1 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-xs font-medium text-gray-600 dark:text-gray-400">
-                          Edge: <span className="font-bold text-gray-900 dark:text-gray-200">{edgeCount}</span>
+                      <div className="flex items-center p-1 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl">
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 border-r border-zinc-200 dark:border-zinc-800">
+                          <span className="text-[10px] font-black text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">Edge</span>
+                          <span className="text-sm font-black text-zinc-900 dark:text-zinc-100 tabular-nums">
+                            {edgeCount}
+                          </span>
                         </div>
-                        <div className="px-2.5 py-1 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-xs font-medium text-gray-600 dark:text-gray-400">
-                          Node: <span className="font-bold text-gray-900 dark:text-gray-200">{nodeCount}</span>
+                        <div className="flex items-center gap-1.5 px-3 py-1.5">
+                          <span className="text-[10px] font-black text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">Node</span>
+                          <span className="text-sm font-black text-zinc-900 dark:text-zinc-100 tabular-nums">
+                            {nodeCount}
+                          </span>
                         </div>
                       </div>
                     </div>

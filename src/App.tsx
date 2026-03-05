@@ -5,6 +5,7 @@ import { ThemeProvider } from "./components/theme-provider";
 import DashboardPage from "./page/dashboard";
 import NotFoundPage from "./page/not-found";
 
+
 function App() {
   return (
     <ThemeProvider>

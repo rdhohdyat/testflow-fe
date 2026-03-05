@@ -22,22 +22,22 @@ const Docs = () => {
     },
     {
       title: "Blok Logika",
-      description: "Mengelompokkan baris kode ke dalam unit eksekusi logis.",
+      description: "Mengelompokkan baris kode ke dalam unit eksekusi.",
       icon: <Combine />,
     },
     {
       title: "Pembuatan Node",
-      description: "Mengubah unit eksekusi menjadi titik (node) dalam grafik alur.",
+      description: "Mengubah unit eksekusi menjadi titik (node) dalam CFG.",
       icon: <GitCommitVertical />,
     },
     {
       title: "Pemetaan Alur",
-      description: "Menghubungkan antar titik sesuai dengan logika aliran program.",
+      description: "Menghubungkan antar titik sesuai dengan logika alur program.",
       icon: <GitFork />,
     },
     {
       title: "Render CFG",
-      description: "Menampilkan grafik alur interaktif yang informatif dan visual.",
+      description: "Menampilkan CFG yang informatif dan visual.",
       icon: <Wallpaper />,
     },
   ];
@@ -55,10 +55,10 @@ const Docs = () => {
             Panduan Penggunaan
           </span>
           <h2 className="mb-6 text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter">
-            Cara <span className="italic text-zinc-900/10 dark:text-emerald-600">Kerja</span> TestFlow
+            Cara <span className="italic text-zinc-900/10 dark:text-emerald-500">Kerja</span> TestFlow
           </h2>
           <p className="text-lg text-zinc-400 font-medium max-w-xl mx-auto leading-relaxed">
-            Saksikan demonstrasi singkat bagaimana TestFlow membedah kompleksitas kode Anda dalam hitungan detik.
+            Saksikan demonstrasi singkat bagaimana TestFlow bekerja.
           </p>
         </motion.div>
 
@@ -94,7 +94,7 @@ const Docs = () => {
             Arsitektur <span className="text-emerald-500 italic">Logika</span>
           </h2>
           <p className="text-base text-zinc-400 font-medium max-w-xl mx-auto leading-relaxed">
-            Metodologi sistematis yang mengubah baris kode Anda menjadi wawasan visual yang mendalam.
+            Alur kerja yang mengubah baris kode Anda menjadi wawasan visual yang mendalam.
           </p>
         </motion.div>
 

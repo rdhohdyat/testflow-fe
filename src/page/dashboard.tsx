@@ -7,6 +7,7 @@ import {
   Eye,
   Calendar,
   AlertTriangle,
+  File,
 } from "lucide-react";
 import { Navbar } from "../components/navbar";
 import { Button } from "../components/ui/button";
@@ -69,7 +70,7 @@ function DashboardPage() {
     if (!projectToDelete) return;
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/projects/${projectToDelete}/`, { method: "DELETE" });
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/projects/${projectToDelete}`, { method: "DELETE" });
       if (!response.ok) throw new Error("Gagal menghapus");
 
       setProjects((prev) => prev.filter((p) => p.id !== projectToDelete));
@@ -168,15 +169,15 @@ function DashboardPage() {
                 className="group relative flex flex-col md:flex-row md:items-center justify-between p-5 border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 rounded-2xl shadow-sm dark:shadow-none hover:shadow-md dark:hover:shadow-none transition-all duration-300"
               >
                 <div className="relative flex items-center gap-4 mb-4 md:mb-0 overflow-hidden">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gray-100 text-gray-600 group-hover:bg-emerald-50 group-hover:text-emerald-600 transition-colors flex-shrink-0">
-                    <FolderOpen className="w-6 h-6" />
+                  <div className="w-12 h-12 rounded-xl bg-white dark:bg-gray-800 shadow-lg shadow-gray-200/50 dark:shadow-none flex items-center justify-center">
+                    <File className="w-6 h-6 text-emerald-600" />
                   </div>
                   <div className="min-w-0">
                     <h3 className="text-base font-semibold text-gray-900 dark:text-white group-hover:text-emerald-600 transition-colors truncate">
                       {project.name}
                     </h3>
                     <div className="flex items-center gap-3 text-xs text-gray-500 mt-1">
-                      <span className="flex items-center gap-1.5 bg-gray-50 px-2 py-0.5 rounded-md border border-gray-200">
+                      <span className="flex items-center gap-1.5 bg-gray-50 dark:bg-gray-800 px-2 py-0.5 rounded-md border border-gray-200 dark:border-gray-700 dark:text-white">
                         <Calendar className="w-3 h-3" />
                         {new Date(project.created_at).toLocaleDateString()}
                       </span>

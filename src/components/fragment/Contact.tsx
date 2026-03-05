@@ -23,7 +23,7 @@ const Contact = () => {
             Hubungan Terbuka
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter">
-            Mari <span className="italic text-zinc-900/10 dark:text-emerald-600">Berdiskusi</span>
+            Mari <span className="italic text-zinc-900/10 dark:text-emerald-500">Berdiskusi</span>
           </h2>
           <p className="mt-4 text-lg text-zinc-400 font-medium max-w-xl mx-auto leading-relaxed">
             Punya pertanyaan teknis atau sekadar ingin menyapa? Hubungi kami.
@@ -48,7 +48,7 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-8">
-                <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form action="https://formspree.io/f/mreawbre" className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
                     <Label htmlFor="name" className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400">NAMA LENGKAP</Label>
                     <Input

@@ -12,32 +12,32 @@ const FAQ = () => {
     {
       question: "Apa itu Control Flow Graph (CFG)?",
       answer:
-        "Singkatnya, CFG adalah gambaran alur program. Ini membantu kita melihat semua kemungkinan jalan yang bisa dilewati kode saat dijalankan.",
+        "Singkatnya, CFG adalah visualisasi alur program. Ini membantu kita melihat semua kemungkinan jalan yang bisa dilewati kode saat dijalankan.",
     },
     {
       question: "Apa kegunaan utama TestFlow?",
       answer:
-        "TestFlow membantu mahasiswa atau developer melihat struktur logika kode mereka secara visual, sehingga lebih mudah dipahami daripada hanya membaca teks baris per baris.",
+        "TestFlow membantu melihat struktur logika kode secara visual, sehingga lebih mudah dipahami daripada hanya membaca teks baris per baris.",
     },
     {
-      question: "Bagaimana cara aplikasi ini membuat grafik?",
+      question: "Bagaimana cara aplikasi ini membuat CFG?",
       answer:
-        "Aplikasi akan membaca kode Python Anda, mencari perintah seperti perulangan (loop) dan percabangan (if), lalu menghubungkannya menjadi sebuah grafik.",
+        "Aplikasi akan membaca kode Python Anda, mencari perintah seperti perulangan (loop) dan percabangan (if), lalu menghubungkannya menjadi sebuah CFG.",
     },
     {
       question: "Bahasa pemrograman apa saja yang didukung?",
       answer:
-        "Untuk saat ini, fokus utama aplikasi kami adalah mendukung bahasa Python.",
+        "Untuk saat ini, fokus utama aplikasi adalah mendukung bahasa Python.",
     },
     {
       question: "Apakah saya bisa menyimpan hasil analisisnya?",
       answer:
-        "Tentu! Kamu bisa membuat proyek, menyimpan riwayat analisis, dan mengekspor hasilnya dalam format PDF atau JSON.",
+        "Tentu! Anda bisa membuat proyek, menyimpan riwayat analisis, dan mengekspor hasilnya dalam format PDF berupa laporan.",
     },
     {
       question: "Apa itu Cyclomatic Complexity yang ada di aplikasi?",
       answer:
-        "Itu adalah metrik sederhana untuk mengukur seberapa kompleks kode kamu berdasarkan jumlah jalur yang ada di dalam grafik alur.",
+        "Itu adalah metrik sederhana untuk mengukur seberapa kompleks kode anda berdasarkan jumlah jalur yang ada di dalam CFG.",
     },
   ];
 
@@ -54,7 +54,7 @@ const FAQ = () => {
             Pusat Bantuan
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tighter">
-            Pertanyaan <span className="italic text-gray-900/10 dark:text-emerald-600">Sering</span> Diajukan
+            Pertanyaan <span className="italic text-gray-900/10 dark:text-emerald-500">Sering</span> Diajukan
           </h2>
         </motion.div>
 
