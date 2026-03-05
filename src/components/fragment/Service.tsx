@@ -44,7 +44,7 @@ const Service = () => {
             Fitur Inti
           </span>
           <h2 className="mb-5 text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter leading-tight">
-            Analisis <span className="italic text-zinc-900/10">Kode</span>
+            Analisis <span className="italic text-zinc-900/10 dark:text-emerald-500">Kode</span>
           </h2>
           <p className="max-w-xl mb-12 text-lg text-zinc-400 font-medium leading-relaxed mx-auto">
             Beberapa hal yang bisa anda lakukan di <span className="text-zinc-900 dark:text-white font-bold">TestFlow</span> untuk membantu mempermudah analisis logika program sederhana.

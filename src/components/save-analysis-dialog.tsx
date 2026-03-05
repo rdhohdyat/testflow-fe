@@ -118,7 +118,7 @@ export function SaveAnalysisDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="gap-2 h-10 px-4 rounded-xl font-bold transition-all">
+        <Button variant="outline" className="gap-2 h-10 uppercase px-4 rounded-xl font-bold transition-all">
           <Save className="w-4 h-4" />
           Simpan Analisis
         </Button>

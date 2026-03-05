@@ -55,7 +55,7 @@ const Docs = () => {
             Panduan Penggunaan
           </span>
           <h2 className="mb-6 text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter">
-            Cara <span className="italic text-zinc-900/10">Kerja</span> TestFlow
+            Cara <span className="italic text-zinc-900/10 dark:text-emerald-600">Kerja</span> TestFlow
           </h2>
           <p className="text-lg text-zinc-400 font-medium max-w-xl mx-auto leading-relaxed">
             Saksikan demonstrasi singkat bagaimana TestFlow membedah kompleksitas kode Anda dalam hitungan detik.
@@ -67,7 +67,7 @@ const Docs = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative w-full aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl shadow-zinc-200 group border-8 border-zinc-50"
+          className="relative w-full aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl shadow-zinc-200 dark:shadow-none group border-8 border-zinc-50"
         >
           <div className="absolute inset-0 bg-emerald-500/5 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
           <iframe

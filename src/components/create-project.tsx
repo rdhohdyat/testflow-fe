@@ -40,25 +40,25 @@ export default function CreateProject({ onProjectCreated }: { onProjectCreated: 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="flex items-center gap-2">
+        <Button className="flex items-center gap-2 uppercase">
           <PlusCircle className="w-4 h-4" /> Proyek Testing Baru
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="dark:shadow-none">
         <DialogHeader>
           <DialogTitle>Buat Proyek Testing Baru</DialogTitle>
         </DialogHeader>
         <div className="space-y-4 py-4">
           <div className="space-y-2">
             <label className="text-sm font-medium">Nama Testing</label>
-            <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Contoh: Testing" />
+            <Input className="rounded-xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500" value={name} onChange={(e) => setName(e.target.value)} placeholder="Contoh: Testing" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium">Deskripsi</label>
-            <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Deskripsikan proyek testing ini..." />
+            <Textarea className="rounded-xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Deskripsikan proyek testing ini..." />
           </div>
-          <Button className="w-full" onClick={handleCreate} disabled={loading}>
-            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Simpan Testing"}
+          <Button className="w-full uppercase" onClick={handleCreate} disabled={loading}>
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Simpan Project Testing"}
           </Button>
         </div>
       </DialogContent>

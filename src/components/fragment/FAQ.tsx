@@ -42,7 +42,7 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="px-8 py-20 bg-white dark:bg-zinc-900/10 overflow-hidden font-sans">
+    <section id="faq" className="px-8 py-20 bg-white dark:bg-gray-900/10 overflow-hidden font-sans">
       <div className="container max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -53,8 +53,8 @@ const FAQ = () => {
           <span className="text-[10px] font-black tracking-[0.3em] text-emerald-600 uppercase mb-4 block">
             Pusat Bantuan
           </span>
-          <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter">
-            Pertanyaan <span className="italic text-zinc-900/10">Sering</span> Diajukan
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tighter">
+            Pertanyaan <span className="italic text-gray-900/10 dark:text-emerald-600">Sering</span> Diajukan
           </h2>
         </motion.div>
 

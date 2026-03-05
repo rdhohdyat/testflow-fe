@@ -44,7 +44,7 @@ const Home = () => {
       >
         {/* Premium Label Badge */}
         <motion.div variants={itemVariants} className="flex justify-center">
-          <div className="inline-flex items-center gap-3 px-5 py-2 text-[10px] font-black tracking-[0.3em] uppercase rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">
+          <div className="inline-flex items-center gap-3 px-5 py-2 text-[10px] font-black tracking-[0.3em] uppercase rounded-full bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 border border-emerald-100 dark:border-emerald-500/20 shadow-sm dark:shadow-none">
             <Sparkles className="w-3 h-3" />
             Generator Control Flow Graph Otomatis
           </div>
@@ -53,7 +53,7 @@ const Home = () => {
         {/* Hero Title */}
         <motion.div variants={itemVariants} className="space-y-4">
           <h1 className="text-5xl md:text-[6rem] font-black leading-[0.85] tracking-tighter text-zinc-900 dark:text-white">
-            Petakan <span className="italic text-zinc-900/10 dark:text-white/10">Logika</span> <br />
+            Petakan <span className="italic text-zinc-900/10 dark:text-emerald-600">Logika</span> <br />
             Kode Anda
           </h1>
           <p className="text-2xl md:text-4xl font-black tracking-tight text-emerald-600/90 leading-tight">
@@ -80,7 +80,7 @@ const Home = () => {
                 <Button
                   onClick={handleLaunch}
                   size="lg"
-                  className="rounded-[1.5rem] h-16 px-10 text-base font-black tracking-tight bg-zinc-900 text-white hover:bg-zinc-800 transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-zinc-300/50"
+                  className="rounded-[1.5rem] h-16 px-10 text-base font-black tracking-tight bg-zinc-900 text-white hover:bg-zinc-800 transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-zinc-300/50 dark:shadow-none"
                   disabled={isLoading}
                 >
                   {isLoading ? (

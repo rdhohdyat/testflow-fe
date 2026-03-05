@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { Menu, Home, LayoutDashboard, Github, GitBranch } from "lucide-react";
+import { Menu, Home, LayoutDashboard, GitBranch } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   Sheet,
@@ -44,12 +44,9 @@ export const Navbar = () => {
         <a
           key={link.href}
           href={link.href}
-          className={cn(
-            "text-sm font-medium transition-colors px-4 py-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white",
-            isMobile && "w-full text-base py-3"
-          )}
+          className={getLinkClass(false, isMobile)}
         >
-          {link.label}
+          {link.label.toUpperCase()}
         </a>
       ))}
 
@@ -59,44 +56,37 @@ export const Navbar = () => {
     </div>
   );
 
+  const getLinkClass = (isActive: boolean, isMobile = false) => cn(
+    "text-sm font-semibold transition-all px-4 py-2 rounded-xl flex items-center gap-2",
+    isActive
+      ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400"
+      : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white",
+    isMobile && "w-full text-base py-3 px-4"
+  );
+
   return (
     <nav className={cn(
-      "fixed top-2 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-[90%] max-w-7xl rounded-[2rem] border",
+      "fixed top-2 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-[90%] max-w-7xl rounded-3xl border",
       isScrolled
-        ? "bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl py-3 shadow-2xl shadow-zinc-200/50 border-zinc-100 dark:border-zinc-800"
-        : "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md py-4 border-zinc-50 dark:border-zinc-800 shadow-xl shadow-zinc-100/50"
+        ? "bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl py-3 shadow-2xl shadow-zinc-200/50 dark:shadow-none border-zinc-100 dark:border-zinc-800"
+        : "bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md py-4 border-zinc-50 dark:border-zinc-800 shadow-xl shadow-zinc-100/50 dark:shadow-none"
     )}>
       <div className="flex items-center justify-between px-8 mx-auto">
-        <div className="flex items-center gap-10">
+        <div className="flex items-center gap-8">
           <Logo />
 
           {/* Desktop Navigation Group */}
-          <div className="items-center hidden gap-2 xl:flex">
-            <Link to="/">
-              <Button
-                variant={isLandingPage ? "secondary" : "ghost"}
-                className={cn("h-10 px-4 gap-2 rounded-xl font-bold transition-all", isLandingPage ? "bg-emerald-50 text-emerald-600 shadow-none hover:bg-emerald-100" : "")}
-              >
-                <Home className="w-4 h-4" /> Beranda
-              </Button>
+          <div className="items-center hidden gap-1 xl:flex">
+            <Link to="/" className={getLinkClass(isLandingPage)}>
+              <Home className="w-4 h-4" /> BERANDA
             </Link>
 
-            <Link to="/project">
-              <Button
-                variant={isDashboard ? "secondary" : "ghost"}
-                className={cn("h-10 px-4 gap-2 rounded-xl font-bold transition-all", isDashboard ? "bg-emerald-50 text-emerald-600 shadow-none hover:bg-emerald-100" : "")}
-              >
-                <LayoutDashboard className="w-4 h-4" /> Project
-              </Button>
+            <Link to="/project" className={getLinkClass(isDashboard)}>
+              <LayoutDashboard className="w-4 h-4" /> PROJECT
             </Link>
 
-            <Link to="/work">
-              <Button
-                variant={isWorkPage ? "secondary" : "ghost"}
-                className={cn("h-10 px-4 gap-2 rounded-xl font-bold transition-all", isWorkPage ? "bg-emerald-50 text-emerald-600 shadow-none hover:bg-emerald-100" : "")}
-              >
-                <GitBranch className="w-4 h-4" /> Workspace
-              </Button>
+            <Link to="/work" className={getLinkClass(isWorkPage)}>
+              <GitBranch className="w-4 h-4" /> WORKSPACE
             </Link>
           </div>
         </div>
@@ -109,41 +99,37 @@ export const Navbar = () => {
         {/* Mobile Navigation */}
         <Sheet>
           <SheetTrigger asChild>
-            <Button className="xl:hidden" variant="ghost" size="icon">
+            <Button className="xl:hidden h-10 w-10 rounded-xl" variant="ghost" size="icon">
               <Menu className="w-6 h-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[300px]">
-            <SheetHeader className="text-left">
+          <SheetContent side="right" className="w-[300px] rounded-l-[2rem]">
+            <SheetHeader className="text-left px-2">
               <SheetTitle>
                 <Logo />
               </SheetTitle>
             </SheetHeader>
 
-            <div className="flex flex-col gap-2 mt-8">
-              <Link to="/">
-                <Button variant={isLandingPage ? "secondary" : "ghost"} className="justify-start w-full gap-3">
-                  <Home className="w-5 h-5" /> Home
-                </Button>
+            <div className="flex flex-col gap-1 mt-8">
+              <div className="px-4 mb-2 text-[10px] font-bold tracking-[0.2em] uppercase text-neutral-400">
+                Aplikasi
+              </div>
+              <Link to="/" className={getLinkClass(isLandingPage, true)}>
+                <Home className="w-5 h-5" /> BERANDA
               </Link>
-              <Link to="/dashboard">
-                <Button variant={isDashboard ? "secondary" : "ghost"} className="justify-start w-full gap-3">
-                  <LayoutDashboard className="w-5 h-5" /> Dashboard
-                </Button>
+              <Link to="/project" className={getLinkClass(isDashboard, true)}>
+                <LayoutDashboard className="w-5 h-5" /> PROJECT
+              </Link>
+              <Link to="/work" className={getLinkClass(isWorkPage, true)}>
+                <GitBranch className="w-5 h-5" /> WORKSPACE
               </Link>
 
-              <div className="my-4 border-t border-neutral-100 dark:border-neutral-800" />
+              <div className="my-4 border-t border-neutral-100 dark:border-neutral-800 mx-2" />
 
-              <div className="px-2 mb-2 text-xs font-semibold tracking-wider uppercase text-neutral-400">
-                Menu Utama
+              <div className="px-4 mb-2 text-[10px] font-bold tracking-[0.2em] uppercase text-neutral-400">
+                Informasi
               </div>
               {renderNavLinks(true)}
-            </div>
-
-            <div className="absolute bottom-8 left-6 right-6">
-              <Button variant="outline" className="w-full gap-2 text-xs">
-                <Github className="w-4 h-4" /> Project Repo
-              </Button>
             </div>
           </SheetContent>
         </Sheet>

@@ -239,8 +239,8 @@ function TestCase() {
   return (
     <div className="space-y-4 pb-2">
       {/* CARD 1: Input Parameters */}
-      <Card className="border-none bg-white rounded-[2rem] shadow-xl shadow-zinc-100/50 overflow-hidden">
-        <CardHeader className=" border-b border-zinc-50 bg-white/50 backdrop-blur-sm">
+      <Card className="border-none bg-white dark:bg-zinc-900 rounded-[2rem] shadow-xl shadow-zinc-100/50 dark:shadow-none overflow-hidden">
+        <CardHeader className=" border-b border-zinc-50 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm">
           <div className="flex justify-between items-center">
             <div>
               <CardTitle className="text-[10px] font-black tracking-[0.2em] text-zinc-400 uppercase">Parameter Test Case</CardTitle>
@@ -259,7 +259,7 @@ function TestCase() {
                 )}
               </div>
             </div>
-            <div className="w-8 h-8 rounded-xl bg-zinc-50 flex items-center justify-center text-zinc-400">
+            <div className="w-8 h-8 rounded-xl bg-zinc-50 dark:bg-zinc-800 flex items-center justify-center text-zinc-400">
               <Info className="h-4 w-4" />
             </div>
           </div>
@@ -291,7 +291,7 @@ function TestCase() {
                 </label>
                 <Input
                   id={`param-${index}`}
-                  className="h-10 rounded-xl bg-zinc-50 border-none text-xs font-bold px-4 focus-visible:ring-emerald-500/20"
+                  className="h-10 rounded-xl bg-zinc-50 dark:bg-gray-800 border-none text-xs font-bold px-4 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-gray-500 shadow-sm dark:shadow-none"
                   // @ts-ignore
                   placeholder={`Nilai untuk ${param.name}`}
                   // @ts-ignore
@@ -306,7 +306,7 @@ function TestCase() {
 
         <CardFooter className="p-6 pt-0 flex gap-2">
           <Button
-            className="flex-1 h-11 rounded-xl bg-zinc-900 text-white hover:bg-zinc-800 text-[10px] font-black tracking-widest shadow-lg shadow-zinc-200 transition-all active:scale-95"
+            className="flex-1 h-11 rounded-xl bg-zinc-900 dark:bg-emerald-600 text-white dark:text-white hover:bg-zinc-800 dark:hover:bg-emerald-700 text-[10px] font-black tracking-widest shadow-lg shadow-zinc-200 dark:shadow-none transition-all active:scale-95"
             disabled={!params?.length || executing || !hasRequiredParams}
             onClick={executeTestCase}
           >
@@ -324,7 +324,7 @@ function TestCase() {
             variant="ghost"
             size="icon"
             onClick={handleClear}
-            className="w-11 h-11 rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all active:scale-95"
+            className="w-11 h-11 rounded-xl bg-red-50 dark:bg-red-500/50 text-red-500 hover:bg-red-100 dark:hover:bg-red-500/20 transition-all active:scale-95 border-none dark:shadow-none"
             disabled={!params?.length || executing}
           >
             <Trash2 className="h-4 w-4" />
@@ -333,8 +333,8 @@ function TestCase() {
       </Card>
 
       {/* CARD 2: Execution Result */}
-      <Card className="border-none bg-white rounded-[2rem] shadow-xl shadow-zinc-100/50 overflow-hidden">
-        <CardHeader className="p-6 pb-4 bg-white/50 border-b border-zinc-50">
+      <Card className="border-none bg-white dark:bg-zinc-900 rounded-[2rem] shadow-xl shadow-zinc-100/50 dark:shadow-none overflow-hidden">
+        <CardHeader className="p-6 pb-4 bg-white/50 dark:bg-zinc-900/50 border-b border-zinc-50 dark:border-zinc-800">
           <div className="flex justify-between items-center">
             <CardTitle className="text-[10px] font-black tracking-[0.2em] text-zinc-400 uppercase">Jalur Hasil Eksekusi</CardTitle>
             <div className="w-5 h-5 rounded-full bg-zinc-50 flex items-center justify-center text-[10px] text-zinc-300 font-bold border border-zinc-100 italic">?</div>
@@ -349,7 +349,7 @@ function TestCase() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="p-4 rounded-2xl bg-emerald-50/50 border-none"
+                className="p-4 rounded-2xl bg-emerald-50/50 dark:bg-emerald-500/10 border-none"
               >
                 <div className="font-mono text-[10px] font-black text-emerald-700 break-all leading-relaxed">
                   {resultText.join(" → ")}
@@ -361,7 +361,7 @@ function TestCase() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="p-8 rounded-2xl bg-zinc-50/50 border border-dashed border-zinc-200 flex flex-col items-center justify-center text-center gap-2"
+                className="p-8 rounded-2xl bg-zinc-50/50 dark:bg-gray-800/50 border border-dashed border-zinc-200 dark:border-gray-700 flex flex-col items-center justify-center text-center gap-2"
               >
                 <Info className="w-5 h-5 text-zinc-300" />
                 <p className="text-zinc-400 text-[9px] font-black uppercase tracking-widest leading-normal">
@@ -382,7 +382,7 @@ function TestCase() {
                 variant={isSaved ? "outline" : "default"}
                 onClick={handleSaveResult}
                 disabled={isSaved || isSaving}
-                className={`w-full h-11 rounded-xl text-[10px] font-black tracking-widest transition-all active:scale-95 ${isSaved ? "bg-zinc-50 text-zinc-400 border-none" : "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-100"
+                className={`w-full h-11 rounded-xl text-[10px] font-black tracking-widest transition-all active:scale-95 ${isSaved ? "bg-zinc-50 dark:bg-zinc-800 text-zinc-400 border-none" : "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-100 dark:shadow-none"
                   }`}
               >
                 {isSaving ? (

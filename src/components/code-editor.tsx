@@ -149,8 +149,7 @@ function CodeEditor() {
           const isLoop = edge.label === "loop back";
 
           // Emerald for True, Red for False, BLACK for default
-          const edgeColor =
-            isConditionTrue ? "#10b981" : isConditionFalse ? "#ef4444" : "#1a1a1a";
+          const edgeColor = isConditionTrue ? "#10b981" : isConditionFalse ? "#ef4444" : "#6b7280";
 
           return {
             id: edge.id,
@@ -211,14 +210,14 @@ function CodeEditor() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-neutral-900">
+    <div className="flex flex-col h-full bg-white dark:bg-gray-900">
       {/* Editor Header */}
-      <div className="p-6 border-b border-zinc-50 flex items-center justify-between bg-white/50 backdrop-blur-sm z-10 sticky top-0">
+      <div className="p-6 border-b border-zinc-50 flex items-center justify-between bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm z-10 sticky top-0">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-zinc-900 text-white flex items-center justify-center">
             <Code2 className="w-5 h-5" />
           </div>
-          <span className="text-xs font-bold tracking-wider text-zinc-500 uppercase">Input Kode Utama</span>
+          <span className="text-xs font-bold tracking-wider text-gray-500 dark:text-white uppercase">Input Kode Utama</span>
         </div>
         <div className="flex items-center gap-2">
           <Button
@@ -241,7 +240,7 @@ function CodeEditor() {
       {/* Action Footer */}
       <div className="p-6 pt-0 mt-auto">
         <Button
-          className="w-full h-12 rounded-xl bg-zinc-900 text-white hover:bg-zinc-800 text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2"
+          className="w-full h-12 uppercase rounded-xl bg-zinc-900 text-white hover:bg-zinc-800 text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2"
           onClick={handleGenerateCFG}
           disabled={isLoading}
         >
