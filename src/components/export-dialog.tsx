@@ -46,8 +46,6 @@ import {
 import "@xyflow/react/dist/style.css";
 import { nodeTypes } from "../data/node";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vs, vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useTheme } from "./theme-provider";
