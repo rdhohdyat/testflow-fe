@@ -148,8 +148,8 @@ function CodeEditor() {
           const isConditionFalse = edge.label === "False";
           const isLoop = edge.label === "loop back";
 
-          // Emerald for True, Red for False, BLACK for default
-          const edgeColor = isConditionTrue ? "#10b981" : isConditionFalse ? "#ef4444" : "#6b7280";
+          // Emerald for True, Red for False, Yellow for Loop, Gray for default
+          const edgeColor = isLoop ? "#f59e0b" : isConditionTrue ? "#10b981" : isConditionFalse ? "#ef4444" : "#6b7280";
 
           return {
             id: edge.id,

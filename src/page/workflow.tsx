@@ -118,7 +118,7 @@ function WorkFlowPage() {
 
   // ... (Sisa kode return JSX sama seperti file asli)
   return (
-    <div className="min-h-screen bg-[#FAFBFF] dark:bg-gray-950 font-sans tracking-tight">
+    <div className="min-h-screen bg-neutral-50 dark:bg-gray-950 font-sans tracking-tight">
       <Navbar />
 
       {/* Mobile View */}

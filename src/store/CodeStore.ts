@@ -14,9 +14,14 @@ export type TestResult = {
   path: any[];
 };
 
+export type Param = {
+  name: string;
+  value?: any;
+};
+
 type CodeStore = {
   code: string;
-  params: string[];
+  params: Param[];
   cyclomaticComplexity: number;
   nodes: Node[];
   edges: Edge[];
@@ -30,7 +35,7 @@ type CodeStore = {
   executedTestCases: TestResult[];
 
   setCode: (code: string) => void;
-  setParams: (params: string[]) => void;
+  setParams: (params: Param[]) => void;
   setNodes: (nodes: Node[]) => void;
   setEdges: (edges: Edge[]) => void;
   setPaths: (paths: ExecutionPath[]) => void;

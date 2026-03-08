@@ -323,10 +323,9 @@ function TestCase() {
                   <Textarea
                     id={`param-${index}`}
                     rows={isJson ? 3 : 1}
-                    className={`rounded-xl bg-zinc-50 dark:bg-gray-800 border-none text-xs font-bold px-4 py-2.5 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-gray-500 shadow-sm dark:shadow-none resize-none transition-all ${isJson ? "font-mono" : ""
+                    className={`rounded-xl bg-zinc-50 dark:bg-gray-800 border-none text-xs font-bold px-4 py-2 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-gray-500 shadow-sm dark:shadow-none resize-none transition-all min-h-0 ${isJson ? "font-mono h-20" : "h-10"
                       }`}
-                    // @ts-ignore
-                    placeholder={`Nilai untuk ${param.name}  •  contoh: 42, "teks", [1,2,3], {"key":"val"}`}
+                    placeholder={`Nilai untuk ${param.name}`}
                     value={currentVal}
                     // @ts-ignore
                     onChange={(e) => handleInputChange(param.name, e.target.value)}

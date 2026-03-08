@@ -4,7 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-[#FAFBFF] text-zinc-900 antialiased;
     letter-spacing: -0.02em;
   }
 }
@@ -39,13 +38,13 @@
 
 /* Styling panel Controls */
 .react-flow__controls {
-  @apply rounded-xl overflow-hidden border-2 border-zinc-100 dark:border-zinc-800 shadow-xl !important;
+  @apply rounded-xl overflow-hidden border-2 border-gray-100 dark:border-gray-800 shadow-xl !important;
   background-color: transparent !important;
 }
 
 /* Styling setiap tombol di dalam Controls */
 .react-flow__controls-button {
-  @apply bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-800 fill-zinc-600 dark:fill-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 !important;
+  @apply bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 fill-gray-600 dark:fill-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 !important;
   color: currentColor !important;
 }
 
@@ -56,6 +55,6 @@
 
 /* Mengganti warna ikon di dalam tombol */
 .react-flow__controls-button svg {
-  @apply fill-zinc-600 dark:fill-zinc-300 !important;
+  @apply fill-gray-600 dark:fill-gray-300 !important;
 }
 

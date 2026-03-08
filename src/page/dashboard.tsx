@@ -122,7 +122,7 @@ function DashboardPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#FAFBFF] dark:bg-neutral-950 font-sans tracking-tight">
+    <div className="min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans tracking-tight">
       <Navbar />
 
       <div className="max-w-5xl px-8 pt-32 pb-20 mx-auto">
