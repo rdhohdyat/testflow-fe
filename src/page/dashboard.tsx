@@ -70,7 +70,7 @@ function DashboardPage() {
     if (!projectToDelete) return;
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}projects/${projectToDelete}`, { method: "DELETE" });
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/projects/${projectToDelete}`, { method: "DELETE" });
       if (!response.ok) throw new Error("Gagal menghapus");
 
       setProjects((prev) => prev.filter((p) => p.id !== projectToDelete));

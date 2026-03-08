@@ -67,7 +67,7 @@ const Docs = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative w-full aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl shadow-zinc-200 dark:shadow-none group border-8 border-zinc-50"
+          className="relative w-full aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl shadow-zinc-200 dark:shadow-none group border-2 border-zinc-50 dark:border-zinc-800"
         >
           <div className="absolute inset-0 bg-emerald-500/5 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
           <iframe
