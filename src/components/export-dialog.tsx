@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import * as monaco from "monaco-editor";
 import {
   Dialog,
   DialogContent,
@@ -20,7 +21,7 @@ import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Badge } from "./ui/badge";
-import { Card, CardHeader, CardContent } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 import {
   FileCode,
   Activity,
@@ -45,7 +46,6 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { nodeTypes } from "../data/node";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useTheme } from "./theme-provider";
@@ -433,13 +433,11 @@ export default function ExportDialog({
                       </ReactFlow>
                     </TabsContent>
 
-                    <TabsContent value="code">
-                      <SyntaxHighlighter
-                        language="python"
-                        customStyle={{ fontSize: "11px" }}
-                      >
-                        {currentData.source_code}
-                      </SyntaxHighlighter>
+                    <TabsContent value="code" className="h-[400px] border border-neutral-100 dark:border-neutral-800 rounded-2xl overflow-hidden bg-white dark:bg-neutral-950">
+                      <MonacoDisplay
+                        code={currentData.source_code}
+                        theme={theme || "light"}
+                      />
                     </TabsContent>
 
                     <TabsContent value="paths" className="space-y-2">
@@ -474,27 +472,34 @@ export default function ExportDialog({
                   {/* Row 1: Metrics & Info */}
                   <div className="col-span-12 grid grid-cols-4 gap-4">
                     <MetricCard
-                      label="Cyclomatic Complexity"
+                      label="Complexity"
                       value={currentData.cyclomatic_complexity}
-                      sub="McCabe Metric"
+                      sub="Siklomatik"
+                      color="emerald"
                     />
                     <MetricCard
-                      label="Code Coverage"
+                      label="Coverage"
                       value={`${currentData.coverage_path || 0}%`}
-                      sub="Path Testing"
-                      isGood={currentData.coverage_path === 100}
+                      sub="Jalur Uji"
+                      color="emerald"
                     />
-                    <Card className="col-span-2 rounded-2xl">
-                      <CardHeader className="py-3 px-4 border-b font-semibold text-sm">
+                    <Card className="col-span-2 rounded-3xl border-none shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
+                      <div className="bg-neutral-50/50 dark:bg-neutral-800/50 px-5 py-3 text-[10px] font-black uppercase tracking-widest border-b border-neutral-100 dark:border-neutral-800 text-neutral-500">
                         Informasi Analisis
-                      </CardHeader>
-                      <CardContent className="p-0">
+                      </div>
+                      <CardContent className="p-2 space-y-1">
                         <StatRow label="Versi Nama" value={currentData.name} />
                         <StatRow
                           label="Disimpan pada"
                           value={new Date(
                             currentData.created_at,
-                          ).toLocaleString()}
+                          ).toLocaleString("id-ID", {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          })}
                         />
                       </CardContent>
                     </Card>
@@ -541,88 +546,80 @@ export default function ExportDialog({
                         </Button>
                       </div>
 
-                      {/* Highlighter: CustomStyle disesuaikan agar menyatu dengan Card */}
-                      <SyntaxHighlighter
-                        language="python"
-                        // Pastikan tema highlighter sinkron dengan state theme
-                        theme={theme === "dark" ? 'vs-dark' : 'vs-light'}
-                        showLineNumbers
-                        customStyle={{
-                          margin: 0,
-                          height: "300px",
-                          fontSize: "12px",
-                          padding: "16px",
-                          background: theme === "dark" ? "#09090b" : "#ffffff", // neutral-950 atau White
-                          lineHeight: "1.6",
-                        }}
-                        lineNumberStyle={{
-                          minWidth: "3em",
-                          paddingRight: "1em",
-                          color: theme === "dark" ? "#3f3f46" : "#a1a1aa", // neutral-700 atau neutral-400
-                          textAlign: "right",
-                          userSelect: "none",
-                        }}
-                      >
-                        {currentData.source_code}
-                      </SyntaxHighlighter>
+                      {/* Monaco Editor Display */}
+                      <div className="h-[350px] overflow-hidden">
+                        <MonacoDisplay
+                          code={currentData.source_code}
+                          theme={theme || "light"}
+                        />
+                      </div>
                     </Card>
                   </div>
 
                   {/* Row 2 Side: Paths & Test Cases */}
-                  <div className="col-span-4 space-y-4">
-                    <Card className="max-h-[380px] flex flex-col rounded-2xl">
-                      <div className="bg-neutral-100 dark:bg-neutral-900 p-2 text-xs font-semibold border-b">
-                        <GitBranch className="w-3 h-3 inline mr-1" />{" "}
+                  <div className="col-span-4 space-y-5">
+                    <Card className="max-h-[380px] flex flex-col rounded-3xl border-none shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
+                      <div className="bg-neutral-50/50 dark:bg-neutral-800/50 px-5 py-3 text-[10px] font-black uppercase tracking-widest border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2 text-neutral-500">
+                        <GitBranch className="w-3.5 h-3.5" />
                         Independent Paths ({paths.length})
                       </div>
-                      <ScrollArea className="flex-1 p-3">
-                        {paths.map((item: any, i: number) => (
-                          <div
-                            key={i}
-                            className="mb-2 p-2 bg-neutral-50 dark:bg-neutral-900 dark:border-neutral-700 border rounded-xl text-[11px] font-mono"
-                          >
-                            <span className="text-blue-600 font-bold mr-1">
-                              #{i + 1}
-                            </span>{" "}
-                            {formatPath(Array.isArray(item) ? item : item.path)}
-                          </div>
-                        ))}
+                      <ScrollArea className="flex-1 p-4">
+                        <div className="space-y-3">
+                          {paths.map((item: any, i: number) => (
+                            <div
+                              key={i}
+                              className="group flex items-center gap-4 p-3 rounded-2xl bg-neutral-50/30 dark:bg-neutral-800/30 border border-neutral-100/50 dark:border-neutral-800 transition-all hover:bg-white dark:hover:bg-neutral-800 hover:shadow-sm"
+                            >
+                              <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-[10px] font-black shrink-0">
+                                #{i + 1}
+                              </div>
+                              <div className="text-[11px] font-bold text-neutral-600 dark:text-neutral-300 font-mono tracking-tighter line-clamp-2">
+                                {formatPath(Array.isArray(item) ? item : item.path)}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </ScrollArea>
                     </Card>
 
-                    <Card className="max-h-[380px] flex flex-col rounded-2xl">
-                      <div className="bg-neutral-100 p-2 text-xs font-semibold border-b dark:bg-neutral-900 dark:border-neutral-700">
-                        <Terminal className="w-3 h-3 inline mr-1" /> Test
-                        Execution ({executedPaths.length})
+                    <Card className="max-h-[380px] flex flex-col rounded-3xl border-none shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
+                      <div className="bg-neutral-50/50 dark:bg-neutral-800/50 px-5 py-3 text-[10px] font-black uppercase tracking-widest border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2 text-neutral-500">
+                        <Terminal className="w-3.5 h-3.5" />
+                        Test Execution ({executedPaths.length})
                       </div>
-                      <ScrollArea className="flex-1 p-3">
-                        {executedPaths.map((item: any, i: number) => (
-                          <div
-                            key={i}
-                            className={cn(
-                              "mb-2 p-2 border rounded-xl text-[11px] dark:bg-neutral-900 dark:border-neutral-700",
-                              item.passed
-                                ? "bg-green-50 border-green-200"
-                                : "bg-red-50 border-red-200",
-                            )}
-                          >
-                            <div className="flex justify-between font-bold mb-1">
-                              <span>Case #{i + 1}</span>
-                              <span
-                                className={
-                                  item.passed
-                                    ? "text-green-600"
-                                    : "text-red-600"
-                                }
-                              >
-                                {item.passed ? "LOLOS" : "GAGAL"}
-                              </span>
+                      <ScrollArea className="flex-1 p-4">
+                        <div className="space-y-3">
+                          {executedPaths.map((item: any, i: number) => (
+                            <div
+                              key={i}
+                              className={cn(
+                                "p-4 rounded-2xl border transition-all",
+                                item.passed
+                                  ? "bg-emerald-50/20 border-emerald-100/50 dark:bg-emerald-500/5 dark:border-emerald-500/20"
+                                  : "bg-rose-50/20 border-rose-100/50 dark:bg-rose-500/5 dark:border-rose-500/20",
+                              )}
+                            >
+                              <div className="flex justify-between items-center mb-2">
+                                <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Kasus #{i + 1}</span>
+                                <Badge
+                                  className={cn(
+                                    "border-none px-2 py-0 h-5 text-[8px] font-black uppercase tracking-wider",
+                                    item.passed
+                                      ? "bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400"
+                                      : "bg-rose-100 text-rose-600 dark:bg-rose-500/20 dark:text-rose-400"
+                                  )}
+                                >
+                                  {item.passed ? "LOLOS" : "GAGAL"}
+                                </Badge>
+                              </div>
+                              <div className="p-2 rounded-lg bg-white/50 dark:bg-neutral-950/50 border border-neutral-100/50 dark:border-neutral-800">
+                                <code className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 break-all leading-tight block">
+                                  In: {JSON.stringify(item.testCase)}
+                                </code>
+                              </div>
                             </div>
-                            <code className="text-[10px] opacity-70">
-                              In: {JSON.stringify(item.testCase)}
-                            </code>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </ScrollArea>
                     </Card>
                   </div>
@@ -680,27 +677,70 @@ export default function ExportDialog({
   );
 }
 
+// Monaco Display Component (Internal Only)
+function MonacoDisplay({ code, theme }: { code: string; theme: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      editorRef.current = monaco.editor.create(containerRef.current, {
+        value: code,
+        language: "python",
+        theme: theme === "dark" ? "vs-dark" : "vs-light",
+        readOnly: true,
+        automaticLayout: true,
+        minimap: { enabled: false },
+        scrollBeyondLastLine: false,
+        fontSize: 12,
+        lineNumbers: "on",
+        renderLineHighlight: "none",
+        scrollbar: {
+          vertical: "auto",
+          horizontal: "auto",
+        },
+        padding: { top: 10, bottom: 10 },
+      });
+    }
+
+    return () => {
+      editorRef.current?.dispose();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (editorRef.current) {
+      if (editorRef.current.getValue() !== code) {
+        editorRef.current.setValue(code);
+      }
+      monaco.editor.setTheme(theme === "dark" ? "vs-dark" : "vs-light");
+    }
+  }, [code, theme]);
+
+  return <div ref={containerRef} className="h-full w-full" />;
+}
+
 // Helpers
-const MetricCard = ({ label, value, sub, isGood }: any) => (
-  <Card className="border-none shadow-lg bg-white dark:bg-neutral-900 rounded-2xl">
-    <CardContent className="p-4">
-      <p className="text-xs text-neutral-500 font-medium">{label}</p>
-      <p
-        className={cn(
-          "text-3xl font-bold my-1",
-          isGood ? "text-green-600" : "text-blue-600",
-        )}
-      >
-        {value}
-      </p>
-      <p className="text-[10px] text-neutral-400">{sub}</p>
+const MetricCard = ({ label, value, sub, color = "emerald" }: any) => (
+  <Card className="border-none shadow-sm bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden">
+    <CardContent className="p-6">
+      <div className="flex flex-col">
+        <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400 mb-1">{label}</span>
+        <span className={cn(
+          "text-4xl font-black tracking-tighter tabular-nums",
+          color === "emerald" ? "text-emerald-500" : "text-neutral-900 dark:text-white"
+        )}>
+          {value}
+        </span>
+        <span className="text-[10px] font-bold text-neutral-400/60 mt-1">{sub}</span>
+      </div>
     </CardContent>
   </Card>
 );
 
 const StatRow = ({ label, value }: any) => (
-  <div className="flex justify-between p-3 text-[12px] border-b last:border-0">
-    <span className="text-neutral-500">{label}</span>
-    <span className="font-semibold">{value}</span>
+  <div className="flex justify-between items-center p-3 px-4 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
+    <span className="text-[11px] font-bold text-neutral-400 uppercase tracking-tight">{label}</span>
+    <span className="text-[12px] font-black text-neutral-700 dark:text-neutral-200 tracking-tight">{value}</span>
   </div>
 );

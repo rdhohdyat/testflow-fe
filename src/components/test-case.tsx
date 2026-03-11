@@ -360,7 +360,7 @@ function TestCase() {
             variant="ghost"
             size="icon"
             onClick={handleClear}
-            className="w-11 h-11 rounded-xl bg-red-50 dark:bg-red-500/50 text-red-500 hover:bg-red-100 dark:hover:bg-red-500/20 transition-all active:scale-95 border-none dark:shadow-none"
+            className="w-11 h-11 rounded-xl bg-red-50 dark:bg-red-500/50 text-red-500 hover:text-red-600 hover:bg-red-100 dark:hover:bg-red-500/20 transition-all active:scale-95 border-none dark:shadow-none"
             disabled={!params?.length || executing}
           >
             <Trash2 className="h-4 w-4" />

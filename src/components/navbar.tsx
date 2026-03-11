@@ -57,11 +57,11 @@ export const Navbar = () => {
   );
 
   const getLinkClass = (isActive: boolean, isMobile = false) => cn(
-    "text-sm font-semibold transition-all px-4 py-2 rounded-xl flex items-center gap-2",
+    "text-xs sm:text-sm font-semibold transition-all px-4 py-2 rounded-xl flex items-center gap-2",
     isActive
       ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400"
-      : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white",
-    isMobile && "w-full text-base py-3 px-4"
+      : "text-neutral-600 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white",
+    isMobile && "w-full text-xs py-3 px-4"
   );
 
   return (
@@ -71,7 +71,7 @@ export const Navbar = () => {
         ? "bg-white/95 dark:bg-neutral-950/95 backdrop-blur-xl py-3 shadow-2xl shadow-neutral-200/50 dark:shadow-none border-neutral-100 dark:border-neutral-800"
         : "bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md py-4 border-neutral-50 dark:border-neutral-800 shadow-xl shadow-neutral-100/50 dark:shadow-none"
     )}>
-      <div className="flex items-center justify-between px-8 mx-auto">
+      <div className="flex items-center justify-between px-4 sm:px-8 mx-auto">
         <div className="flex items-center gap-8">
           <Logo />
 
@@ -110,7 +110,7 @@ export const Navbar = () => {
               </SheetTitle>
             </SheetHeader>
 
-            <div className="flex flex-col gap-1 mt-8">
+            <div className="flex flex-col gap-1 mt-8 ">
               <div className="px-4 mb-2 text-[10px] font-bold tracking-[0.2em] uppercase text-neutral-400">
                 Aplikasi
               </div>

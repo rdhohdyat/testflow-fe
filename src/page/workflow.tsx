@@ -114,7 +114,7 @@ function WorkFlowPage() {
   }, [initialRender, storeNodes, storeEdges, setNodes, setEdges]);
 
   return (
-    <div className="min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans tracking-tight">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-sans tracking-tight">
       <Navbar />
 
       {/* Mobile View */}
@@ -149,8 +149,8 @@ function WorkFlowPage() {
             <div className="rounded-2xl bg-white dark:bg-neutral-900 shadow-xl dark:shadow-none overflow-hidden h-[50vh] flex flex-col border-none">
               <div className="p-6 border-b border-neutral-50 dark:border-neutral-800 flex justify-between items-center bg-white/50 dark:bg-neutral-900/50">
                 <span className="text-[10px] font-black tracking-[0.2em] text-neutral-400 uppercase">Control Flow Graph</span>
-                <Badge className="bg-emerald-50 text-emerald-600 border-none font-bold text-[10px]">
-                  {nodeCount} Node • {edgeCount} Sisi
+                <Badge className="bg-emerald-50 text-emerald-600 font-bold text-[10px]">
+                  {nodeCount} Node • {edgeCount} Edge
                 </Badge>
               </div>
               <div className="flex-1">
@@ -214,7 +214,7 @@ function WorkFlowPage() {
 
         <ResizablePanelGroup
           direction="horizontal"
-          className="flex-1 rounded-3xl bg-white dark:bg-neutral-900 shadow-xl dark:shadow-none overflow-hidden border border-neutral-100 dark:border-neutral-900"
+          className="flex-1 rounded-xl bg-white dark:bg-neutral-900 shadow-xl dark:shadow-none overflow-hidden border border-neutral-100 dark:border-neutral-900"
         >
           <ResizablePanel minSize={20} defaultSize={25} className="bg-neutral-50/50 dark:bg-neutral-900">
             <div className="h-full flex flex-col">
@@ -290,7 +290,7 @@ function WorkFlowPage() {
 
                     <div className="flex flex-wrap justify-center items-center gap-3 mt-3">
                       <div className="flex items-center gap-2 text-black dark:bg-neutral-900 dark:text-white px-3 py-1.5 rounded-lg">
-                        <span className="font-mono text-xs text-black dark:text-white font-semibold italic">
+                        <span className="font-mono text-black dark:text-white font-semibold">
                           V(G) = E - N + 2
                         </span>
                         <span className="text-black dark:text-white font-bold">=</span>
@@ -299,16 +299,16 @@ function WorkFlowPage() {
                         </span>
                       </div>
 
-                      <div className="flex items-center p-1 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl">
+                      <div className="flex items-center p-1 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl">
                         <div className="flex items-center gap-1.5 px-3 py-1.5 border-r border-neutral-200 dark:border-neutral-800">
-                          <span className="text-[10px] font-black text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">Edge</span>
-                          <span className="text-sm font-black text-neutral-900 dark:text-neutral-100 tabular-nums">
+                          <span className="text-[10px] font-black text-neutral-400 dark:text-white uppercase tracking-widest">Edge</span>
+                          <span className="text-sm font-black text-neutral-900 dark:text-white tabular-nums">
                             {edgeCount}
                           </span>
                         </div>
                         <div className="flex items-center gap-1.5 px-3 py-1.5">
-                          <span className="text-[10px] font-black text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">Node</span>
-                          <span className="text-sm font-black text-neutral-900 dark:text-neutral-100 tabular-nums">
+                          <span className="text-[10px] font-black text-neutral-400 dark:text-white uppercase tracking-widest">Node</span>
+                          <span className="text-sm font-black text-neutral-900 dark:text-white tabular-nums">
                             {nodeCount}
                           </span>
                         </div>

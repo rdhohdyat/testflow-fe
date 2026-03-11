@@ -103,7 +103,7 @@ function DashboardPage() {
         toast({
           title: "Belum Ada Data",
           description: "Project ini belum memiliki analisis yang disimpan.",
-          variant: "default"
+          variant: "destructive"
         });
       }
     } catch (error) {
@@ -122,7 +122,7 @@ function DashboardPage() {
   );
 
   return (
-    <div className="min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans tracking-tight">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-sans tracking-tight">
       <Navbar />
 
       <div className="max-w-5xl px-8 pt-32 pb-20 mx-auto">
@@ -130,11 +130,11 @@ function DashboardPage() {
         {/* Header */}
         <div className="flex flex-col gap-4 mb-8 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-white dark:bg-neutral-900 shadow-lg shadow-neutral-200/50 dark:shadow-none flex items-center justify-center">
-              <FolderOpen className="w-6 h-6 text-emerald-600" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white dark:bg-neutral-900 shadow-lg shadow-neutral-200/50 dark:shadow-none flex items-center justify-center">
+              <FolderOpen className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600" />
             </div>
             <div>
-              <h1 className="text-xl font-bold tracking-tight text-neutral-900 dark:text-white leading-none">
+              <h1 className="text-base sm:text-xl font-bold tracking-tight text-neutral-900 dark:text-white leading-none">
                 Project & <span className="text-neutral-500 dark:text-emerald-500 font-normal">Laporan</span>
               </h1>
             </div>
@@ -157,7 +157,7 @@ function DashboardPage() {
         </div>
 
         {/* List Project */}
-        <div className="grid grid gap-6">
+        <div className="grid grid-cols-1 gap-6">
           {isLoading ? (
             <div className="flex justify-center py-20">
               <Loader2 className="w-12 h-12 text-emerald-200 animate-spin" />
@@ -169,7 +169,7 @@ function DashboardPage() {
                 className="group relative flex flex-col md:flex-row md:items-center justify-between p-5 border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded-2xl shadow-sm dark:shadow-none hover:shadow-md dark:hover:shadow-none transition-all duration-300"
               >
                 <div className="relative flex items-center gap-4 mb-4 md:mb-0 overflow-hidden">
-                  <div className="w-12 h-12 rounded-xl bg-white dark:bg-neutral-800 shadow-lg shadow-neutral-200/50 dark:shadow-none flex items-center justify-center">
+                  <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-xl bg-white dark:bg-neutral-800 shadow-lg shadow-neutral-200/50 dark:shadow-none flex items-center justify-center">
                     <File className="w-6 h-6 text-emerald-600" />
                   </div>
                   <div className="min-w-0">

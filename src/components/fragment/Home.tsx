@@ -49,25 +49,25 @@ const Home = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="space-y-4">
-          <h1 className="text-3xl md:text-[6rem] font-black leading-[0.85] tracking-tighter text-neutral-900 dark:text-white">
+          <h1 className="text-4xl md:text-[5rem] font-black leading-[0.85] tracking-tighter text-neutral-900 dark:text-white">
             Petakan <span className="italic text-emerald-500">Logika</span> <br />
             Kode Anda
           </h1>
-          <p className="text-xl md:text-4xl font-black tracking-tight text-emerald-500/90 leading-tight">
+          <p className="text-xl md:text-3xl font-black tracking-tight text-emerald-500/90 leading-tight">
             Menjadi Control Flow Graph
           </p>
         </motion.div>
 
         <motion.p
           variants={itemVariants}
-          className="text-sm md:text-xl text-neutral-400 dark:text-neutral-500 max-w-xl mx-auto leading-relaxed font-medium"
+          className="text-sm md:text-lg text-neutral-400 dark:text-neutral-500 max-w-xl mx-auto leading-relaxed font-medium"
         >
           Konversi <span className="text-neutral-900 dark:text-white font-bold">Source Code</span> Python Anda menjadi CFG interaktif. Hitung <span className="text-neutral-900 dark:text-white font-bold">Cyclomatic Complexity</span> dan temukan jalur independen secara instan.
         </motion.p>
 
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row justify-center gap-6 mt-4"
+          className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 mt-2  sm:mt-4"
         >
           <TooltipProvider>
             <Tooltip>

@@ -43,13 +43,13 @@ const Docs = () => {
   ];
 
   return (
-    <section id="docs" className="px-8 py-20 bg-white dark:bg-neutral-900/50 overflow-hidden font-sans">
+    <section id="docs" className="px-4 sm:px-8 py-20 bg-white dark:bg-neutral-900/50 overflow-hidden font-sans">
       <div className="container max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
           <span className="text-[10px] font-black tracking-[0.3em] text-emerald-600 uppercase mb-4 block">
             Panduan Penggunaan
@@ -67,7 +67,7 @@ const Docs = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative w-full aspect-video overflow-hidden shadow-2xl shadow-neutral-200 dark:shadow-none group border-2 border-neutral-50 dark:border-neutral-800"
+          className="relative w-full aspect-video overflow-hidden shadow-2xl shadow-neutral-200 dark:shadow-none group border border-neutral-50 dark:border-neutral-800"
         >
           <iframe
             src="https://www.youtube.com/embed/QOfdD0FlJJI"
@@ -86,7 +86,7 @@ const Docs = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
           <h2 className="mb-6 text-2xl md:text-4xl font-black text-neutral-900 dark:text-white tracking-tighter">
             Arsitektur <span className="text-emerald-500 italic">Logika</span>
@@ -96,7 +96,7 @@ const Docs = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 relative z-10">
           {steps.map((step, index) => (
             <motion.div
               key={index}

@@ -17,12 +17,12 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
           <span className="text-[10px] font-black tracking-[0.3em] text-emerald-600 uppercase mb-4 block">
             Hubungan Terbuka
           </span>
-          <h2 className="text-2xl md:text-5xl font-black text-neutral-900 dark:text-white tracking-tighter">
+          <h2 className="text-xl md:text-5xl font-black text-neutral-900 dark:text-white tracking-tighter">
             Mari <span className="italic text-emerald-500">Berdiskusi</span>
           </h2>
           <p className="mt-4 text-sm sm:text-lg text-neutral-400 font-medium max-w-xl mx-auto leading-relaxed">
@@ -62,7 +62,7 @@ const Contact = () => {
                       id="name"
                       name="name" // WAJIB ADA
                       placeholder="Masukkan nama Anda"
-                      className="sm:h-14 rounded-xl border-none bg-white dark:bg-neutral-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 dark:text-white"
+                      className="h-12 sm:h-14 rounded-xl border-none bg-white dark:bg-neutral-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 dark:text-white"
                       required
                     />
                   </div>
@@ -77,7 +77,7 @@ const Contact = () => {
                         id="email"
                         name="email"
                         placeholder="nama@mail.com"
-                        className="sm:h-14 pl-12 rounded-xl border-none bg-white dark:bg-neutral-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 dark:text-white"
+                        className="h-12 sm:h-14 pl-12 rounded-xl border-none bg-white dark:bg-neutral-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 dark:text-white"
                         required
                       />
                       <Mail className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-neutral-300" />
@@ -102,7 +102,7 @@ const Contact = () => {
                   <div className="md:col-span-2 pt-2">
                     <Button
                       type="submit"
-                      className="w-full h-16 rounded-2xl bg-neutral-900 dark:bg-emerald-600 text-white hover:bg-neutral-800 dark:hover:bg-emerald-700 text-base font-black tracking-tighter shadow-2xl transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3"
+                      className="w-full h-12 sm:h-16 rounded-2xl bg-neutral-900 dark:bg-emerald-600 text-white hover:bg-neutral-800 dark:hover:bg-emerald-700 text-sm sm:text-base font-black tracking-tighter shadow-2xl transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3"
                     >
                       KIRIM PESAN SEKARANG
                       <Send className="w-5 h-5" />

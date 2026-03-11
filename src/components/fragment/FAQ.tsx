@@ -48,7 +48,7 @@ const FAQ = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
           <span className="text-[10px] font-black tracking-[0.3em] text-emerald-600 uppercase mb-4 block">
             Pusat Bantuan
@@ -77,7 +77,7 @@ const FAQ = () => {
           </motion.div>
 
           {/* Daftar FAQ */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-3 sm:space-y-6">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}

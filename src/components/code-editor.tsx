@@ -218,7 +218,7 @@ function CodeEditor() {
             size="icon"
             onClick={() => monacoEditorRef.current?.setValue("")}
             disabled={isLoading}
-            className="w-10 h-10 rounded-xl text-neutral-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+            className="w-10 h-10 rounded-xl  text-neutral-400 hover:text-red-500 hover:bg-red-50 transition-colors"
           >
             <Trash2 className="w-5 h-5" />
           </Button>

@@ -44,8 +44,8 @@ const About = () => {
 
             <Card className="rounded-[3rem] border-none bg-white shadow-2xl shadow-neutral-200/50 dark:shadow-none p-4">
               <CardContent className="flex flex-col gap-4 sm:gap-8 p-4 sm:p-10">
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start">
-                  <div className="p-4 rounded-2xl bg-neutral-900 text-white shadow-xl shadow-neutral-200 dark:shadow-none dark:border border-neutral-800">
+                <div className="flex flex-row gap-3 sm:gap-6 items-start">
+                  <div className="p-2 sm:p-4 rounded-2xl bg-neutral-900 text-white shadow-xl shadow-neutral-200 dark:shadow-none dark:border border-neutral-800">
                     <Code2 className="w-6 h-6" />
                   </div>
                   <div>
@@ -56,8 +56,8 @@ const About = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start">
-                  <div className="p-4 rounded-2xl bg-emerald-50 text-emerald-600 shadow-xl shadow-emerald-100 dark:shadow-none">
+                <div className="flex flex-row gap-3 sm:gap-6 items-start">
+                  <div className="p-2 sm:p-4 rounded-2xl bg-emerald-50 text-emerald-600 shadow-xl shadow-emerald-100 dark:shadow-none">
                     <Search className="w-6 h-6" />
                   </div>
                   <div>
@@ -68,8 +68,8 @@ const About = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start">
-                  <div className="p-4 rounded-2xl bg-neutral-50 text-neutral-400 dark:shadow-none">
+                <div className="flex flex-row gap-3 sm:gap-6 items-start">
+                  <div className="p-2 sm:p-4 rounded-2xl bg-neutral-50 text-neutral-400 dark:shadow-none">
                     <BookOpen className="w-6 h-6" />
                   </div>
                   <div>
