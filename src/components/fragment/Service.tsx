@@ -43,10 +43,10 @@ const Service = () => {
           <span className="text-[10px] font-black tracking-[0.3em] text-emerald-600 uppercase mb-4 block">
             Fitur Inti
           </span>
-          <h2 className="mb-5 text-4xl md:text-5xl font-black text-neutral-900 dark:text-white tracking-tighter leading-tight">
+          <h2 className="mb-5 text-2xl md:text-5xl font-black text-neutral-900 dark:text-white tracking-tighter leading-tight">
             Analisis <span className="italic text-emerald-500">Kode</span>
           </h2>
-          <p className="max-w-xl mb-12 text-lg text-neutral-400 font-medium leading-relaxed mx-auto">
+          <p className="max-w-xl mb-12 text-sm sm:text-lg text-neutral-400 font-medium leading-relaxed mx-auto">
             Beberapa hal yang bisa anda lakukan di <span className="text-neutral-900 dark:text-white font-bold">TestFlow</span> untuk membantu mempermudah analisis logika program.
           </p>
         </motion.div>

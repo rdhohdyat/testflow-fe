@@ -385,9 +385,9 @@ function TestCase() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 border-none"
+                className="p-4 rounded-2xl bg-emerald-50 dark:bg-white border-none"
               >
-                <div className="font-mono text-[12px] font-black text-emerald-700 dark:text-white break-all leading-relaxed">
+                <div className="font-mono text-[12px] font-black text-emerald-700 dark:text-black break-all leading-relaxed">
                   {resultText.join(" → ")}
                 </div>
               </motion.div>

@@ -118,7 +118,7 @@ function WorkFlowPage() {
       <Navbar />
 
       {/* Mobile View */}
-      <div className="block px-6 pt-32 pb-10 xl:hidden">
+      <div className="block px-3 pt-32 pb-10 xl:hidden">
         <div className="flex flex-col gap-6 mb-8">
           <div className="flex items-center justify-between">
             <ServerStatus />
@@ -173,18 +173,18 @@ function WorkFlowPage() {
             <Card className="rounded-2xl border-none shadow-xl dark:shadow-none p-8 bg-white dark:bg-neutral-900">
               <div className="mb-6">
                 <h3 className="text-[10px] font-black tracking-[0.2em] text-neutral-400 uppercase mb-2">Metrik Kompleksitas</h3>
-                <div className="text-4xl font-black tracking-tighter text-neutral-900 tabular-nums">
-                  V(G) = <span className="italic text-emerald-600/30">{edgeCount - nodeCount + 2}</span>
+                <div className="text-xl font-black text-neutral-900 tabular-nums">
+                  E - N + 2 = <span className="italic text-emerald-500">{edgeCount - nodeCount + 2}</span>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-2xl text-center">
+                <div className="bg-neutral-50 dark:bg-neutral-800 p-2 rounded-2xl text-center">
                   <p className="text-[9px] font-black text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-1">Nodes</p>
-                  <p className="text-2xl font-black text-neutral-900 dark:text-white tabular-nums">{nodeCount}</p>
+                  <p className="text-xl font-black text-neutral-900 dark:text-white tabular-nums">{nodeCount}</p>
                 </div>
-                <div className="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-2xl text-center">
+                <div className="bg-neutral-50 dark:bg-neutral-800 p-2 rounded-2xl text-center">
                   <p className="text-[9px] font-black text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-1">Edges</p>
-                  <p className="text-2xl font-black text-neutral-900 dark:text-white tabular-nums">{edgeCount}</p>
+                  <p className="text-xl font-black text-neutral-900 dark:text-white tabular-nums">{edgeCount}</p>
                 </div>
               </div>
             </Card>
@@ -224,7 +224,7 @@ function WorkFlowPage() {
             </div>
           </ResizablePanel>
 
-          <ResizableHandle/>
+          <ResizableHandle />
 
           <ResizablePanel minSize={40} defaultSize={50} className="bg-white dark:bg-neutral-900">
             <div className="flex flex-col h-full">
@@ -256,7 +256,7 @@ function WorkFlowPage() {
             </div>
           </ResizablePanel>
 
-          <ResizableHandle/>
+          <ResizableHandle />
 
           <ResizablePanel minSize={20} defaultSize={25} className="bg-neutral-50 dark:bg-neutral-800/20">
             <div className="flex flex-col h-full">

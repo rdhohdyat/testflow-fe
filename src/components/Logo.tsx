@@ -1,14 +1,13 @@
 export default function Logo() {
   return (
-    <div className="flex items-center gap-3 text-zinc-900 dark:text-white group">
+    <div className="flex items-center gap-2 sm:gap-3 text-neutral-900 dark:text-white group">
       <div className="text-emerald-600 dark:text-emerald-400 transition-transform group-hover:rotate-12 duration-300">
         <svg
           id="logo-85"
-          width="32"
-          height="32"
           viewBox="0 0 40 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6 sm:w-8 sm:h-8"
         >
           <path
             className="ccustom"
@@ -19,7 +18,7 @@ export default function Logo() {
           ></path>
         </svg>
       </div>
-      <h1 className="font-bold text-2xl tracking-tight">Test<span className="text-emerald-600 dark:text-emerald-400">Flow</span></h1>
+      <h1 className="font-bold text-xl sm:text-2xl tracking-tight">Test<span className="text-emerald-600 dark:text-emerald-400">Flow</span></h1>
     </div>
   );
 };

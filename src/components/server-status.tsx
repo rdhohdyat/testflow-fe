@@ -27,7 +27,7 @@ const ServerStatus = () => {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
           </span>
-          <span className="text-xs font-bold uppercase tracking-wider">Server Connected</span>
+          <span className="hidden md:block text-xs font-bold uppercase tracking-wider">Server Connected</span>
         </Badge>
       ) : (
         <Badge className="bg-red-50 text-red-600 border-none hover:bg-red-100 transition-colors h-10 px-4 rounded-xl flex items-center gap-2 shadow-sm shadow-red-100/50">
@@ -35,7 +35,7 @@ const ServerStatus = () => {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-red-500"></span>
           </span>
-          <span className="text-xs font-bold uppercase tracking-wider">Server Disconnected</span>
+          <span className="hidden md:block text-xs font-bold uppercase tracking-wider">Server Disconnected</span>
         </Badge>
       )}
     </div>

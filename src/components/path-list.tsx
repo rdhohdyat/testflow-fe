@@ -79,18 +79,18 @@ function PathList() {
             paths.map((item: any, index: number) => (
               <div
                 key={index}
-                className={`flex items-center justify-between gap-4 p-3 rounded-2xl border-none transition-all duration-500 ${
+                className={`flex items-center justify-between gap-4 p-3 rounded-2xl border border-neutral-200 dark:border-neutral-800 transition-all duration-500 ${
                   visibleItems.includes(index) ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
                 } ${
                   item.passed 
-                    ? "bg-emerald-50/50 dark:bg-emerald-500/5" 
+                    ? "bg-emerald-50/50 dark:bg-emerald-500/5 " 
                     : "bg-neutral-50 dark:bg-neutral-900 shadow-sm border border-neutral-100 dark:border-neutral-800"
                 }`}
               >
                 <div className="flex items-center gap-3 flex-1 min-w-0">
                   <div className={`w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-black ${
                     item.passed 
-                      ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" 
+                      ? "bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" 
                       : "bg-neutral-200 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400"
                   }`}>
                     {index + 1}
@@ -141,23 +141,23 @@ function PathList() {
                 </SheetDescription>
               </SheetHeader>
 
-              <div className="flex-1 overflow-y-auto px-8 py-6 space-y-6 custom-scrollbar dark:bg-neutral-900">
+              <div className="flex-1 overflow-y-auto px-8 space-y-2 custom-scrollbar dark:bg-neutral-900">
                 {paths && paths.length > 0 ? (
                   paths.map((item: any, index: number) => {
                     const isTested = item.testCase !== undefined && item.testCase !== null;
                     if (!isTested) return null;
 
                     return (
-                      <Card key={index} className={`border-none rounded-[2rem] shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden ${
+                      <Card key={index} className={`border border-neutral-200 rounded-3xl shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden ${
                         item.passed 
-                          ? "bg-emerald-50/20 dark:bg-emerald-500/10" 
-                          : "bg-red-50/20 dark:bg-red-500/10"
+                          ? "bg-white dark:bg-neutral-800" 
+                          : "bg-white dark:bg-neutral-900"
                       }`}>
                         <div className="p-6 border-b border-white/50 dark:border-neutral-800/50 flex justify-between items-center bg-white/40 dark:bg-white/5">
                           <span className="font-black text-[10px] tracking-widest text-neutral-400 dark:text-white uppercase">Kasus Uji #{index + 1}</span>
                           {item.passed ?
-                            <Badge className="bg-emerald-500 text-white border-none font-black text-[9px] px-2 py-0.5">PASSED</Badge> :
-                            <Badge className="bg-red-500 text-white border-none font-black text-[9px] px-2 py-0.5">FAILED</Badge>
+                            <Badge className="bg-emerald-500 text-white border-none font-black text-[9px] px-2 py-0.5">LOLOS</Badge> :
+                            <Badge className="bg-red-500 text-white border-none font-black text-[9px] px-2 py-0.5">GAGAL</Badge>
                           }
                         </div>
                         <CardContent className="p-6 space-y-4">

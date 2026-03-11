@@ -18,13 +18,13 @@ const ServiceCard = ({ title, description, icon }: ServiceCardProps) => {
               </div>
             </div>
           )}
-          <CardTitle className="text-2xl font-black text-gray-900 dark:text-white tracking-tighter">
+          <CardTitle className="text-xl sm:text-2xl font-black text-gray-900 dark:text-white tracking-tighter">
             {title}
           </CardTitle>
         </div>
       </CardHeader>
-      <CardContent className="px-10 pb-10 text-center">
-        <p className="text-base text-gray-400 font-medium leading-relaxed">{description}</p>
+      <CardContent className="px-4 sm:px-10 pb-4 sm:pb-10 text-center">
+        <p className="text-sm sm:text-base text-gray-400 font-medium leading-relaxed">{description}</p>
       </CardContent>
     </Card>
   );
