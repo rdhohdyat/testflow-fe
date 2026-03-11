@@ -279,7 +279,7 @@ function WorkFlowPage() {
                   </TabsList>
                 </div>
 
-                <TabsContent value="metrics" className="flex-1 px-5 pb-2 overflow-y-auto space-y-4 custom-scrollbar focus-visible:outline-none">
+                <TabsContent value="metrics" className="flex-1 px-5 pb-2 overflow-y-auto space-y-3 custom-scrollbar focus-visible:outline-none">
                   <Card className="dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded-3xl shadow-xl shadow-neutral-100/50 dark:shadow-none p-5">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">

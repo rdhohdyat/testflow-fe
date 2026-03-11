@@ -166,7 +166,7 @@ function DashboardPage() {
             filteredProjects.map((project) => (
               <Card
                 key={project.id}
-                className="group relative flex flex-col md:flex-row md:items-center justify-between p-5 border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded-2xl shadow-sm dark:shadow-none hover:shadow-md dark:hover:shadow-none transition-all duration-300"
+                className="group relative flex flex-col md:flex-row md:items-center justify-between p-5 border dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded-2xl shadow-sm dark:shadow-none hover:shadow-md dark:hover:shadow-none transition-all duration-300"
               >
                 <div className="relative flex items-center gap-4 mb-4 md:mb-0 overflow-hidden">
                   <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-xl bg-white dark:bg-neutral-800 shadow-lg shadow-neutral-200/50 dark:shadow-none flex items-center justify-center">

@@ -483,7 +483,7 @@ export default function ExportDialog({
                       sub="Jalur Uji"
                       color="emerald"
                     />
-                    <Card className="col-span-2 rounded-3xl border-none shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
+                    <Card className="col-span-2 rounded-3xl  shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
                       <div className="bg-neutral-50/50 dark:bg-neutral-800/50 px-5 py-3 text-[10px] font-black uppercase tracking-widest border-b border-neutral-100 dark:border-neutral-800 text-neutral-500">
                         Informasi Analisis
                       </div>
@@ -558,7 +558,7 @@ export default function ExportDialog({
 
                   {/* Row 2 Side: Paths & Test Cases */}
                   <div className="col-span-4 space-y-5">
-                    <Card className="max-h-[380px] flex flex-col rounded-3xl border-none shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
+                    <Card className="max-h-[380px] flex flex-col rounded-3xl shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
                       <div className="bg-neutral-50/50 dark:bg-neutral-800/50 px-5 py-3 text-[10px] font-black uppercase tracking-widest border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2 text-neutral-500">
                         <GitBranch className="w-3.5 h-3.5" />
                         Independent Paths ({paths.length})
@@ -568,7 +568,7 @@ export default function ExportDialog({
                           {paths.map((item: any, i: number) => (
                             <div
                               key={i}
-                              className="group flex items-center gap-4 p-3 rounded-2xl bg-neutral-50/30 dark:bg-neutral-800/30 border border-neutral-100/50 dark:border-neutral-800 transition-all hover:bg-white dark:hover:bg-neutral-800 hover:shadow-sm"
+                              className="group flex items-center gap-4 p-3 rounded-2xl bg-neutral-50/30 dark:bg-neutral-800/30 border dark:border-neutral-800 transition-all hover:bg-white dark:hover:bg-neutral-800 hover:shadow-sm"
                             >
                               <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-[10px] font-black shrink-0">
                                 #{i + 1}
@@ -582,7 +582,7 @@ export default function ExportDialog({
                       </ScrollArea>
                     </Card>
 
-                    <Card className="max-h-[380px] flex flex-col rounded-3xl border-none shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
+                    <Card className="max-h-[380px] flex flex-col rounded-3xl shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
                       <div className="bg-neutral-50/50 dark:bg-neutral-800/50 px-5 py-3 text-[10px] font-black uppercase tracking-widest border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2 text-neutral-500">
                         <Terminal className="w-3.5 h-3.5" />
                         Test Execution ({executedPaths.length})
@@ -722,7 +722,7 @@ function MonacoDisplay({ code, theme }: { code: string; theme: string }) {
 
 // Helpers
 const MetricCard = ({ label, value, sub, color = "emerald" }: any) => (
-  <Card className="border-none shadow-sm bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden">
+  <Card className="border shadow-sm bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden">
     <CardContent className="p-6">
       <div className="flex flex-col">
         <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400 mb-1">{label}</span>

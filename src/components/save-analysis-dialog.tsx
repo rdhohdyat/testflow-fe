@@ -143,7 +143,7 @@ export function SaveAnalysisDialog() {
               </Label>
               <div className="col-span-3">
                 <Select onValueChange={setSelectedProjectId} value={selectedProjectId} >
-                  <SelectTrigger className="w-full rounded-xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500">
+                  <SelectTrigger className="w-full rounded-xl bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500">
                     <SelectValue placeholder="-- Pilih Proyek --" />
                   </SelectTrigger>
                   <SelectContent>
@@ -172,7 +172,7 @@ export function SaveAnalysisDialog() {
                   placeholder="Contoh: Cek Bilangan Genap"
                   value={functionName}
                   onChange={(e) => setFunctionName(e.target.value)}
-                  className="w-full rounded-xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500"
+                  className="w-full rounded-xl bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500"
                 />
               </div>
             </div>

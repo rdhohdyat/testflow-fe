@@ -322,7 +322,7 @@ function TestCase() {
                   <Textarea
                     id={`param-${index}`}
                     rows={isJson ? 3 : 1}
-                    className={`rounded-xl bg-neutral-50 dark:bg-neutral-800 border-none text-xs font-bold px-4 py-2 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-neutral-500 shadow-sm dark:shadow-none resize-none transition-all min-h-0 ${isJson ? "font-mono h-20" : "h-10"
+                    className={`rounded-xl dark:bg-neutral-800 text-xs font-bold px-4 py-2 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-neutral-500 shadow-sm dark:shadow-none resize-none transition-all min-h-0 ${isJson ? "font-mono h-20" : "h-10"
                       }`}
                     placeholder={`Nilai untuk ${param.name}`}
                     value={currentVal}
@@ -369,7 +369,7 @@ function TestCase() {
       </Card>
 
       {/* CARD 2: Execution Result */}
-      <Card ref={resultRef} className="border-none bg-white dark:bg-neutral-900 rounded-[2rem] shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden">
+      <Card ref={resultRef} className="bg-white dark:bg-neutral-900 rounded-[2rem] shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden">
         <CardHeader className="p-6 pb-4 bg-white/50 dark:bg-neutral-900/50 border-b border-neutral-50 dark:border-neutral-800">
           <div className="flex justify-between items-center">
             <CardTitle className="text-[10px] font-black tracking-[0.2em] text-neutral-400 uppercase">Jalur Hasil Eksekusi</CardTitle>

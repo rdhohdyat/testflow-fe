@@ -51,11 +51,11 @@ export default function CreateProject({ onProjectCreated }: { onProjectCreated: 
         <div className="space-y-4 py-4">
           <div className="space-y-2">
             <label className="text-sm font-medium">Nama Testing</label>
-            <Input className="rounded-xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500" value={name} onChange={(e) => setName(e.target.value)} placeholder="Contoh: Testing" />
+            <Input className="rounded-xl bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500" value={name} onChange={(e) => setName(e.target.value)} placeholder="Contoh: Testing" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium">Deskripsi</label>
-            <Textarea className="rounded-xl border-none bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Deskripsikan proyek testing ini..." />
+            <Textarea className="rounded-xl bg-white dark:bg-gray-800 shadow-sm dark:shadow-none focus-visible:ring-emerald-500 font-bold dark:text-white dark:placeholder:text-gray-500" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Deskripsikan proyek testing ini..." />
           </div>
           <Button className="w-full uppercase" onClick={handleCreate} disabled={loading}>
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Simpan Project Testing"}
