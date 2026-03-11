@@ -282,15 +282,15 @@ export default function ExportDialog({
 
   const SidebarContent = () => (
     <div className="flex flex-col h-full w-full">
-      <div className="p-3 border-b bg-gray-100/50 dark:bg-gray-900 flex justify-between items-center">
-        <h3 className="text-xs font-semibold text-gray-500 dark:text-white uppercase tracking-wider flex items-center gap-2">
+      <div className="p-3 border-b bg-neutral-100/50 dark:bg-neutral-900 flex justify-between items-center">
+        <h3 className="text-xs font-semibold text-neutral-500 dark:text-white uppercase tracking-wider flex items-center gap-2">
           <Clock className="w-3 h-3" /> Pilih Versi
         </h3>
       </div>
-      <ScrollArea className="flex-1 dark:bg-gray-900">
+      <ScrollArea className="flex-1 dark:bg-neutral-900">
         <div className="flex flex-col p-2 gap-1">
           {codes.length === 0 ? (
-            <div className="p-8 text-center text-xs text-gray-400">
+            <div className="p-8 text-center text-xs text-neutral-400">
               Belum ada riwayat.
             </div>
           ) : (
@@ -300,8 +300,8 @@ export default function ExportDialog({
                 className={cn(
                   "group flex items-center gap-1 p-3 rounded-lg text-left transition-all border cursor-pointer",
                   selectedAnalysisId === item.id
-                    ? "bg-white border border-gray-200 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:border-gray-200"
-                    : "border-transparent hover:bg-white hover:border-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900",
+                    ? "bg-white border border-neutral-200 shadow-sm ring-1 ring-neutral-200 dark:bg-neutral-900 dark:border-neutral-200"
+                    : "border-transparent hover:bg-white hover:border-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-900",
                 )}
                 onClick={() => {
                   setSelectedAnalysisId(item.id);
@@ -314,19 +314,19 @@ export default function ExportDialog({
                       "font-semibold text-sm truncate block",
                       selectedAnalysisId === item.id
                         ? "text-blue-700 dark:text-blue-400"
-                        : "text-gray-700 dark:text-gray-300",
+                        : "text-neutral-700 dark:text-neutral-300",
                     )}
                   >
                     {item.name || `Analisis #${item.id}`}
                   </span>
-                  <span className="text-[10px] text-gray-400">
+                  <span className="text-[10px] text-neutral-400">
                     {new Date(item.created_at).toLocaleDateString("id-ID")}
                   </span>
                 </div>
                 {/* Tombol hapus — muncul saat hover */}
                 <button
                   onClick={(e) => handleDeleteAnalysisClick(item.id, e)}
-                  className="transition-opacity p-1 rounded hover:bg-red-50 text-gray-300 hover:text-red-500 flex-shrink-0"
+                  className="transition-opacity p-1 rounded hover:bg-red-50 text-neutral-300 hover:text-red-500 flex-shrink-0"
                   title="Hapus analisis ini"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
@@ -341,8 +341,8 @@ export default function ExportDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-full sm:max-w-7xl w-[98vw] h-[98vh] sm:h-[90vh] flex flex-col gap-0 p-0 overflow-hidden dark:bg-gray-900">
-        <DialogHeader className="px-4 sm:px-6 py-3 border-b bg-gray-50 dark:bg-gray-900 flex-shrink-0">
+      <DialogContent className="max-w-full sm:max-w-7xl w-[98vw] h-[98vh] sm:h-[90vh] flex flex-col gap-0 p-0 overflow-hidden dark:bg-neutral-900">
+        <DialogHeader className="px-4 sm:px-6 py-3 border-b bg-neutral-50 dark:bg-neutral-900 flex-shrink-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <FileText className="w-5 h-5 text-blue-600" />
@@ -365,7 +365,7 @@ export default function ExportDialog({
           {/* SIDEBAR */}
           <div
             className={cn(
-              "absolute inset-0 z-50 bg-white dark:bg-gray-950 sm:relative sm:z-0 sm:flex sm:w-1/5 sm:border-r transition-transform duration-300",
+              "absolute inset-0 z-50 bg-white dark:bg-neutral-950 sm:relative sm:z-0 sm:flex sm:w-1/5 sm:border-r transition-transform duration-300",
               showSidebar
                 ? "translate-x-0"
                 : "-translate-x-full sm:translate-x-0",
@@ -381,7 +381,7 @@ export default function ExportDialog({
           </div>
 
           {/* MAIN AREA */}
-          <div className="flex-1 flex flex-col bg-gray-50/50 dark:bg-gray-950 min-w-0">
+          <div className="flex-1 flex flex-col bg-neutral-50/50 dark:bg-neutral-950 min-w-0">
             {currentData ? (
               <ScrollArea className="h-full">
                 {/* --- MOBILE VIEW: PAKAI TABS --- */}
@@ -503,10 +503,10 @@ export default function ExportDialog({
                   {/* Row 2: Graph & Source Code */}
                   <div className="col-span-8 space-y-4">
                     <Card className="overflow-hidden rounded-2xl">
-                      <div className="bg-gray-100 dark:bg-gray-900 p-2 text-xs font-semibold border-b flex items-center gap-2">
+                      <div className="bg-neutral-100 dark:bg-neutral-900 p-2 text-xs font-semibold border-b flex items-center gap-2">
                         <Share2 className="w-3 h-3" /> Control Flow Graph
                       </div>
-                      <div className="h-[450px] bg-white dark:bg-gray-900">
+                      <div className="h-[450px] bg-white dark:bg-neutral-900">
                         <ReactFlow
                           nodes={nodes}
                           edges={edges}
@@ -519,10 +519,10 @@ export default function ExportDialog({
                         </ReactFlow>
                       </div>
                     </Card>
-                    <Card className="overflow-hidden border-gray-200 dark:border-gray-800 rounded-2xl shadow-sm">
-                      {/* Header: Lebih clean dengan warna gray */}
-                      <div className="bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-md px-4 py-2 text-[10px] font-black uppercase tracking-widest border-b border-gray-200 dark:border-gray-800 flex items-center justify-between transition-colors">
-                        <span className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+                    <Card className="overflow-hidden border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm">
+                      {/* Header: Lebih clean dengan warna neutral */}
+                      <div className="bg-neutral-50/80 dark:bg-neutral-900/80 backdrop-blur-md px-4 py-2 text-[10px] font-black uppercase tracking-widest border-b border-neutral-200 dark:border-neutral-800 flex items-center justify-between transition-colors">
+                        <span className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400">
                           <FileCode className="w-3.5 h-3.5" />
                           Source Code
                         </span>
@@ -531,7 +531,7 @@ export default function ExportDialog({
                           variant="ghost"
                           size="sm"
                           onClick={handleCopyCode}
-                          className="h-7 w-7 p-0 rounded-lg text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-200/50 dark:hover:bg-gray-800 transition-all"
+                          className="h-7 w-7 p-0 rounded-lg text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-200/50 dark:hover:bg-neutral-800 transition-all"
                         >
                           {copied ? (
                             <Check className="w-3.5 h-3.5 text-emerald-500" />
@@ -552,13 +552,13 @@ export default function ExportDialog({
                           height: "300px",
                           fontSize: "12px",
                           padding: "16px",
-                          background: theme === "dark" ? "#09090b" : "#ffffff", // gray-950 atau White
+                          background: theme === "dark" ? "#09090b" : "#ffffff", // neutral-950 atau White
                           lineHeight: "1.6",
                         }}
                         lineNumberStyle={{
                           minWidth: "3em",
                           paddingRight: "1em",
-                          color: theme === "dark" ? "#3f3f46" : "#a1a1aa", // gray-700 atau gray-400
+                          color: theme === "dark" ? "#3f3f46" : "#a1a1aa", // neutral-700 atau neutral-400
                           textAlign: "right",
                           userSelect: "none",
                         }}
@@ -571,7 +571,7 @@ export default function ExportDialog({
                   {/* Row 2 Side: Paths & Test Cases */}
                   <div className="col-span-4 space-y-4">
                     <Card className="max-h-[380px] flex flex-col rounded-2xl">
-                      <div className="bg-gray-100 dark:bg-gray-900 p-2 text-xs font-semibold border-b">
+                      <div className="bg-neutral-100 dark:bg-neutral-900 p-2 text-xs font-semibold border-b">
                         <GitBranch className="w-3 h-3 inline mr-1" />{" "}
                         Independent Paths ({paths.length})
                       </div>
@@ -579,7 +579,7 @@ export default function ExportDialog({
                         {paths.map((item: any, i: number) => (
                           <div
                             key={i}
-                            className="mb-2 p-2 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 border rounded-xl text-[11px] font-mono"
+                            className="mb-2 p-2 bg-neutral-50 dark:bg-neutral-900 dark:border-neutral-700 border rounded-xl text-[11px] font-mono"
                           >
                             <span className="text-blue-600 font-bold mr-1">
                               #{i + 1}
@@ -591,7 +591,7 @@ export default function ExportDialog({
                     </Card>
 
                     <Card className="max-h-[380px] flex flex-col rounded-2xl">
-                      <div className="bg-gray-100 p-2 text-xs font-semibold border-b dark:bg-gray-900 dark:border-gray-700">
+                      <div className="bg-neutral-100 p-2 text-xs font-semibold border-b dark:bg-neutral-900 dark:border-neutral-700">
                         <Terminal className="w-3 h-3 inline mr-1" /> Test
                         Execution ({executedPaths.length})
                       </div>
@@ -600,7 +600,7 @@ export default function ExportDialog({
                           <div
                             key={i}
                             className={cn(
-                              "mb-2 p-2 border rounded-xl text-[11px] dark:bg-gray-900 dark:border-gray-700",
+                              "mb-2 p-2 border rounded-xl text-[11px] dark:bg-neutral-900 dark:border-neutral-700",
                               item.passed
                                 ? "bg-green-50 border-green-200"
                                 : "bg-red-50 border-red-200",
@@ -637,7 +637,7 @@ export default function ExportDialog({
           </div>
         </div>
 
-        <DialogFooter className="p-4 border-t bg-gray-50 dark:bg-gray-900 dark:border-gray-800">
+        <DialogFooter className="p-4 border-t bg-neutral-50 dark:bg-neutral-900 dark:border-neutral-800">
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Tutup
           </Button>
@@ -649,22 +649,22 @@ export default function ExportDialog({
 
       {/* DELETE CONFIRMATION MODAL */}
       <AlertDialog open={!!analysisToDelete} onOpenChange={(open) => !open && setAnalysisToDelete(null)}>
-        <AlertDialogContent className="z-[100] rounded-3xl border-none dark:bg-gray-900 shadow-2xl p-8 max-w-[400px]">
+        <AlertDialogContent className="z-[100] rounded-3xl border-none dark:bg-neutral-900 shadow-2xl p-8 max-w-[400px]">
           <AlertDialogHeader>
             <div className="flex flex-col items-center text-center space-y-4">
               <div className="w-16 h-16 rounded-2xl bg-red-50 text-red-500 flex items-center justify-center shadow-inner">
                 <AlertTriangle className="w-8 h-8" />
               </div>
               <div className="space-y-2">
-                <AlertDialogTitle className="text-xl font-bold text-gray-900 dark:text-white">Hapus Analisis?</AlertDialogTitle>
-                <AlertDialogDescription className="text-sm text-gray-500 leading-relaxed">
+                <AlertDialogTitle className="text-xl font-bold text-neutral-900 dark:text-white">Hapus Analisis?</AlertDialogTitle>
+                <AlertDialogDescription className="text-sm text-neutral-500 leading-relaxed">
                   Hasil analisis ini akan dihapus permanen dari riwayat proyek.
                 </AlertDialogDescription>
               </div>
             </div>
           </AlertDialogHeader>
           <AlertDialogFooter className="grid grid-cols-2 gap-3 mt-8 sm:justify-center">
-            <AlertDialogCancel className="h-12 rounded-xl font-bold border-gray-200 text-gray-600 hover:bg-gray-50 mt-0">
+            <AlertDialogCancel className="h-12 rounded-xl font-bold border-neutral-200 text-neutral-600 hover:bg-neutral-50 mt-0">
               Batal
             </AlertDialogCancel>
             <AlertDialogAction
@@ -682,9 +682,9 @@ export default function ExportDialog({
 
 // Helpers
 const MetricCard = ({ label, value, sub, isGood }: any) => (
-  <Card className="border-none shadow-lg bg-white dark:bg-gray-900 rounded-2xl">
+  <Card className="border-none shadow-lg bg-white dark:bg-neutral-900 rounded-2xl">
     <CardContent className="p-4">
-      <p className="text-xs text-gray-500 font-medium">{label}</p>
+      <p className="text-xs text-neutral-500 font-medium">{label}</p>
       <p
         className={cn(
           "text-3xl font-bold my-1",
@@ -693,14 +693,14 @@ const MetricCard = ({ label, value, sub, isGood }: any) => (
       >
         {value}
       </p>
-      <p className="text-[10px] text-gray-400">{sub}</p>
+      <p className="text-[10px] text-neutral-400">{sub}</p>
     </CardContent>
   </Card>
 );
 
 const StatRow = ({ label, value }: any) => (
   <div className="flex justify-between p-3 text-[12px] border-b last:border-0">
-    <span className="text-gray-500">{label}</span>
+    <span className="text-neutral-500">{label}</span>
     <span className="font-semibold">{value}</span>
   </div>
 );

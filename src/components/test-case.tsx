@@ -265,28 +265,27 @@ function TestCase() {
 
   return (
     <div className="space-y-4 pb-2">
-      {/* CARD 1: Input Parameters */}
-      <Card className="border-none bg-white dark:bg-zinc-900 rounded-[2rem] shadow-xl shadow-zinc-100/50 dark:shadow-none overflow-hidden">
-        <CardHeader className=" border-b border-zinc-50 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm">
+      <Card className="bg-white dark:bg-neutral-900 rounded-3xl shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden">
+        <CardHeader className="border-b border-neutral-50 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm">
           <div className="flex justify-between items-center">
             <div>
-              <CardTitle className="text-[10px] font-black tracking-[0.2em] text-zinc-400 uppercase">Parameter Test Case</CardTitle>
+              <CardTitle className="text-[10px] font-black tracking-[0.2em] text-neutral-400 uppercase">Parameter Test Case</CardTitle>
               <div className="mt-2 flex flex-wrap gap-1">
                 {params?.length > 0 ? (
                   params.map((p) => (
                     // @ts-ignore
-                    <Badge key={p.name} className="bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 border-none font-bold text-[9px] px-2 py-0.5">
+                    <Badge key={p.name} className="bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400  font-bold text-[9px] px-2 py-0.5">
                       {
                         // @ts-ignore
                         p.name}
                     </Badge>
                   ))
                 ) : (
-                  <span className="text-[10px] text-zinc-300 font-bold uppercase tracking-widest">Tidak terdeteksi</span>
+                  <span className="text-[10px] text-neutral-300 font-bold uppercase tracking-widest">Tidak terdeteksi</span>
                 )}
               </div>
             </div>
-            <div className="w-8 h-8 rounded-xl bg-zinc-50 dark:bg-zinc-800 flex items-center justify-center text-zinc-400">
+            <div className="w-8 h-8 rounded-xl bg-neutral-50 dark:bg-neutral-800 flex items-center justify-center text-neutral-400">
               <Info className="h-4 w-4" />
             </div>
           </div>
@@ -308,7 +307,7 @@ function TestCase() {
                   className="space-y-1.5"
                 >
                   <label
-                    className="text-[10px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-1"
+                    className="text-[10px] font-black text-neutral-400 uppercase tracking-widest flex items-center gap-1"
                     htmlFor={`param-${index}`}
                   >
                     {/* @ts-ignore */}
@@ -323,7 +322,7 @@ function TestCase() {
                   <Textarea
                     id={`param-${index}`}
                     rows={isJson ? 3 : 1}
-                    className={`rounded-xl bg-zinc-50 dark:bg-gray-800 border-none text-xs font-bold px-4 py-2 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-gray-500 shadow-sm dark:shadow-none resize-none transition-all min-h-0 ${isJson ? "font-mono h-20" : "h-10"
+                    className={`rounded-xl bg-neutral-50 dark:bg-neutral-800 border-none text-xs font-bold px-4 py-2 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-neutral-500 shadow-sm dark:shadow-none resize-none transition-all min-h-0 ${isJson ? "font-mono h-20" : "h-10"
                       }`}
                     placeholder={`Nilai untuk ${param.name}`}
                     value={currentVal}
@@ -343,7 +342,7 @@ function TestCase() {
 
         <CardFooter className="p-6 pt-0 flex gap-2">
           <Button
-            className="flex-1 h-11 rounded-xl bg-zinc-900 dark:bg-emerald-600 text-white dark:text-white hover:bg-zinc-800 dark:hover:bg-emerald-700 text-[10px] font-black tracking-widest shadow-lg shadow-zinc-200 dark:shadow-none transition-all active:scale-95"
+            className="flex-1 h-11 rounded-xl bg-neutral-900 dark:bg-emerald-600 text-white dark:text-white hover:bg-neutral-800 dark:hover:bg-emerald-700 text-[10px] font-black tracking-widest shadow-lg shadow-neutral-200 dark:shadow-none transition-all active:scale-95"
             disabled={!params?.length || executing || !hasRequiredParams}
             onClick={executeTestCase}
           >
@@ -370,11 +369,11 @@ function TestCase() {
       </Card>
 
       {/* CARD 2: Execution Result */}
-      <Card ref={resultRef} className="border-none bg-white dark:bg-zinc-900 rounded-[2rem] shadow-xl shadow-zinc-100/50 dark:shadow-none overflow-hidden">
-        <CardHeader className="p-6 pb-4 bg-white/50 dark:bg-zinc-900/50 border-b border-zinc-50 dark:border-zinc-800">
+      <Card ref={resultRef} className="border-none bg-white dark:bg-neutral-900 rounded-[2rem] shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden">
+        <CardHeader className="p-6 pb-4 bg-white/50 dark:bg-neutral-900/50 border-b border-neutral-50 dark:border-neutral-800">
           <div className="flex justify-between items-center">
-            <CardTitle className="text-[10px] font-black tracking-[0.2em] text-zinc-400 uppercase">Jalur Hasil Eksekusi</CardTitle>
-            <div className="w-5 h-5 rounded-full bg-zinc-50 flex items-center justify-center text-[10px] text-zinc-300 font-bold border border-zinc-100 italic">?</div>
+            <CardTitle className="text-[10px] font-black tracking-[0.2em] text-neutral-400 uppercase">Jalur Hasil Eksekusi</CardTitle>
+            <div className="w-5 h-5 rounded-full bg-neutral-50 flex items-center justify-center text-[10px] text-neutral-300 font-bold border border-neutral-100 italic">?</div>
           </div>
         </CardHeader>
 
@@ -398,10 +397,10 @@ function TestCase() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="p-8 rounded-2xl bg-zinc-50/50 dark:bg-gray-800/50 border border-dashed border-zinc-200 dark:border-gray-700 flex flex-col items-center justify-center text-center gap-2"
+                className="p-8 rounded-2xl bg-neutral-50/50 dark:bg-neutral-800/50 border border-dashed border-neutral-200 dark:border-neutral-700 flex flex-col items-center justify-center text-center gap-2"
               >
-                <Info className="w-5 h-5 text-zinc-300" />
-                <p className="text-zinc-400 text-[9px] font-black uppercase tracking-widest leading-normal">
+                <Info className="w-5 h-5 text-neutral-300" />
+                <p className="text-neutral-400 text-[9px] font-black uppercase tracking-widest leading-normal">
                   Masukkan parameter<br />dan jalankan tes
                 </p>
               </motion.div>
@@ -419,7 +418,7 @@ function TestCase() {
                 variant={isSaved ? "outline" : "default"}
                 onClick={handleSaveResult}
                 disabled={isSaved || isSaving}
-                className={`w-full h-11 rounded-xl text-[10px] font-black tracking-widest transition-all active:scale-95 ${isSaved ? "bg-zinc-50 dark:bg-zinc-800 text-zinc-400 border-none" : "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-100 dark:shadow-none"
+                className={`w-full h-11 rounded-xl text-[10px] font-black tracking-widest transition-all active:scale-95 ${isSaved ? "bg-neutral-50 dark:bg-neutral-800 text-neutral-400 border-none" : "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-100 dark:shadow-none"
                   }`}
               >
                 {isSaving ? (

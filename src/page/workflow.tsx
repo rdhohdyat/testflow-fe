@@ -114,7 +114,7 @@ function WorkFlowPage() {
   }, [initialRender, storeNodes, storeEdges, setNodes, setEdges]);
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-sans tracking-tight">
+    <div className="min-h-screen bg-neutral-100 dark:bg-neutral-950 font-sans tracking-tight">
       <Navbar />
 
       {/* Mobile View */}
@@ -214,7 +214,7 @@ function WorkFlowPage() {
 
         <ResizablePanelGroup
           direction="horizontal"
-          className="flex-1 rounded-[2rem] bg-white dark:bg-neutral-900 shadow-xl dark:shadow-none overflow-hidden border border-neutral-100 dark:border-neutral-800"
+          className="flex-1 rounded-3xl bg-white dark:bg-neutral-900 shadow-xl dark:shadow-none overflow-hidden border border-neutral-100 dark:border-neutral-900"
         >
           <ResizablePanel minSize={20} defaultSize={25} className="bg-neutral-50/50 dark:bg-neutral-900">
             <div className="h-full flex flex-col">

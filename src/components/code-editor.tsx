@@ -205,7 +205,7 @@ function CodeEditor() {
 
   return (
     <div className="flex flex-col h-full bg-white dark:bg-neutral-900">
-      <div className="p-6 border-b border-neutral-50 flex items-center justify-between bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm z-10 sticky top-0">
+      <div className="p-6 border-b border-neutral-50 dark:border-neutral-800 flex items-center justify-between bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm z-10 sticky top-0">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-emerald-500 flex items-center justify-center">
             <Code2 className="w-5 h-5" />
@@ -228,7 +228,7 @@ function CodeEditor() {
       <div className="flex-1 min-h-0 relative">
         <div ref={editorRef} className="absolute inset-0"></div>
       </div>
-      <div className="p-6 pt-0 mt-auto">
+      <div className="p-6 pt-3 mt-auto">
         <Button
           className="w-full h-12 uppercase rounded-xl bg-neutral-900 text-white hover:bg-neutral-800 text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2"
           onClick={handleGenerateCFG}

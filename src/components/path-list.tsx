@@ -58,8 +58,8 @@ function PathList() {
   const failedPaths = paths ? paths.filter((item: any) => item.passed === false && item.testCase).length : 0;
 
   return (
-    <Card className="h-full flex flex-col  bg-white dark:bg-neutral-900 rounded-[2rem] shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden transition-colors duration-300">
-      <CardHeader className="p-6 pb-4 border-b border-neutral-50 rounded-t-[2rem] dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm sticky top-0 z-10">
+    <Card className="h-full flex flex-col  bg-white dark:bg-neutral-900 rounded-3xl shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden transition-colors duration-300">
+      <CardHeader className="p-6 pb-4 border-b border-neutral-50 rounded-t-3xl dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm sticky top-0 z-10">
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">

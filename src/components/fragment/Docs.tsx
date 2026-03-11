@@ -12,12 +12,12 @@ const Docs = () => {
   const steps: Step[] = [
     {
       title: "Parsing Kode",
-      description: "Mentransformasi kode Python menjadi struktur data pohon (AST).",
+      description: "Mentransformasi kode Python menjadi struktur data AST.",
       icon: <Code />,
     },
     {
       title: "Analisis Struktur",
-      description: "Mengidentifikasi perintah, percabangan (if), dan perulangan (loop).",
+      description: "Mengidentifikasi percabangan (if), dan perulangan (loop).",
       icon: <ChartGantt />,
     },
     {
@@ -32,7 +32,7 @@ const Docs = () => {
     },
     {
       title: "Pemetaan Alur",
-      description: "Menghubungkan antar titik sesuai dengan logika alur program.",
+      description: "Menghubungkan antar titik sesuai  logika alur program.",
       icon: <GitFork />,
     },
     {
