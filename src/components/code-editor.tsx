@@ -55,7 +55,6 @@ function CodeEditor() {
     return () => editor.dispose();
   }, []);
 
-  // Fungsi pembantu untuk menambahkan penundaan minimum agar loading terlihat
   const withMinimumDelay = async (promise: any, minimumDelay = 500) => {
     const startTime = Date.now();
     const [result] = await Promise.all([
@@ -63,7 +62,6 @@ function CodeEditor() {
       new Promise((resolve) => setTimeout(resolve, minimumDelay)),
     ]);
 
-    // Tambahkan penundaan jika waktu eksekusi kurang dari minimum delay
     const elapsedTime = Date.now() - startTime;
     if (elapsedTime < minimumDelay) {
       await new Promise((resolve) =>
@@ -127,11 +125,9 @@ function CodeEditor() {
       }
 
       if (data.nodes && data.edges) {
-        // Memetakan nodes dan edges
         const mappedNodes = data.nodes.map((node: any) => ({
           id: node.id,
           type: node.type || "default",
-          // Scale positions for neater spacing
           position: {
             x: (node.position?.x || 0) * 1,
             y: (node.position?.y || 0) * 1
@@ -148,7 +144,6 @@ function CodeEditor() {
           const isConditionFalse = edge.label === "False";
           const isLoop = edge.label === "loop back";
 
-          // Emerald for True, Red for False, Yellow for Loop, Gray for default
           const edgeColor = isLoop ? "#f59e0b" : isConditionTrue ? "#10b981" : isConditionFalse ? "#ef4444" : "#6b7280";
 
           return {
@@ -181,7 +176,6 @@ function CodeEditor() {
           };
         });
 
-        // Apply Dagre auto-layout for clean hierarchical positioning
         const layoutedNodes = applyDagreLayout(mappedNodes as any, mappedEdges as any);
 
         setNodeCount(data.nodes_count || layoutedNodes.length);
@@ -210,14 +204,13 @@ function CodeEditor() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-gray-900">
-      {/* Editor Header */}
-      <div className="p-6 border-b border-zinc-50 flex items-center justify-between bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm z-10 sticky top-0">
+    <div className="flex flex-col h-full bg-white dark:bg-neutral-900">
+      <div className="p-6 border-b border-neutral-50 flex items-center justify-between bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm z-10 sticky top-0">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-emerald-500 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-emerald-500 flex items-center justify-center">
             <Code2 className="w-5 h-5" />
           </div>
-          <span className="text-xs font-bold tracking-wider text-gray-500 dark:text-white uppercase">Input Kode Utama</span>
+          <span className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">Input Kode Utama</span>
         </div>
         <div className="flex items-center gap-2">
           <Button
@@ -225,22 +218,19 @@ function CodeEditor() {
             size="icon"
             onClick={() => monacoEditorRef.current?.setValue("")}
             disabled={isLoading}
-            className="w-10 h-10 rounded-xl text-zinc-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+            className="w-10 h-10 rounded-xl text-neutral-400 hover:text-red-500 hover:bg-red-50 transition-colors"
           >
             <Trash2 className="w-5 h-5" />
           </Button>
         </div>
       </div>
 
-      {/* Monaco Container */}
       <div className="flex-1 min-h-0 relative">
         <div ref={editorRef} className="absolute inset-0"></div>
       </div>
-
-      {/* Action Footer */}
       <div className="p-6 pt-0 mt-auto">
         <Button
-          className="w-full h-12 uppercase rounded-xl bg-zinc-900 text-white hover:bg-zinc-800 text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2"
+          className="w-full h-12 uppercase rounded-xl bg-neutral-900 text-white hover:bg-neutral-800 text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2"
           onClick={handleGenerateCFG}
           disabled={isLoading}
         >

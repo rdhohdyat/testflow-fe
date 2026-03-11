@@ -68,8 +68,8 @@ export const Navbar = () => {
     <nav className={cn(
       "fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-[90%] max-w-7xl rounded-3xl border",
       isScrolled
-        ? "bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl py-3 shadow-2xl shadow-zinc-200/50 dark:shadow-none border-zinc-100 dark:border-zinc-800"
-        : "bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md py-4 border-zinc-50 dark:border-zinc-800 shadow-xl shadow-zinc-100/50 dark:shadow-none"
+        ? "bg-white/95 dark:bg-neutral-950/95 backdrop-blur-xl py-3 shadow-2xl shadow-neutral-200/50 dark:shadow-none border-neutral-100 dark:border-neutral-800"
+        : "bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md py-4 border-neutral-50 dark:border-neutral-800 shadow-xl shadow-neutral-100/50 dark:shadow-none"
     )}>
       <div className="flex items-center justify-between px-8 mx-auto">
         <div className="flex items-center gap-8">

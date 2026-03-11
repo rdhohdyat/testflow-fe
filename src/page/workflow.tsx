@@ -52,12 +52,10 @@ function WorkFlowPage() {
     cyclomaticComplexity,
   } = useCodeStore();
 
-  // PERBAIKAN: Tambahkan Generic <Node> dan <Edge>
   const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
   const [initialRender, setInitialRender] = useState(true);
 
-  // Efek untuk menghitung jumlah node dan edge
   useEffect(() => {
     const sourceNodes = rawNodes && rawNodes.length > 0 ? rawNodes : storeNodes;
     const sourceEdges = rawEdges && rawEdges.length > 0 ? rawEdges : storeEdges;
@@ -70,7 +68,6 @@ function WorkFlowPage() {
     }
   }, [rawNodes, rawEdges, storeNodes, storeEdges, setNodeCount, setEdgeCount]);
 
-  // Fungsi animasi rendering node dan edge
   const animateNodesAndEdges = useCallback(() => {
     setNodes([]);
     setEdges([]);
@@ -116,9 +113,8 @@ function WorkFlowPage() {
     }
   }, [initialRender, storeNodes, storeEdges, setNodes, setEdges]);
 
-  // ... (Sisa kode return JSX sama seperti file asli)
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-gray-950 font-sans tracking-tight">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-sans tracking-tight">
       <Navbar />
 
       {/* Mobile View */}
@@ -131,7 +127,7 @@ function WorkFlowPage() {
         </div>
 
         <Tabs defaultValue="editor" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6 p-1 bg-gray-100/50 rounded-xl sticky top-28 z-10 backdrop-blur-md">
+          <TabsList className="grid w-full grid-cols-3 mb-6 p-1 bg-neutral-100/50 rounded-xl sticky top-28 z-10 backdrop-blur-md">
             <TabsTrigger value="editor" className="rounded-xl font-bold text-xs h-10 data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-800 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all">
               <Code className="w-4 h-4 mr-2" /> Editor
             </TabsTrigger>
@@ -151,8 +147,8 @@ function WorkFlowPage() {
 
           <TabsContent value="graph" className="mt-0 focus-visible:outline-none">
             <div className="rounded-2xl bg-white dark:bg-neutral-900 shadow-xl dark:shadow-none overflow-hidden h-[50vh] flex flex-col border-none">
-              <div className="p-6 border-b border-gray-50 dark:border-gray-800 flex justify-between items-center bg-white/50 dark:bg-gray-900/50">
-                <span className="text-[10px] font-black tracking-[0.2em] text-gray-400 uppercase">Control Flow Graph</span>
+              <div className="p-6 border-b border-neutral-50 dark:border-neutral-800 flex justify-between items-center bg-white/50 dark:bg-neutral-900/50">
+                <span className="text-[10px] font-black tracking-[0.2em] text-neutral-400 uppercase">Control Flow Graph</span>
                 <Badge className="bg-emerald-50 text-emerald-600 border-none font-bold text-[10px]">
                   {nodeCount} Node • {edgeCount} Sisi
                 </Badge>
@@ -176,25 +172,25 @@ function WorkFlowPage() {
           <TabsContent value="analysis" className="mt-0 space-y-6 focus-visible:outline-none">
             <Card className="rounded-2xl border-none shadow-xl dark:shadow-none p-8 bg-white dark:bg-neutral-900">
               <div className="mb-6">
-                <h3 className="text-[10px] font-black tracking-[0.2em] text-gray-400 uppercase mb-2">Metrik Kompleksitas</h3>
-                <div className="text-4xl font-black tracking-tighter text-gray-900 tabular-nums">
+                <h3 className="text-[10px] font-black tracking-[0.2em] text-neutral-400 uppercase mb-2">Metrik Kompleksitas</h3>
+                <div className="text-4xl font-black tracking-tighter text-neutral-900 tabular-nums">
                   V(G) = <span className="italic text-emerald-600/30">{edgeCount - nodeCount + 2}</span>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-2xl text-center">
-                  <p className="text-[9px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Nodes</p>
-                  <p className="text-2xl font-black text-gray-900 dark:text-white tabular-nums">{nodeCount}</p>
+                <div className="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-2xl text-center">
+                  <p className="text-[9px] font-black text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-1">Nodes</p>
+                  <p className="text-2xl font-black text-neutral-900 dark:text-white tabular-nums">{nodeCount}</p>
                 </div>
-                <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-2xl text-center">
-                  <p className="text-[9px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Edges</p>
-                  <p className="text-2xl font-black text-gray-900 dark:text-white tabular-nums">{edgeCount}</p>
+                <div className="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-2xl text-center">
+                  <p className="text-[9px] font-black text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-1">Edges</p>
+                  <p className="text-2xl font-black text-neutral-900 dark:text-white tabular-nums">{edgeCount}</p>
                 </div>
               </div>
             </Card>
 
             <Tabs defaultValue="metrics_sub" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-4 p-1 bg-gray-100/50 dark:bg-gray-800/50 rounded-2xl">
+              <TabsList className="grid w-full grid-cols-2 mb-4 p-1 bg-neutral-100/50 dark:bg-neutral-800/50 rounded-2xl">
                 <TabsTrigger value="metrics_sub" className="rounded-xl font-bold text-xs h-10 data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-800 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all">Daftar Jalur</TabsTrigger>
                 <TabsTrigger value="testcase_sub" className="rounded-xl font-bold text-xs h-10 data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-800 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all">Test Case</TabsTrigger>
               </TabsList>
@@ -219,10 +215,10 @@ function WorkFlowPage() {
 
         <ResizablePanelGroup
           direction="horizontal"
-          className="flex-1 rounded-[2rem] bg-white dark:bg-neutral-900 shadow-xl dark:shadow-none overflow-hidden border border-gray-100 dark:border-neutral-800"
+          className="flex-1 rounded-[2rem] bg-white dark:bg-neutral-900 shadow-xl dark:shadow-none overflow-hidden border border-neutral-100 dark:border-neutral-800"
         >
           {/* Panel Kiri: Editor */}
-          <ResizablePanel minSize={20} defaultSize={25} className="bg-gray-50/50 dark:bg-gray-900">
+          <ResizablePanel minSize={20} defaultSize={25} className="bg-neutral-50/50 dark:bg-neutral-900">
             <div className="h-full flex flex-col">
               <div className="flex-1 overflow-hidden">
                 <CodeEditor />
@@ -230,17 +226,17 @@ function WorkFlowPage() {
             </div>
           </ResizablePanel>
 
-          <ResizableHandle className="w-1 bg-gray-100 dark:bg-gray-800 hover:bg-emerald-100 dark:hover:bg-emerald-900 transition-colors" />
+          <ResizableHandle/>
 
           {/* Panel Tengah: Grafik */}
-          <ResizablePanel minSize={40} defaultSize={50} className="bg-white dark:bg-gray-900">
+          <ResizablePanel minSize={40} defaultSize={50} className="bg-white dark:bg-neutral-900">
             <div className="flex flex-col h-full">
-              <div className="p-6 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm z-10 sticky top-0">
+              <div className="p-6 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm z-10 sticky top-0">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-emerald-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-emerald-500 flex items-center justify-center">
                     <GitFork className="w-5 h-5" />
                   </div>
-                  <span className="text-xs font-bold tracking-wider text-gray-500 dark:text-white uppercase">Visualisasi CFG</span>
+                  <span className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">Visualisasi CFG</span>
                 </div>
                 <Badge className="bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-500 border-none font-bold text-[10px] tracking-tight">
                   {nodeCount} Node • {edgeCount} Sisi
@@ -257,27 +253,27 @@ function WorkFlowPage() {
                   fitViewOptions={{ maxZoom: 0.8, minZoom: 0.5 }}
                 >
                   <Background variant={BackgroundVariant.Dots} gap={12} />
-                  <Controls className="bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden shadow-xl dark:shadow-none" />
+                  <Controls className="bg-white dark:bg-neutral-900 border-neutral-100 dark:border-neutral-800 rounded-xl overflow-hidden shadow-xl dark:shadow-none" />
                 </ReactFlow>
               </div>
             </div>
           </ResizablePanel>
 
-          <ResizableHandle className="w-1 bg-gray-100 dark:bg-gray-800 hover:bg-emerald-100 dark:hover:bg-emerald-900 transition-colors" />
+          <ResizableHandle/>
 
           {/* Panel Kanan: Analisis */}
-          <ResizablePanel minSize={20} defaultSize={25} className="bg-gray-50/50 dark:bg-gray-800/20">
+          <ResizablePanel minSize={20} defaultSize={25} className="bg-neutral-50/50 dark:bg-neutral-800/20">
             <div className="flex flex-col h-full">
-              <div className="p-6 border-b border-gray-100 dark:border-gray-800 flex items-center gap-2 bg-white/50 dark:bg-gray-900/50">
-                <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-emerald-500 flex items-center justify-center">
+              <div className="p-6 border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2 bg-white/50 dark:bg-neutral-900/50">
+                <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-emerald-500 flex items-center justify-center">
                   <BarChart3 className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-bold tracking-wider text-gray-500 dark:text-white uppercase">Metrik Hasil</span>
+                <span className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">Metrik Hasil</span>
               </div>
 
               <Tabs defaultValue="metrics" className="flex flex-col flex-1 overflow-hidden">
                 <div className="px-6 mt-3">
-                  <TabsList className="grid grid-cols-2 p-1 bg-gray-100/50 dark:bg-gray-800/50 rounded-2xl border-none">
+                  <TabsList className="grid grid-cols-2 p-1 bg-neutral-100/50 dark:bg-neutral-800/50 rounded-2xl border-none">
                     <TabsTrigger value="metrics" className="rounded-xl font-black text-[10px] h-10 uppercase tracking-widest data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-800 data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all py-2">
                       Metrik
                     </TabsTrigger>
@@ -288,16 +284,16 @@ function WorkFlowPage() {
                 </div>
 
                 <TabsContent value="metrics" className="flex-1 px-5 pb-2 overflow-y-auto space-y-4 custom-scrollbar focus-visible:outline-none">
-                  <Card className="border-none bg-white dark:bg-gray-900 rounded-[2rem] shadow-xl shadow-gray-100/50 dark:shadow-none p-5">
+                  <Card className="border-none bg-white dark:bg-neutral-900 rounded-[2rem] shadow-xl shadow-neutral-100/50 dark:shadow-none p-5">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
                         <GitBranch className="w-4  h-4" />
                       </div>
-                      <h3 className="text-xs font-bold tracking-wider text-gray-500 dark:text-white uppercase">Kompleksitas Siklomatis</h3>
+                      <h3 className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">Kompleksitas Siklomatis</h3>
                     </div>
 
                     <div className="flex flex-wrap justify-center items-center gap-3 mt-3">
-                      <div className="flex items-center gap-2 text-black dark:bg-gray-900 dark:text-white px-3 py-1.5 rounded-lg">
+                      <div className="flex items-center gap-2 text-black dark:bg-neutral-900 dark:text-white px-3 py-1.5 rounded-lg">
                         <span className="font-mono text-xs text-black dark:text-white font-semibold italic">
                           V(G) = E - N + 2
                         </span>

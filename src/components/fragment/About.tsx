@@ -9,7 +9,6 @@ const About = () => {
       <div className="container max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-16">
 
-          {/* Bagian Ilustrasi */}
           <motion.div
             className="flex-1 relative group"
             initial={{ opacity: 0, x: -50 }}
@@ -25,7 +24,6 @@ const About = () => {
             />
           </motion.div>
 
-          {/* Bagian Teks */}
           <motion.div
             className="flex-1"
             initial={{ opacity: 0, x: 50 }}

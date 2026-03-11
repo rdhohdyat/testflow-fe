@@ -43,7 +43,7 @@ const Docs = () => {
   ];
 
   return (
-    <section id="docs" className="px-8 py-20 bg-white dark:bg-zinc-900/50 overflow-hidden font-sans">
+    <section id="docs" className="px-8 py-20 bg-white dark:bg-neutral-900/50 overflow-hidden font-sans">
       <div className="container max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -54,10 +54,10 @@ const Docs = () => {
           <span className="text-[10px] font-black tracking-[0.3em] text-emerald-600 uppercase mb-4 block">
             Panduan Penggunaan
           </span>
-          <h2 className="mb-6 text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter">
+          <h2 className="mb-6 text-4xl md:text-5xl font-black text-neutral-900 dark:text-white tracking-tighter">
             Cara <span className="italic text-emerald-500">Kerja</span> TestFlow
           </h2>
-          <p className="text-lg text-zinc-400 font-medium max-w-xl mx-auto leading-relaxed">
+          <p className="text-lg text-neutral-400 font-medium max-w-xl mx-auto leading-relaxed">
             Saksikan demonstrasi singkat bagaimana TestFlow bekerja.
           </p>
         </motion.div>
@@ -67,9 +67,8 @@ const Docs = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative w-full aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl shadow-zinc-200 dark:shadow-none group border-2 border-zinc-50 dark:border-zinc-800"
+          className="relative w-full aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl shadow-neutral-200 dark:shadow-none group border-2 border-neutral-50 dark:border-neutral-800"
         >
-          <div className="absolute inset-0 bg-emerald-500/5 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
           <iframe
             src="https://www.youtube.com/embed/QOfdD0FlJJI"
             title="Demo TestFlow"
@@ -81,7 +80,6 @@ const Docs = () => {
       </div>
 
       <div className="container max-w-7xl mx-auto mt-24 relative">
-        {/* Decorative background blob */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10" />
 
         <motion.div
@@ -90,10 +88,10 @@ const Docs = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="mb-6 text-3xl md:text-4xl font-black text-zinc-900 dark:text-white tracking-tighter">
+          <h2 className="mb-6 text-3xl md:text-4xl font-black text-neutral-900 dark:text-white tracking-tighter">
             Arsitektur <span className="text-emerald-500 italic">Logika</span>
           </h2>
-          <p className="text-base text-zinc-400 font-medium max-w-xl mx-auto leading-relaxed">
+          <p className="text-base text-neutral-400 font-medium max-w-xl mx-auto leading-relaxed">
             Alur kerja yang mengubah baris kode Anda menjadi wawasan visual yang mendalam.
           </p>
         </motion.div>

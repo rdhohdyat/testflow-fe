@@ -16,7 +16,6 @@ const Home = () => {
     }, 1200);
   };
 
-  // Variabel untuk animasi container
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -24,7 +23,7 @@ const Home = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        staggerChildren: 0.2, // Elemen muncul bergantian
+        staggerChildren: 0.2,
       },
     },
   };
@@ -42,7 +41,6 @@ const Home = () => {
         animate="visible"
         variants={containerVariants}
       >
-        {/* Premium Label Badge */}
         <motion.div variants={itemVariants} className="flex justify-center">
           <div className="inline-flex items-center gap-3 px-5 py-2 text-[10px] font-black tracking-[0.3em] uppercase rounded-full bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 border border-emerald-100 dark:border-emerald-500/20 shadow-sm dark:shadow-none">
             <Sparkles className="w-3 h-3" />
@@ -50,9 +48,8 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Hero Title */}
         <motion.div variants={itemVariants} className="space-y-4">
-          <h1 className="text-5xl md:text-[6rem] font-black leading-[0.85] tracking-tighter text-zinc-900 dark:text-white">
+          <h1 className="text-5xl md:text-[6rem] font-black leading-[0.85] tracking-tighter text-neutral-900 dark:text-white">
             Petakan <span className="italic text-emerald-500">Logika</span> <br />
             Kode Anda
           </h1>
@@ -61,15 +58,13 @@ const Home = () => {
           </p>
         </motion.div>
 
-        {/* Description */}
         <motion.p
           variants={itemVariants}
-          className="text-base md:text-xl text-zinc-400 dark:text-zinc-500 max-w-xl mx-auto leading-relaxed font-medium"
+          className="text-base md:text-xl text-neutral-400 dark:text-neutral-500 max-w-xl mx-auto leading-relaxed font-medium"
         >
-          Konversi <span className="text-zinc-900 dark:text-white font-bold">Source Code</span> Python Anda menjadi CFG interaktif. Hitung <span className="text-zinc-900 dark:text-white font-bold">Cyclomatic Complexity</span> dan temukan jalur independen secara instan.
+          Konversi <span className="text-neutral-900 dark:text-white font-bold">Source Code</span> Python Anda menjadi CFG interaktif. Hitung <span className="text-neutral-900 dark:text-white font-bold">Cyclomatic Complexity</span> dan temukan jalur independen secara instan.
         </motion.p>
 
-        {/* CTA Buttons */}
         <motion.div
           variants={itemVariants}
           className="flex flex-col sm:flex-row justify-center gap-6 mt-4"
@@ -80,7 +75,7 @@ const Home = () => {
                 <Button
                   onClick={handleLaunch}
                   size="lg"
-                  className="rounded-[1.5rem] h-16 px-10 text-base font-black tracking-tight bg-zinc-900 text-white hover:bg-zinc-800 transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-zinc-300/50 dark:shadow-none"
+                  className="rounded-[1.5rem] h-16 px-10 text-base font-black tracking-tight bg-neutral-900 text-white hover:bg-neutral-800 transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-neutral-300/50 dark:shadow-none"
                   disabled={isLoading}
                 >
                   {isLoading ? (
@@ -91,7 +86,7 @@ const Home = () => {
                   {isLoading ? "MENYIAPKAN..." : "MULAI ANALISIS"}
                 </Button>
               </TooltipTrigger>
-              <TooltipContent className="rounded-xl font-bold bg-zinc-900 text-white">
+              <TooltipContent className="rounded-xl font-bold bg-neutral-900 text-white">
                 <p>Buka dashboard workspace</p>
               </TooltipContent>
             </Tooltip>
@@ -101,9 +96,9 @@ const Home = () => {
             <Button
               variant="outline"
               size="lg"
-              className="rounded-[1.5rem] h-16 px-10 text-base font-black tracking-tight border-2 border-zinc-100 bg-white text-zinc-900 hover:bg-zinc-50 transition-all hover:scale-105"
+              className="rounded-[1.5rem] h-16 px-10 text-base font-black tracking-tight border-2 border-neutral-100 bg-white text-neutral-900 hover:bg-neutral-50 transition-all hover:scale-105"
             >
-              <Info className="w-5 h-5 mr-3 text-zinc-400" />
+              <Info className="w-5 h-5 mr-3 text-neutral-400" />
               PELAJARI FITUR
             </Button>
           </a>
