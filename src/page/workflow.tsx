@@ -191,8 +191,8 @@ function WorkFlowPage() {
 
             <Tabs defaultValue="metrics_sub" className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-4 p-1 bg-neutral-100/50 dark:bg-neutral-800/50 rounded-2xl">
-                <TabsTrigger value="metrics_sub" className="rounded-xl font-bold text-xs h-10 data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-800 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all">Daftar Jalur</TabsTrigger>
-                <TabsTrigger value="testcase_sub" className="rounded-xl font-bold text-xs h-10 data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-800 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all">Test Case</TabsTrigger>
+                <TabsTrigger value="metrics_sub" className="rounded-xl font-bold text-xs h-10 data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-800 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all">Daftar Jalur</TabsTrigger>
+                <TabsTrigger value="testcase_sub" className="rounded-xl font-bold text-xs h-10 data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-800 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all">Test Case</TabsTrigger>
               </TabsList>
               <TabsContent value="metrics_sub" className="space-y-6">
                 <CoveragePath />
@@ -206,7 +206,6 @@ function WorkFlowPage() {
         </Tabs>
       </div>
 
-      {/* Desktop View */}
       <div className="hidden px-20 pt-28 pb-8 xl:flex h-screen max-h-screen overflow-hidden flex-col">
         <div className="flex items-center justify-between mb-4">
           <ServerStatus />
@@ -217,7 +216,6 @@ function WorkFlowPage() {
           direction="horizontal"
           className="flex-1 rounded-[2rem] bg-white dark:bg-neutral-900 shadow-xl dark:shadow-none overflow-hidden border border-neutral-100 dark:border-neutral-800"
         >
-          {/* Panel Kiri: Editor */}
           <ResizablePanel minSize={20} defaultSize={25} className="bg-neutral-50/50 dark:bg-neutral-900">
             <div className="h-full flex flex-col">
               <div className="flex-1 overflow-hidden">
@@ -228,7 +226,6 @@ function WorkFlowPage() {
 
           <ResizableHandle/>
 
-          {/* Panel Tengah: Grafik */}
           <ResizablePanel minSize={40} defaultSize={50} className="bg-white dark:bg-neutral-900">
             <div className="flex flex-col h-full">
               <div className="p-6 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm z-10 sticky top-0">
@@ -261,8 +258,7 @@ function WorkFlowPage() {
 
           <ResizableHandle/>
 
-          {/* Panel Kanan: Analisis */}
-          <ResizablePanel minSize={20} defaultSize={25} className="bg-neutral-50/50 dark:bg-neutral-800/20">
+          <ResizablePanel minSize={20} defaultSize={25} className="bg-neutral-50 dark:bg-neutral-800/20">
             <div className="flex flex-col h-full">
               <div className="p-6 border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2 bg-white/50 dark:bg-neutral-900/50">
                 <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-emerald-500 flex items-center justify-center">
@@ -274,17 +270,17 @@ function WorkFlowPage() {
               <Tabs defaultValue="metrics" className="flex flex-col flex-1 overflow-hidden">
                 <div className="px-6 mt-3">
                   <TabsList className="grid grid-cols-2 p-1 bg-neutral-100/50 dark:bg-neutral-800/50 rounded-2xl border-none">
-                    <TabsTrigger value="metrics" className="rounded-xl font-black text-[10px] h-10 uppercase tracking-widest data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-800 data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all py-2">
+                    <TabsTrigger value="metrics" className="rounded-xl font-black text-[10px] h-10 uppercase tracking-widest data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-800 data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all py-2">
                       Metrik
                     </TabsTrigger>
-                    <TabsTrigger value="testcase" className="rounded-xl font-black text-[10px] h-10 uppercase tracking-widest data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-800 data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all py-2">
+                    <TabsTrigger value="testcase" className="rounded-xl font-black text-[10px] h-10 uppercase tracking-widest data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-800 data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all py-2">
                       Kasus Uji
                     </TabsTrigger>
                   </TabsList>
                 </div>
 
                 <TabsContent value="metrics" className="flex-1 px-5 pb-2 overflow-y-auto space-y-4 custom-scrollbar focus-visible:outline-none">
-                  <Card className="border-none bg-white dark:bg-neutral-900 rounded-[2rem] shadow-xl shadow-neutral-100/50 dark:shadow-none p-5">
+                  <Card className="dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded-3xl shadow-xl shadow-neutral-100/50 dark:shadow-none p-5">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
                         <GitBranch className="w-4  h-4" />
@@ -303,16 +299,16 @@ function WorkFlowPage() {
                         </span>
                       </div>
 
-                      <div className="flex items-center p-1 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl">
-                        <div className="flex items-center gap-1.5 px-3 py-1.5 border-r border-zinc-200 dark:border-zinc-800">
-                          <span className="text-[10px] font-black text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">Edge</span>
-                          <span className="text-sm font-black text-zinc-900 dark:text-zinc-100 tabular-nums">
+                      <div className="flex items-center p-1 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl">
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 border-r border-neutral-200 dark:border-neutral-800">
+                          <span className="text-[10px] font-black text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">Edge</span>
+                          <span className="text-sm font-black text-neutral-900 dark:text-neutral-100 tabular-nums">
                             {edgeCount}
                           </span>
                         </div>
                         <div className="flex items-center gap-1.5 px-3 py-1.5">
-                          <span className="text-[10px] font-black text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">Node</span>
-                          <span className="text-sm font-black text-zinc-900 dark:text-zinc-100 tabular-nums">
+                          <span className="text-[10px] font-black text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">Node</span>
+                          <span className="text-sm font-black text-neutral-900 dark:text-neutral-100 tabular-nums">
                             {nodeCount}
                           </span>
                         </div>

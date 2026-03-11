@@ -13,15 +13,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        // Use emerald as the primary brand color
         primary: colors.emerald,
-        // Soften pure black for a more modern, premium dark mode
-        black: "#09090b", // zinc-950
-        // Use emerald for blue references if applicable, otherwise keep indigo for variety if needed
+        black: "#09090b",
         blue: colors.emerald,
-        // Use zinc for a clean, neutral gray scale
         neutral: colors.zinc,
-        // Also map gray to zinc for consistency
         gray: colors.zinc,
       },
       keyframes: {

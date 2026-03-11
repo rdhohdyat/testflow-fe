@@ -20,28 +20,28 @@ const CoveragePath = () => {
   }, [totalCoverage, setCoverage]);
 
   return (
-    <Card className="border-none bg-white dark:bg-gray-900 rounded-[2rem] shadow-xl shadow-gray-100/50 dark:shadow-none overflow-hidden">
+    <Card className="dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded-3xl shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden">
       <CardHeader className="p-6 pb-4">
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
               <BarChart3 className="w-4 h-4" />
             </div>
-            <span className="text-xs font-bold tracking-wider text-gray-500 dark:text-white uppercase">Path Coverage</span>
+            <span className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">Path Coverage</span>
           </div>
-          <span className="text-2xl font-black tracking-tighter text-gray-900 dark:text-emerald-500 tabular-nums">
-            {totalCoverage.toFixed(0)}<span className="text-sm text-gray-300 ml-0.5">%</span>
+          <span className="text-2xl font-black tracking-tighter text-neutral-900 dark:text-emerald-500 tabular-nums">
+            {totalCoverage.toFixed(0)}<span className="text-sm text-neutral-300 ml-0.5">%</span>
           </span>
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6 pt-0">
-        <div className="relative h-3 w-full bg-gray-50 dark:bg-gray-800 rounded-full overflow-hidden mb-2">
+        <div className="relative h-3 w-full bg-neutral-50 dark:bg-neutral-800 rounded-full overflow-hidden mb-2">
           <div
             className="absolute top-0 left-0 h-full bg-emerald-500 transition-all duration-1000 ease-out rounded-full shadow-[0_0_12px_rgba(16,185,129,0.3)]"
             style={{ width: `${totalCoverage}%` }}
           />
         </div>
-        <div className="flex justify-between items-center text-[10px] font-black tracking-widest text-gray-300 uppercase">
+        <div className="flex justify-between items-center text-[10px] font-black tracking-widest text-neutral-300 uppercase">
           <span>Progress Analisis</span>
           <span className={totalCoverage === 100 ? 'text-emerald-500' : ''}>
             {totalPassed}/{totalPaths} JALUR
