@@ -149,7 +149,7 @@ function DashboardPage() {
         <Navbar />
       </motion.div>
 
-      <div className="max-w-5xl px-8 pt-32 pb-20 mx-auto">
+      <div className="max-w-5xl px-4 sm:px-8 pt-32 pb-20 mx-auto">
 
         {/* Header */}
         <motion.div variants={itemVariants} className="flex flex-col gap-4 mb-8 md:flex-row md:items-center md:justify-between">

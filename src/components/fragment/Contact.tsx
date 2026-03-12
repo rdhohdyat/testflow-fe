@@ -47,7 +47,7 @@ const Contact = () => {
                   Kirim Pesan
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-8">
+              <CardContent className="p-4 sm:p-8">
                 <form
                   action="https://formspree.io/f/mreawbre"
                   method="POST"

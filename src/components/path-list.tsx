@@ -56,6 +56,7 @@ function PathList() {
   const totalPaths = paths ? paths.length : 0;
   const passedPaths = paths ? paths.filter((item: any) => item.passed).length : 0;
   const failedPaths = paths ? paths.filter((item: any) => item.passed === false && item.testCase).length : 0;
+  const testedPaths = paths ? paths.filter((item: any) => item.testCase !== undefined && item.testCase !== null) : [];
 
   return (
     <Card className="h-full flex flex-col  bg-white dark:bg-neutral-900 rounded-3xl shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden transition-colors duration-300">
@@ -85,7 +86,7 @@ function PathList() {
                 <div className="flex items-center gap-3 flex-1 min-w-0">
                   {/* Angka Indeks membawa warna status, diberi border tipis agar lebih rapi */}
                   <div
-                    className={`w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-black border ${item.passed
+                    className={`w-7 h-7 rounded-lg flex shrink-0 items-center justify-center text-[10px] font-black border ${item.passed
                       ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-800/50"
                       : "bg-neutral-50 dark:bg-neutral-500/10 text-neutral-600 dark:text-neutral-400 border-neutral-100 dark:border-neutral-800/50"
                       }`}
@@ -147,11 +148,8 @@ function PathList() {
 
               {/* Area Scroll */}
               <div className="flex-1 overflow-y-auto px-8 py-6 space-y-4 custom-scrollbar bg-neutral-50/50 dark:bg-neutral-950">
-                {paths && paths.length > 0 ? (
-                  paths.map((item: any, index: number) => {
-                    const isTested = item.testCase !== undefined && item.testCase !== null;
-                    if (!isTested) return null;
-
+                {testedPaths.length > 0 ? (
+                  testedPaths.map((item: any, index: number) => {
                     return (
                       <Card key={index} className="border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm dark:shadow-none overflow-hidden bg-white dark:bg-neutral-900">
                         {/* Header Card */}
@@ -190,9 +188,10 @@ function PathList() {
                     );
                   })
                 ) : (
-                  <div className="flex flex-col items-center justify-center h-full text-neutral-400 dark:text-neutral-600">
-                    <Terminal className="w-10 h-10 mb-4 opacity-50" />
-                    <p className="text-xs font-bold tracking-widest uppercase">Data Masih Kosong</p>
+                  <div className="flex flex-col items-center justify-center h-full text-neutral-400 dark:text-neutral-600 py-20">
+                    <Terminal className="w-10 h-10 mb-4 opacity-50 text-neutral-300 dark:text-neutral-700" />
+                    <p className="text-[10px] font-black tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-600">Belum Ada Kasus Uji</p>
+                    <p className="text-[10px] text-neutral-400 dark:text-neutral-500 mt-1">Silahkan jalankan pengetesan terlebih dahulu</p>
                   </div>
                 )}
               </div>
