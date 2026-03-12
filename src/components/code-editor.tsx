@@ -55,6 +55,23 @@ function CodeEditor() {
     return () => editor.dispose();
   }, []);
 
+  // --- THEME SYNC ---
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      if (monacoEditorRef.current) {
+        monaco.editor.setTheme(isDark ? "vs-dark" : "vs-light");
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const withMinimumDelay = async (promise: any, minimumDelay = 500) => {
     const startTime = Date.now();
     const [result] = await Promise.all([
@@ -151,10 +168,8 @@ function CodeEditor() {
             source: edge.source,
             target: edge.target,
             label: edge.label || "",
-            // smoothstep gives clean rounded right-angle routing like the reference
             type: "smoothstep",
             animated: isLoop,
-            // Loop-back: arahkan ke titik kiri node target
             ...(isLoop ? { targetHandle: "left" } : {}),
             style: {
               stroke: edgeColor,
@@ -176,8 +191,10 @@ function CodeEditor() {
           };
         });
 
+        // 3. APPLY LAYOUT
         const layoutedNodes = applyDagreLayout(mappedNodes as any, mappedEdges as any);
 
+        // 4. UPDATE STORE
         setNodeCount(data.nodes_count || layoutedNodes.length);
         setEdgeCount(data.edges_count || mappedEdges.length);
         setNodes(layoutedNodes as any);
@@ -187,16 +204,16 @@ function CodeEditor() {
         toast({
           title: "Analisis Selesai",
           description: `Berhasil memproses CFG`,
-          variant: "default",
         });
       } else {
-        throw new Error(data.message);
+        throw new Error(data.message || "Gagal memproses data CFG.");
       }
     } catch (error) {
+      console.error("Analysis Error:", error);
       toast({
-        title: "Terjadi Kesalahan",
+        title: "Analisis Gagal",
         variant: "destructive",
-        description: `${error}`,
+        description: error instanceof Error ? error.message : "Terjadi kesalahan sistem.",
       });
     } finally {
       setIsLoading(false);

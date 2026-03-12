@@ -26,6 +26,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "../components/ui/alert-dialog";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Project {
   id: number;
@@ -33,6 +34,22 @@ interface Project {
   description: string;
   created_at: string;
 }
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+};
 
 function DashboardPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -122,13 +139,20 @@ function DashboardPage() {
   );
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-sans tracking-tight">
-      <Navbar />
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-sans tracking-tight"
+    >
+      <motion.div variants={itemVariants}>
+        <Navbar />
+      </motion.div>
 
       <div className="max-w-5xl px-8 pt-32 pb-20 mx-auto">
 
         {/* Header */}
-        <div className="flex flex-col gap-4 mb-8 md:flex-row md:items-center md:justify-between">
+        <motion.div variants={itemVariants} className="flex flex-col gap-4 mb-8 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white dark:bg-neutral-900 shadow-lg shadow-neutral-200/50 dark:shadow-none flex items-center justify-center">
               <FolderOpen className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600" />
@@ -140,91 +164,108 @@ function DashboardPage() {
             </div>
           </div>
           <CreateProject onProjectCreated={getAllProject} />
-        </div>
+        </motion.div>
 
         {/* Search */}
-        <div className="relative mb-8 group">
+        <motion.div variants={itemVariants} className="relative mb-8 group">
           <div className="absolute inset-0 bg-emerald-500/5 rounded-2xl blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
           <div className="relative">
             <Search className="absolute w-4 h-4 text-neutral-400 left-4 top-1/2 -translate-y-1/2 transition-colors group-focus-within:text-emerald-500" />
             <Input
               placeholder="Cari project berdasarkan nama..."
-              className="pl-10 h-12 text-sm rounded-2xl bg-white dark:bg-neutral-900 shadow-md shadow-neutral-100/50 dark:shadow-none border-neutral-200 dark:border-neutral-800 placeholder:text-neutral-400 font-medium"
+              className="pl-10 h-12 text-sm rounded-2xl bg-white dark:bg-neutral-900 shadow-md shadow-neutral-100/50 dark:shadow-none border-neutral-200 dark:border-neutral-800 placeholder:text-neutral-400 font-medium transition-all focus:ring-2 focus:ring-emerald-500/20"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* List Project */}
-        <div className="grid grid-cols-1 gap-6">
+        <div className="grid grid-cols-1 gap-4">
           {isLoading ? (
-            <div className="flex justify-center py-20">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex justify-center py-20"
+            >
               <Loader2 className="w-12 h-12 text-emerald-200 animate-spin" />
-            </div>
+            </motion.div>
           ) : filteredProjects.length > 0 ? (
-            filteredProjects.map((project) => (
-              <Card
-                key={project.id}
-                className="group relative flex flex-col md:flex-row md:items-center justify-between p-5 border dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded-2xl shadow-sm dark:shadow-none hover:shadow-md dark:hover:shadow-none transition-all duration-300"
-              >
-                <div className="relative flex items-center gap-4 mb-4 md:mb-0 overflow-hidden">
-                  <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-xl bg-white dark:bg-neutral-800 shadow-lg shadow-neutral-200/50 dark:shadow-none flex items-center justify-center">
-                    <File className="w-6 h-6 text-emerald-600" />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-base font-semibold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition-colors truncate">
-                      {project.name}
-                    </h3>
-                    <div className="flex items-center gap-3 text-xs text-neutral-500 mt-1">
-                      <span className="flex items-center gap-1.5 bg-neutral-50 dark:bg-neutral-800 px-2 py-0.5 rounded-md border border-neutral-200 dark:border-neutral-700 dark:text-white">
-                        <Calendar className="w-3 h-3" />
-                        {new Date(project.created_at).toLocaleDateString()}
-                      </span>
-                      {project.description && (
-                        <span className="truncate max-w-[200px] text-neutral-400">
-                          {project.description}
-                        </span>
-                      )}
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  variants={itemVariants}
+                  layout
+                  initial="hidden"
+                  animate="visible"
+                  exit={{ opacity: 0, scale: 0.95 }}
+                >
+                  <Card
+                    className="group relative flex flex-col md:flex-row md:items-center justify-between p-5 border dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded-2xl shadow-sm dark:shadow-none hover:shadow-md dark:hover:shadow-none transition-all duration-300"
+                  >
+                    <div className="relative flex items-center gap-4 mb-4 md:mb-0 overflow-hidden">
+                      <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-xl bg-white dark:bg-neutral-800 shadow-lg shadow-neutral-200/50 dark:shadow-none flex items-center justify-center">
+                        <File className="w-6 h-6 text-emerald-600" />
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-base font-semibold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition-colors truncate">
+                          {project.name}
+                        </h3>
+                        <div className="flex items-center gap-2 text-xs text-neutral-500 mt-1">
+                          <span className="flex items-center gap-1.5 bg-neutral-50 dark:bg-neutral-800 px-2 py-0.5 rounded-md border border-neutral-200 dark:border-neutral-700 dark:text-white font-medium">
+                            <Calendar className="w-3 h-3" />
+                            {new Date(project.created_at).toLocaleDateString()}
+                          </span>
+                          {project.description && (
+                            <span className="truncate max-w-[200px] text-neutral-400 hidden sm:inline">
+                              • {project.description}
+                            </span>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
 
-                <div className="relative flex items-center gap-3 w-full md:w-auto mt-2 md:mt-0 pt-3 md:pt-0 border-t border-neutral-100 md:border-0">
-                  <Button
-                    className="flex-1 md:flex-none h-10 px-5 rounded-xl bg-neutral-900 dark:bg-emerald-600 text-white hover:bg-neutral-800 dark:hover:bg-emerald-700 font-medium text-sm transition-all flex items-center gap-2"
-                    onClick={() => handleViewReport(project.id, project.name)}
-                    disabled={isFetchingDetails === project.id}
-                  >
-                    {isFetchingDetails === project.id ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <Eye className="w-4 h-4" />
-                    )}
-                    Buka Laporan
-                  </Button>
+                    <div className="relative flex items-center gap-3 w-full md:w-auto mt-2 md:mt-0 pt-3 md:pt-0 border-t border-neutral-100 dark:border-neutral-800 md:border-0">
+                      <Button
+                        className="flex-1 md:flex-none h-10 px-5 rounded-xl bg-neutral-900 dark:bg-emerald-600 text-white hover:bg-neutral-800 dark:hover:bg-emerald-700 font-bold text-xs transition-all flex items-center gap-2"
+                        onClick={() => handleViewReport(project.id, project.name)}
+                        disabled={isFetchingDetails === project.id}
+                      >
+                        {isFetchingDetails === project.id ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
+                        BUKA LAPORAN
+                      </Button>
 
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="w-10 h-10 rounded-xl text-neutral-400 hover:text-red-600 hover:bg-red-50 flex-shrink-0"
-                    onClick={(e) => handleDeleteProject(project.id, e)}
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
-              </Card>
-            ))
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="w-10 h-10 rounded-xl text-neutral-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10 flex-shrink-0 transition-colors"
+                        onClick={(e) => handleDeleteProject(project.id, e)}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           ) : (
-            <div className="py-16 text-center bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-3xl shadow-sm dark:shadow-none flex flex-col items-center gap-4">
-              <div className="bg-neutral-50 border border-neutral-100 w-16 h-16 rounded-2xl flex items-center justify-center">
+            <motion.div
+              variants={itemVariants}
+              className="py-16 text-center bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-3xl shadow-sm dark:shadow-none flex flex-col items-center gap-4"
+            >
+              <div className="bg-neutral-50 dark:bg-neutral-800 border border-neutral-100 dark:border-neutral-700 w-16 h-16 rounded-2xl flex items-center justify-center">
                 <FolderOpen className="w-6 h-6 text-neutral-400" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-neutral-900">Belum ada project</h3>
-                <p className="text-sm text-neutral-500 mt-1">Buat project pertama Anda untuk mulai menganalisis kode.</p>
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">Belum ada project</h3>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Buat project pertama Anda untuk mulai menganalisis kode.</p>
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>
@@ -248,15 +289,15 @@ function DashboardPage() {
                 <AlertTriangle className="w-8 h-8" />
               </div>
               <div className="space-y-2">
-                <AlertDialogTitle className="text-xl font-bold text-neutral-900">Hapus Project?</AlertDialogTitle>
-                <AlertDialogDescription className="text-sm text-neutral-500 leading-relaxed">
+                <AlertDialogTitle className="text-xl font-bold text-neutral-900 dark:text-white">Hapus Project?</AlertDialogTitle>
+                <AlertDialogDescription className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
                   Project ini beserta seluruh riwayat analisisnya akan dihapus permanen.
                 </AlertDialogDescription>
               </div>
             </div>
           </AlertDialogHeader>  
           <AlertDialogFooter className="grid grid-cols-2 gap-3 mt-8 sm:justify-center">
-            <AlertDialogCancel className="h-12 rounded-xl font-bold border-neutral-200 text-neutral-600 hover:bg-neutral-50 mt-0">
+            <AlertDialogCancel className="h-12 rounded-xl font-bold border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 mt-0">
               Batal
             </AlertDialogCancel>
             <AlertDialogAction
@@ -268,7 +309,7 @@ function DashboardPage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </div>
+    </motion.div>
   );
 }
 

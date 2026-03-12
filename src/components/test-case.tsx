@@ -269,7 +269,7 @@ function TestCase() {
         <CardHeader className="border-b border-neutral-50 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm">
           <div className="flex justify-between items-center">
             <div>
-              <CardTitle className="text-[10px] font-black tracking-[0.2em] text-neutral-400 uppercase">Parameter Test Case</CardTitle>
+              <CardTitle className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">Parameter Test Case</CardTitle>
               <div className="mt-2 flex flex-wrap gap-1">
                 {params?.length > 0 ? (
                   params.map((p) => (
@@ -372,7 +372,7 @@ function TestCase() {
       <Card ref={resultRef} className="bg-white dark:bg-neutral-900 rounded-[2rem] shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden">
         <CardHeader className="p-6 pb-4 bg-white/50 dark:bg-neutral-900/50 border-b border-neutral-50 dark:border-neutral-800">
           <div className="flex justify-between items-center">
-            <CardTitle className="text-[10px] font-black tracking-[0.2em] text-neutral-400 uppercase">Jalur Hasil Eksekusi</CardTitle>
+            <CardTitle className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">Jalur Hasil Eksekusi</CardTitle>
             <div className="w-5 h-5 rounded-full bg-neutral-50 flex items-center justify-center text-[10px] text-neutral-300 font-bold border border-neutral-100 italic">?</div>
           </div>
         </CardHeader>

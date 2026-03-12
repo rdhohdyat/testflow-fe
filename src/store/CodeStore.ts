@@ -84,9 +84,9 @@ export const useCodeStore = create<CodeStore>((set) => ({
     localStorage.setItem("nodeCount", count.toString());
 
     set({
-      nodes: [], // Kosongkan untuk persiapan animasi
-      rawNodes: nodes, // Simpan data asli untuk animasi
-      nodeCount: count, // Update nodeCount state
+      nodes: nodes, 
+      rawNodes: nodes, 
+      nodeCount: count, 
     });
   },
 
@@ -100,11 +100,10 @@ export const useCodeStore = create<CodeStore>((set) => ({
     const count = edges.length;
     localStorage.setItem("edgeCount", count.toString());
 
-    // Simpan edges asli untuk animasi dan kosongkan edges yang visible
     set({
-      edges: [], // Kosongkan untuk persiapan animasi
-      rawEdges: edges, // Simpan data asli untuk animasi
-      edgeCount: count, // Update edgeCount state
+      edges: edges, 
+      rawEdges: edges, 
+      edgeCount: count, 
     });
   },
 
