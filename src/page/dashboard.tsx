@@ -192,7 +192,7 @@ function DashboardPage() {
             </motion.div>
           ) : filteredProjects.length > 0 ? (
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, index) => (
+              {filteredProjects.map((project) => (
                 <motion.div
                   key={project.id}
                   variants={itemVariants}
