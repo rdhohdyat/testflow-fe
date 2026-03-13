@@ -33,6 +33,9 @@ type CodeStore = {
   edgeCount: number;
   coverage: number;
   executedTestCases: TestResult[];
+  testCaseInputs: Record<string, string>;
+  testCaseResult: string[];
+  lastTestParams: Record<string, any>;
 
   setCode: (code: string) => void;
   setParams: (params: Param[]) => void;
@@ -45,6 +48,9 @@ type CodeStore = {
   setEdgeCount: (count: number) => void;
   setCoverage: (coverage: number) => void; 
   addExecutedTestCase: (testCase: TestResult) => void;
+  setTestCaseInputs: (inputs: Record<string, string>) => void;
+  setTestCaseResult: (result: string[]) => void;
+  setLastTestParams: (params: Record<string, any>) => void;
 };
 
 export const useCodeStore = create<CodeStore>((set) => ({
@@ -64,6 +70,9 @@ export const useCodeStore = create<CodeStore>((set) => ({
   executedTestCases: JSON.parse(
     localStorage.getItem("executedTestCases") || "[]",
   ),
+  testCaseInputs: JSON.parse(localStorage.getItem("testCaseInputs") || "{}"),
+  testCaseResult: JSON.parse(localStorage.getItem("testCaseResult") || "[]"),
+  lastTestParams: JSON.parse(localStorage.getItem("lastTestParams") || "{}"),
 
   setCode: (code) => {
     localStorage.setItem("code", code);
@@ -155,5 +164,20 @@ export const useCodeStore = create<CodeStore>((set) => ({
   setEdgeCount: (count) => {
     localStorage.setItem("edgeCount", count.toString());
     set({ edgeCount: count });
+  },
+
+  setTestCaseInputs: (inputs) => {
+    localStorage.setItem("testCaseInputs", JSON.stringify(inputs));
+    set({ testCaseInputs: inputs });
+  },
+
+  setTestCaseResult: (result) => {
+    localStorage.setItem("testCaseResult", JSON.stringify(result));
+    set({ testCaseResult: result });
+  },
+
+  setLastTestParams: (params) => {
+    localStorage.setItem("lastTestParams", JSON.stringify(params));
+    set({ lastTestParams: params });
   },
 }));

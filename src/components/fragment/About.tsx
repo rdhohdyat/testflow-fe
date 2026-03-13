@@ -42,7 +42,7 @@ const About = () => {
               Sebuah alat sederhana untuk membedah <span className="text-neutral-900 dark:text-white font-bold underline decoration-emerald-500/20">logika program</span> melalui visualisasi Control Flow Graph.
             </p>
 
-            <Card className="rounded-[3rem] border-none bg-white shadow-2xl shadow-neutral-200/50 dark:shadow-none p-4">
+            <Card className="rounded-3xl border bg-white shadow-xl shadow-neutral-200/50 dark:shadow-none p-4">
               <CardContent className="flex flex-col gap-4 sm:gap-8 p-4 sm:p-10">
                 <div className="flex flex-row gap-3 sm:gap-6 items-start">
                   <div className="p-2 sm:p-4 rounded-2xl bg-neutral-900 text-white shadow-xl shadow-neutral-200 dark:shadow-none dark:border border-neutral-800">

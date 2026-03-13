@@ -13,7 +13,7 @@ const Home = () => {
     setIsLoading(true);
     setTimeout(() => {
       navigate("/work");
-    }, 1200);
+    }, 1000);
   };
 
   const containerVariants = {

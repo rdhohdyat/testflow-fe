@@ -9,7 +9,7 @@ type StepCardProps = {
 
 const StepCard = ({ icon, title, description, index }: StepCardProps) => {
   return (
-    <Card className="border border-neutral-200 dark:border-neutral-900 bg-white dark:bg-neutral-900 shadow-xl shadow-neutral-100 dark:shadow-none rounded-3xl p-4 hover:shadow-2xl hover:shadow-neutral-100/30 dark:hover:shadow-none transition-all duration-500 group">
+    <Card className="border dark:border-neutral-900 bg-white dark:bg-neutral-900 shadow-lg dark:shadow-none rounded-3xl p-4 hover:shadow-2xl hover:shadow-neutral-100/30 dark:hover:shadow-none transition-all duration-500 group">
       <CardContent className="p-4 sm:p-8 flex items-start gap-6">
         <div className="relative shrink-0">
           <div className="sm:w-16 sm:h-16 w-12 h-12 bg-neutral-900 dark:bg-neutral-800 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-emerald-500 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-neutral-200 dark:shadow-none">

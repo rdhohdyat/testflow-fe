@@ -13,6 +13,13 @@ import {
   CardTitle,
   CardFooter,
 } from "./ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
 
 // Icons
 import {
@@ -83,12 +90,19 @@ function TestCase() {
   // Gunakan HTMLDivElement karena Card biasanya merender tag <div>
   const resultRef = useRef<HTMLDivElement | null>(null);
 
-  const { params, code, paths, setPaths, setParams } = useCodeStore();
-
-  // Local State
-  const [inputValues, setInputValues] = useState({});
-  const [resultText, setResultText] = useState([]);
-  const [lastTestParams, setLastTestParams] = useState({});
+  const {
+    params,
+    code,
+    paths,
+    setPaths,
+    setParams,
+    testCaseInputs,
+    setTestCaseInputs,
+    testCaseResult,
+    setTestCaseResult,
+    lastTestParams,
+    setLastTestParams
+  } = useCodeStore();
 
   // UI State
   const [executing, setExecuting] = useState(false);
@@ -112,15 +126,15 @@ function TestCase() {
   // --- Handlers ---
   // @ts-ignore
   const handleInputChange = (paramName, value) => {
-    setInputValues((prev) => ({
-      ...prev,
+    setTestCaseInputs({
+      ...testCaseInputs,
       [paramName]: value,
-    }));
+    });
   };
 
   const handleClear = () => {
-    setInputValues({});
-    setResultText([]);
+    setTestCaseInputs({});
+    setTestCaseResult([]);
     setIsSaved(false);
   };
 
@@ -136,7 +150,7 @@ function TestCase() {
     const testParams: Record<string, unknown> = {};
     params.forEach((param) => {
       // @ts-ignore
-      let value: unknown = inputValues[param.name];
+      let value: unknown = testCaseInputs[param.name];
       const strVal = String(value ?? "");
 
       // JSON object or array — let backend parse it
@@ -178,7 +192,7 @@ function TestCase() {
 
       const result = await response.json();
 
-      setResultText(result.actual_execution_path?.line_numbers || []);
+      setTestCaseResult(result.actual_execution_path?.line_numbers || []);
       setLastTestParams(testParams);
 
       setTimeout(() => {
@@ -218,7 +232,7 @@ function TestCase() {
       }
 
       // Cek apakah jalur ini ter-cover oleh hasil eksekusi saat ini
-      const isCovered = isSubsequence(pathData, resultText);
+      const isCovered = isSubsequence(pathData, testCaseResult);
 
       if (isCovered) {
         return {
@@ -241,9 +255,9 @@ function TestCase() {
     const { addExecutedTestCase } = useCodeStore.getState();
     addExecutedTestCase({
       params: lastTestParams,
-      result: resultText,
+      result: testCaseResult,
       passed: true,
-      path: resultText
+      path: testCaseResult
     });
 
     setIsSaved(true);
@@ -259,7 +273,7 @@ function TestCase() {
   // Validation
   const hasRequiredParams = params.length > 0 &&
     // @ts-ignore
-    params.every(p => inputValues[p.name] !== undefined && inputValues[p.name] !== "");
+    params.every(p => testCaseInputs[p.name] !== undefined && testCaseInputs[p.name] !== "");
 
   // --- Render ---
 
@@ -268,8 +282,67 @@ function TestCase() {
       <Card className="bg-white dark:bg-neutral-900 rounded-3xl shadow-xl shadow-neutral-100/50 dark:shadow-none overflow-hidden">
         <CardHeader className="border-b border-neutral-50 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm">
           <div className="flex justify-between items-center">
-            <div>
-              <CardTitle className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">Parameter Test Case</CardTitle>
+            <div className="w-full">
+              <div className="flex justify-between items-center w-full">
+                <CardTitle className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">
+                  Parameter Test Case
+                </CardTitle>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div className="px-3 h-8 rounded-xl bg-neutral-50 dark:bg-neutral-800 flex items-center justify-center text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all cursor-pointer text-[10px] font-bold uppercase tracking-wider">
+                      Contoh
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-md ring-0">
+                    <DialogHeader>
+                      <DialogTitle className="text-lg">Format Input Test Case</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4 py-4">
+                      <div className="space-y-2">
+                        <h4 className="text-xs font-bold text-neutral-500 uppercase tracking-wider">Tipe Data Dasar</h4>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="p-3 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-100 dark:border-neutral-800">
+                            <p className="text-[10px] font-bold text-neutral-400 uppercase mb-1">String</p>
+                            <code className="text-xs font-mono font-bold text-emerald-600">hello</code>
+                          </div>
+                          <div className="p-3 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-100 dark:border-neutral-800">
+                            <p className="text-[10px] font-bold text-neutral-400 uppercase mb-1">Character</p>
+                            <code className="text-xs font-mono font-bold text-emerald-600">a</code>
+                          </div>
+                          <div className="p-3 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-100 dark:border-neutral-800">
+                            <p className="text-[10px] font-bold text-neutral-400 uppercase mb-1">Angka</p>
+                            <code className="text-xs font-mono font-bold text-emerald-600">10</code>
+                          </div>
+                          <div className="p-3 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-100 dark:border-neutral-800">
+                            <p className="text-[10px] font-bold text-neutral-400 uppercase mb-1">Boolean</p>
+                            <code className="text-xs font-mono font-bold text-emerald-600">true / false</code>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <h4 className="text-xs font-bold text-neutral-500 uppercase tracking-wider">Tipe Data JSON</h4>
+                        <div className="space-y-2">
+                          <div className="p-3 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-100 dark:border-neutral-800">
+                            <p className="text-[10px] font-bold text-neutral-400 uppercase mb-1">Array</p>
+                            <pre className="mt-1 text-xs font-mono font-bold text-blue-600">[1, 2, 3, 4]</pre>
+                          </div>
+                          <div className="p-3 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-100 dark:border-neutral-800">
+                            <p className="text-[10px] font-bold text-neutral-400 uppercase mb-1">Object</p>
+                            <pre className="mt-1 text-xs font-mono font-bold text-blue-600">{`{ "id": 1, "name": "Joe" }`}</pre>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-100 dark:border-neutral-800">
+                        <p className="text-[11px] text-neutral-500 dark:text-neutral-400 leading-relaxed italic">
+                          Gunakan format di atas sesuai dengan tipe data parameter yang dibutuhkan oleh fungsi Anda.
+                        </p>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
               <div className="mt-2 flex flex-wrap gap-1">
                 {params?.length > 0 ? (
                   params.map((p) => (
@@ -285,18 +358,14 @@ function TestCase() {
                 )}
               </div>
             </div>
-            <div className="w-8 h-8 rounded-xl bg-neutral-50 dark:bg-neutral-800 flex items-center justify-center text-neutral-400">
-              <Info className="h-4 w-4" />
-            </div>
           </div>
         </CardHeader>
 
-        <CardContent className="p-6 space-y-4">
+        <CardContent className="px-6 space-y-4">
           <AnimatePresence>
             {params.map((param, index) => {
               // @ts-ignore
-              const currentVal: string = inputValues[param.name] || "";
-              const isJson = isJsonValue(currentVal);
+              const currentVal: string = testCaseInputs[param.name] || "";
               return (
                 <motion.div
                   // @ts-ignore
@@ -313,27 +382,16 @@ function TestCase() {
                     {/* @ts-ignore */}
                     {param.name}
                     {!currentVal && <span className="text-red-500">*</span>}
-                    {isJson && (
-                      <span className="ml-1 px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400 text-[8px] font-black tracking-widest uppercase">
-                        JSON
-                      </span>
-                    )}
                   </label>
                   <Textarea
                     id={`param-${index}`}
-                    rows={isJson ? 3 : 1}
-                    className={`rounded-xl dark:bg-neutral-800 text-xs font-bold px-4 py-2 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-neutral-500 shadow-sm dark:shadow-none resize-none transition-all min-h-0 ${isJson ? "font-mono h-20" : "h-10"
-                      }`}
+                    rows={1}
+                    className="rounded-xl dark:bg-neutral-800 text-xs font-bold px-4 py-2 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-neutral-500 shadow-sm dark:shadow-none resize-none transition-all min-h-[40px] h-auto"
                     placeholder={`Nilai untuk ${param.name}`}
                     value={currentVal}
                     // @ts-ignore
                     onChange={(e) => handleInputChange(param.name, e.target.value)}
                   />
-                  {isJson && (
-                    <p className="text-[9px] text-blue-400 dark:text-blue-500 font-bold pl-1">
-                      Terdeteksi sebagai JSON — akan dikirim sebagai object/array
-                    </p>
-                  )}
                 </motion.div>
               );
             })}
@@ -379,7 +437,7 @@ function TestCase() {
 
         <CardContent className="p-6">
           <AnimatePresence mode="wait">
-            {resultText.length > 0 ? (
+            {testCaseResult.length > 0 ? (
               <motion.div
                 key="result"
                 initial={{ opacity: 0 }}
@@ -388,7 +446,7 @@ function TestCase() {
                 className="p-4 rounded-2xl bg-emerald-50 dark:bg-white border-none"
               >
                 <div className="font-mono text-[12px] font-black text-emerald-700 dark:text-black break-all leading-relaxed">
-                  {resultText.join(" → ")}
+                  {testCaseResult.join(" → ")}
                 </div>
               </motion.div>
             ) : (
@@ -408,7 +466,7 @@ function TestCase() {
           </AnimatePresence>
 
           {/* Save Button */}
-          {resultText.length > 0 && (
+          {testCaseResult.length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}

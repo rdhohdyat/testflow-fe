@@ -257,7 +257,7 @@ function WorkFlowPage() {
 
         <motion.div
           variants={scaleVariants}
-          className="flex-1 rounded-2xl bg-white dark:bg-neutral-900 shadow-lg dark:shadow-none overflow-hidden border dark:border-neutral-900"
+          className="flex-1 rounded-2xl bg-white dark:bg-neutral-900 overflow-hidden border dark:border-neutral-900"
         >
           <ResizablePanelGroup
             direction="horizontal"
@@ -283,7 +283,7 @@ function WorkFlowPage() {
                     <span className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">Visualisasi CFG</span>
                   </div>
                   <Badge className="bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-500 border-none font-bold text-[10px] tracking-tight">
-                    {nodeCount} Node • {edgeCount} Sisi
+                    {nodeCount} Node • {edgeCount} Edge
                   </Badge>
                 </div>
                 <div className="flex-1 relative">
@@ -335,42 +335,42 @@ function WorkFlowPage() {
                         <h3 className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">Kompleksitas Siklomatis</h3>
                       </div>
 
-                        <div className="flex flex-wrap justify-between items-center w-full mt-3">
-                          <div className="flex items-center gap-2 text-black dark:bg-neutral-900 dark:text-white px-3 py-1.5 rounded-lg">
-                            <span className="font-mono text-black dark:text-white font-semibold text-xs">
-                              V(G) = E - N + 2
-                            </span>
-                            <span className="text-black dark:text-white font-bold">=</span>
-                            <span className="text-lg font-black tracking-tight tabular-nums text-emerald-400">
-                              {cyclomaticComplexity}
-                            </span>
-                          </div>
-
-                          {(() => {
-                            const info = getComplexityInfo(cyclomaticComplexity);
-                            return (
-                              <Badge className={`${info.bgColor} ${info.color} border-none font-bold text-[10px] py-1.5 px-3 rounded-xl`}>
-                                {info.label}
-                              </Badge>
-                            );
-                          })()}
+                      <div className="flex flex-wrap justify-between items-center w-full mt-3">
+                        <div className="flex items-center gap-2 text-black dark:bg-neutral-900 dark:text-white px-3 py-1.5 rounded-lg">
+                          <span className="font-mono text-black dark:text-white font-semibold text-xs">
+                            V(G) = E - N + 2
+                          </span>
+                          <span className="text-black dark:text-white font-bold">=</span>
+                          <span className="text-lg font-black tracking-tight tabular-nums text-emerald-400">
+                            {cyclomaticComplexity}
+                          </span>
                         </div>
 
-                        <div className="flex items-center p-1 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl">
-                          <div className="flex items-center gap-1.5 px-3 py-1.5 border-r border-neutral-200 dark:border-neutral-800">
-                            <span className="text-[10px] font-black text-neutral-400 dark:text-white uppercase tracking-widest">Sisi</span>
-                            <span className="text-sm font-black text-neutral-900 dark:text-white tabular-nums">
-                              {edgeCount}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-1.5 px-3 py-1.5">
-                            <span className="text-[10px] font-black text-neutral-400 dark:text-white uppercase tracking-widest">Node</span>
-                            <span className="text-sm font-black text-neutral-900 dark:text-white tabular-nums">
-                              {nodeCount}
-                            </span>
-                          </div>
+                        {(() => {
+                          const info = getComplexityInfo(cyclomaticComplexity);
+                          return (
+                            <Badge className={`${info.bgColor} ${info.color} border-none font-bold text-[10px] py-1.5 px-3 rounded-xl`}>
+                              {info.label}
+                            </Badge>
+                          );
+                        })()}
+                      </div>
+
+                      <div className="flex justify-center items-center p-1 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl">
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 border-r border-neutral-200 dark:border-neutral-800">
+                          <span className="text-[10px] font-black text-neutral-400 dark:text-white uppercase tracking-widest">Edge</span>
+                          <span className="text-sm font-black text-neutral-900 dark:text-white tabular-nums">
+                            {edgeCount}
+                          </span>
                         </div>
-                      </Card>
+                        <div className="flex items-center gap-1.5 px-3 py-1.5">
+                          <span className="text-[10px] font-black text-neutral-400 dark:text-white uppercase tracking-widest">Node</span>
+                          <span className="text-sm font-black text-neutral-900 dark:text-white tabular-nums">
+                            {nodeCount}
+                          </span>
+                        </div>
+                      </div>
+                    </Card>
                     <CoveragePath />
                     <PathList />
                   </TabsContent>
