@@ -316,11 +316,11 @@ function WorkFlowPage() {
 
                 <Tabs defaultValue="metrics" className="flex flex-col flex-1 overflow-hidden">
                   <div className="px-6 mt-3">
-                    <TabsList className="grid grid-cols-2 p-1 bg-neutral-100/50 dark:bg-neutral-800/50 rounded-2xl border">
-                      <TabsTrigger value="metrics" className="rounded-xl font-black text-[10px] h-10 uppercase tracking-widest data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-800 data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all py-2">
+                    <TabsList className="grid grid-cols-2 p-1 bg-neutral-100/50 dark:bg-neutral-800/50 rounded-2xl border dark:border-neutral-800">
+                      <TabsTrigger value="metrics" className="rounded-xl font-black text-[10px] h-10 uppercase tracking-widest data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-900 data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all py-2">
                         Metrik
                       </TabsTrigger>
-                      <TabsTrigger value="testcase" className="rounded-xl font-black text-[10px] h-10 uppercase tracking-widest data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-800 data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all py-2">
+                      <TabsTrigger value="testcase" className="rounded-xl font-black text-[10px] h-10 uppercase tracking-widest data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-900 data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all py-2">
                         Kasus Uji
                       </TabsTrigger>
                     </TabsList>
