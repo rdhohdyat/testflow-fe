@@ -38,6 +38,7 @@ import {
   Card,
 } from "../components/ui/card";
 import { SaveAnalysisDialog } from "../components/save-analysis-dialog";
+import { getComplexityInfo } from "../utils/complexity";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -202,11 +203,21 @@ function WorkFlowPage() {
 
             <TabsContent value="analysis" className="mt-0 space-y-6 focus-visible:outline-none">
               <Card className="rounded-2xl border-none shadow-xl dark:shadow-none p-8 bg-white dark:bg-neutral-900 text-black dark:text-white">
-                <div className="mb-6">
-                  <h3 className="text-[10px] font-black tracking-[0.2em] text-neutral-400 uppercase mb-2">Metrik Kompleksitas</h3>
-                  <div className="text-xl font-black text-neutral-900 dark:text-white tabular-nums">
-                    E - N + 2 = <span className="italic text-emerald-500">{edgeCount - nodeCount + 2}</span>
+                <div className="mb-6 flex items-start justify-between">
+                  <div>
+                    <h3 className="text-[10px] font-black tracking-[0.2em] text-neutral-400 uppercase mb-2">Metrik Kompleksitas</h3>
+                    <div className="text-xl font-black text-neutral-900 dark:text-white tabular-nums">
+                      E - N + 2 = <span className="italic text-emerald-500">{edgeCount - nodeCount + 2}</span>
+                    </div>
                   </div>
+                  {(() => {
+                    const info = getComplexityInfo(edgeCount - nodeCount + 2);
+                    return (
+                      <Badge className={`${info.bgColor} ${info.color} border-none font-bold text-[10px] py-1 px-3 rounded-lg`}>
+                        {info.label}
+                      </Badge>
+                    );
+                  })()}
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-neutral-50 dark:bg-neutral-800 p-2 rounded-2xl text-center">
@@ -324,15 +335,25 @@ function WorkFlowPage() {
                         <h3 className="text-xs font-bold tracking-wider text-neutral-500 dark:text-white uppercase">Kompleksitas Siklomatis</h3>
                       </div>
 
-                      <div className="flex flex-wrap justify-center items-center gap-3 mt-3">
-                        <div className="flex items-center gap-2 text-black dark:bg-neutral-900 dark:text-white px-3 py-1.5 rounded-lg">
-                          <span className="font-mono text-black dark:text-white font-semibold">
-                            V(G) = E - N + 2
-                          </span>
-                          <span className="text-black dark:text-white font-bold">=</span>
-                          <span className="text-lg font-black tracking-tight tabular-nums text-emerald-400">
-                            {cyclomaticComplexity}
-                          </span>
+                        <div className="flex flex-wrap justify-between items-center w-full mt-3">
+                          <div className="flex items-center gap-2 text-black dark:bg-neutral-900 dark:text-white px-3 py-1.5 rounded-lg">
+                            <span className="font-mono text-black dark:text-white font-semibold text-xs">
+                              V(G) = E - N + 2
+                            </span>
+                            <span className="text-black dark:text-white font-bold">=</span>
+                            <span className="text-lg font-black tracking-tight tabular-nums text-emerald-400">
+                              {cyclomaticComplexity}
+                            </span>
+                          </div>
+
+                          {(() => {
+                            const info = getComplexityInfo(cyclomaticComplexity);
+                            return (
+                              <Badge className={`${info.bgColor} ${info.color} border-none font-bold text-[10px] py-1.5 px-3 rounded-xl`}>
+                                {info.label}
+                              </Badge>
+                            );
+                          })()}
                         </div>
 
                         <div className="flex items-center p-1 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl">
@@ -349,8 +370,7 @@ function WorkFlowPage() {
                             </span>
                           </div>
                         </div>
-                      </div>
-                    </Card>
+                      </Card>
                     <CoveragePath />
                     <PathList />
                   </TabsContent>

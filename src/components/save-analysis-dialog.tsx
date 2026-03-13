@@ -18,8 +18,10 @@ import {
 } from "./ui/select";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { Save, Loader2 } from "lucide-react"; // Menambahkan icon Info
+import { Save, Loader2, GitBranch } from "lucide-react"; // Menambahkan icon Info
 import { useCodeStore } from "../store/CodeStore";
+import { getComplexityInfo } from "../utils/complexity";
+import { Badge } from "./ui/badge";
 import { useToast } from "../hooks/use-toast";
 
 interface Project {
@@ -134,6 +136,32 @@ export function SaveAnalysisDialog() {
         </DialogHeader>
 
         <div className="space-y-6">
+          {/* Ringkasan Analisis */}
+          <div className="flex items-center justify-between p-4 bg-neutral-50 dark:bg-neutral-800/50 rounded-2xl border border-neutral-100 dark:border-neutral-800">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-white dark:bg-neutral-900 flex items-center justify-center shadow-sm">
+                <GitBranch className="w-5 h-5 text-emerald-500" />
+              </div>
+              <div>
+                <p className="text-[10px] font-black text-neutral-400 uppercase tracking-widest">Kompleksitas Siklomatis</p>
+                <p className="text-lg font-black dark:text-white">{edgeCount - nodeCount + 2}</p>
+              </div>
+            </div>
+            {(() => {
+              const info = getComplexityInfo(edgeCount - nodeCount + 2);
+              return (
+                <div className="text-right">
+                  <Badge className={`${info.bgColor} ${info.color} border-none font-bold text-[10px] mb-1`}>
+                    {info.label}
+                  </Badge>
+                  <p className="text-[9px] text-neutral-400 max-w-[150px] leading-tight">
+                    {info.description}
+                  </p>
+                </div>
+              );
+            })()}
+          </div>
+
           {/* Bagian Form Input */}
           <div className="space-y-4">
             {/* Input Pilihan Proyek */}

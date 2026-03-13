@@ -49,6 +49,7 @@ import { nodeTypes } from "../data/node";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useTheme } from "./theme-provider";
+import { getComplexityInfo } from "../utils/complexity";
 
 interface SavedAnalysis {
   id: number;
@@ -410,6 +411,7 @@ export default function ExportDialog({
                         label="CC"
                         value={currentData.cyclomatic_complexity}
                         sub="Logika"
+                        isComplexity
                       />
                       <MetricCard
                         label="Coverage"
@@ -475,7 +477,7 @@ export default function ExportDialog({
                       label="Complexity"
                       value={currentData.cyclomatic_complexity}
                       sub="Siklomatik"
-                      color="emerald"
+                      isComplexity
                     />
                     <MetricCard
                       label="Coverage"
@@ -721,22 +723,33 @@ function MonacoDisplay({ code, theme }: { code: string; theme: string }) {
 }
 
 // Helpers
-const MetricCard = ({ label, value, sub, color = "emerald" }: any) => (
-  <Card className="border shadow-sm bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden">
-    <CardContent className="p-6">
-      <div className="flex flex-col">
-        <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400 mb-1">{label}</span>
-        <span className={cn(
-          "text-4xl font-black tracking-tighter tabular-nums",
-          color === "emerald" ? "text-emerald-500" : "text-neutral-900 dark:text-white"
-        )}>
-          {value}
-        </span>
-        <span className="text-[10px] font-bold text-neutral-400/60 mt-1">{sub}</span>
-      </div>
-    </CardContent>
-  </Card>
-);
+const MetricCard = ({ label, value, sub, isComplexity }: any) => {
+  const info = isComplexity ? getComplexityInfo(Number(value)) : null;
+
+  return (
+    <Card className="border shadow-sm bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden">
+      <CardContent className="p-6">
+        <div className="flex flex-col">
+          <div className="flex justify-between items-start">
+            <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400 mb-1">{label}</span>
+            {info && (
+              <Badge className={cn("border-none px-2 py-0 h-5 text-[8px] font-black uppercase tracking-wider", info.bgColor, info.color)}>
+                {info.label}
+              </Badge>
+            )}
+          </div>
+          <span className={cn(
+            "text-4xl font-black tracking-tighter tabular-nums",
+            info ? info.color : "text-emerald-500"
+          )}>
+            {value}
+          </span>
+          <span className="text-[10px] font-bold text-neutral-400/60 mt-1">{sub}</span>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
 
 const StatRow = ({ label, value }: any) => (
   <div className="flex justify-between items-center p-3 px-4 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
