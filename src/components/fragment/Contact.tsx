@@ -22,7 +22,7 @@ const Contact = () => {
           <span className="text-[10px] font-black tracking-[0.3em] text-emerald-600 uppercase mb-4 block">
             Hubungan Terbuka
           </span>
-          <h2 className="text-xl md:text-5xl font-black text-neutral-900 dark:text-white tracking-tighter">
+          <h2 className="text-2xl md:text-5xl font-black text-neutral-900 dark:text-white tracking-tighter">
             Mari <span className="italic text-emerald-500">Berdiskusi</span>
           </h2>
           <p className="mt-4 text-sm sm:text-lg text-neutral-400 font-medium max-w-xl mx-auto leading-relaxed">

@@ -176,8 +176,8 @@ function TestCase() {
 
       const testParams = prepareParamsForExecution();
 
-      // UI Delay Simulation
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Short delay for visual feedback
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
       const response = await fetch(`${import.meta.env.VITE_API_URL}/test_execution/`, {
         method: "POST",
@@ -245,8 +245,8 @@ function TestCase() {
       return item;
     });
 
-    // Simulasi Save Delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Short delay for visual feedback
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     // Update state paths (to show checkmarks in the current list)
     setPaths(updatedPaths);

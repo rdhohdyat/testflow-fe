@@ -343,7 +343,7 @@ export default function ExportDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-full sm:max-w-7xl w-[98vw] h-[98vh] sm:h-[90vh] flex flex-col gap-0 p-0 overflow-hidden dark:bg-neutral-900">
-        <DialogHeader className="px-4 sm:px-6 py-3 border-b bg-neutral-50 dark:bg-neutral-900 flex-shrink-0">
+        <DialogHeader className="px-4 sm:px-6 py-3 border-b dark:bg-neutral-900 flex-shrink-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <FileText className="w-5 h-5 text-blue-600" />
@@ -560,7 +560,7 @@ export default function ExportDialog({
 
                   {/* Row 2 Side: Paths & Test Cases */}
                   <div className="col-span-4 space-y-5">
-                    <Card className="max-h-[380px] flex flex-col rounded-3xl shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
+                    <Card className="h-[380px] flex flex-col rounded-3xl shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
                       <div className="bg-neutral-50/50 dark:bg-neutral-800/50 px-5 py-3 text-[10px] font-black uppercase tracking-widest border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2 text-neutral-500">
                         <GitBranch className="w-3.5 h-3.5" />
                         Independent Paths ({paths.length})
@@ -584,43 +584,57 @@ export default function ExportDialog({
                       </ScrollArea>
                     </Card>
 
-                    <Card className="max-h-[380px] flex flex-col rounded-3xl shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
+                    <Card className="h-[380px] flex flex-col rounded-3xl shadow-sm overflow-hidden bg-white dark:bg-neutral-900">
                       <div className="bg-neutral-50/50 dark:bg-neutral-800/50 px-5 py-3 text-[10px] font-black uppercase tracking-widest border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2 text-neutral-500">
                         <Terminal className="w-3.5 h-3.5" />
                         Test Execution ({executedPaths.length})
                       </div>
                       <ScrollArea className="flex-1 p-4">
-                        <div className="space-y-3">
-                          {executedPaths.map((item: any, i: number) => (
-                            <div
-                              key={i}
-                              className={cn(
-                                "p-4 rounded-2xl border transition-all",
-                                item.passed
-                                  ? "bg-emerald-50/20 border-emerald-100/50 dark:bg-emerald-500/5 dark:border-emerald-500/20"
-                                  : "bg-rose-50/20 border-rose-100/50 dark:bg-rose-500/5 dark:border-rose-500/20",
-                              )}
-                            >
-                              <div className="flex justify-between items-center mb-2">
-                                <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Kasus #{i + 1}</span>
-                                <Badge
+                        <div className="h-full">
+                          {executedPaths.length > 0 ? (
+                            <div className="space-y-3">
+                              {executedPaths.map((item: any, i: number) => (
+                                <div
+                                  key={i}
                                   className={cn(
-                                    "border-none px-2 py-0 h-5 text-[8px] font-black uppercase tracking-wider",
+                                    "p-4 rounded-2xl border transition-all",
                                     item.passed
-                                      ? "bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400"
-                                      : "bg-rose-100 text-rose-600 dark:bg-rose-500/20 dark:text-rose-400"
+                                      ? "bg-emerald-50/20 border-emerald-100/50 dark:bg-emerald-500/5 dark:border-emerald-500/20"
+                                      : "bg-rose-50/20 border-rose-100/50 dark:bg-rose-500/5 dark:border-rose-500/20",
                                   )}
                                 >
-                                  {item.passed ? "LOLOS" : "GAGAL"}
-                                </Badge>
-                              </div>
-                              <div className="p-2 rounded-lg bg-white/50 dark:bg-neutral-950/50 border border-neutral-100/50 dark:border-neutral-800">
-                                <code className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 break-all leading-tight block">
-                                  In: {JSON.stringify(item.testCase)}
-                                </code>
-                              </div>
+                                  <div className="flex justify-between items-center mb-2">
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Kasus #{i + 1}</span>
+                                    <Badge
+                                      className={cn(
+                                        "border-none px-2 py-0 h-5 text-[8px] font-black uppercase tracking-wider",
+                                        item.passed
+                                          ? "bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400"
+                                          : "bg-rose-100 text-rose-600 dark:bg-rose-500/20 dark:text-rose-400"
+                                      )}
+                                    >
+                                      {item.passed ? "LOLOS" : "GAGAL"}
+                                    </Badge>
+                                  </div>
+                                  <div className="p-2 rounded-lg bg-white/50 dark:bg-neutral-950/50 border border-neutral-100/50 dark:border-neutral-800">
+                                    <code className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 break-all leading-tight block">
+                                      In: {JSON.stringify(item.testCase)}
+                                    </code>
+                                  </div>
+                                </div>
+                              ))}
                             </div>
-                          ))}
+                          ) : (
+                            <div className="flex flex-col items-center justify-center h-full py-12 text-center opacity-60">
+                              <div className="w-12 h-12 rounded-2xl bg-neutral-50 dark:bg-neutral-800 flex items-center justify-center mb-3">
+                                <Terminal className="w-6 h-6 text-neutral-300" />
+                              </div>
+                              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">Belum Ada Tes</h4>
+                              <p className="text-[10px] font-bold text-neutral-300 mt-2 max-w-[150px] leading-relaxed">
+                                Jalur ini belum diuji atau tidak ada kasus uji yang tersimpan.
+                              </p>
+                            </div>
+                          )}
                         </div>
                       </ScrollArea>
                     </Card>
@@ -637,7 +651,7 @@ export default function ExportDialog({
         </div>
 
         <DialogFooter className="p-4 border-t bg-neutral-50 dark:bg-neutral-900 dark:border-neutral-800">
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+          <Button className="mt-2 sm:mt-0" variant="outline" onClick={() => onOpenChange(false)}>
             Tutup
           </Button>
           <Button onClick={generateFullPDF}>
