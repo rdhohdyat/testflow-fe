@@ -249,7 +249,7 @@ function WorkFlowPage() {
         </motion.div>
       </div>
 
-      <div className="hidden px-20 pt-28 pb-8 xl:flex h-screen max-h-screen overflow-hidden flex-col">
+      <div className="hidden px-20 pt-28 pb-4 xl:flex h-screen max-h-screen overflow-hidden flex-col">
         <motion.div variants={itemVariants} className="flex items-center justify-between mb-4">
           <ServerStatus />
           <SaveAnalysisDialog />
@@ -275,7 +275,7 @@ function WorkFlowPage() {
 
             <ResizablePanel minSize={40} defaultSize={50} className="bg-white dark:bg-neutral-900">
               <div className="flex flex-col h-full">
-                <div className="p-6 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm z-10 sticky top-0">
+                <div className="p-6 border-b dark:border-neutral-800 flex items-center justify-between bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm z-10 sticky top-0">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-emerald-500 flex items-center justify-center">
                       <GitFork className="w-5 h-5" />
@@ -307,7 +307,7 @@ function WorkFlowPage() {
 
             <ResizablePanel minSize={20} defaultSize={25} className="bg-neutral-50 dark:bg-neutral-800/20">
               <div className="flex flex-col h-full">
-                <div className="p-6 border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2 bg-white/50 dark:bg-neutral-900/50">
+                <div className="p-6 border-b dark:border-neutral-800 flex items-center gap-2 bg-white/50 dark:bg-neutral-900/50">
                   <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-emerald-500 flex items-center justify-center">
                     <BarChart3 className="w-5 h-5" />
                   </div>
@@ -316,7 +316,7 @@ function WorkFlowPage() {
 
                 <Tabs defaultValue="metrics" className="flex flex-col flex-1 overflow-hidden">
                   <div className="px-6 mt-3">
-                    <TabsList className="grid grid-cols-2 p-1 bg-neutral-100/50 dark:bg-neutral-800/50 rounded-2xl border-none">
+                    <TabsList className="grid grid-cols-2 p-1 bg-neutral-100/50 dark:bg-neutral-800/50 rounded-2xl border">
                       <TabsTrigger value="metrics" className="rounded-xl font-black text-[10px] h-10 uppercase tracking-widest data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-800 data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm dark:data-[state=active]:shadow-none transition-all py-2">
                         Metrik
                       </TabsTrigger>

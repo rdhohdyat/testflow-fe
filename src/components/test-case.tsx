@@ -366,6 +366,7 @@ function TestCase() {
             {params.map((param, index) => {
               // @ts-ignore
               const currentVal: string = testCaseInputs[param.name] || "";
+              const isJson = isJsonValue(currentVal);
               return (
                 <motion.div
                   // @ts-ignore
@@ -385,13 +386,20 @@ function TestCase() {
                   </label>
                   <Textarea
                     id={`param-${index}`}
-                    rows={1}
-                    className="rounded-xl dark:bg-neutral-800 text-xs font-bold px-4 py-2 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-neutral-500 shadow-sm dark:shadow-none resize-none transition-all min-h-[40px] h-auto"
+                    rows={isJson ? 4 : 1}
+                    className={`rounded-xl dark:bg-neutral-800 resize-none text-xs font-bold px-4 py-2 focus-visible:ring-emerald-500 dark:text-white dark:placeholder:text-neutral-500 shadow-sm dark:shadow-none transition-all min-h-0 ${
+                      isJson ? "font-mono h-24" : "h-10"
+                    }`}
                     placeholder={`Nilai untuk ${param.name}`}
                     value={currentVal}
                     // @ts-ignore
                     onChange={(e) => handleInputChange(param.name, e.target.value)}
                   />
+                  {isJson && (
+                    <p className="text-[9px] text-blue-500 dark:text-blue-400 font-bold pl-1 animate-in fade-in slide-in-from-top-1 duration-300">
+                      Terdeteksi sebagai format Array / Object
+                    </p>
+                  )}
                 </motion.div>
               );
             })}
